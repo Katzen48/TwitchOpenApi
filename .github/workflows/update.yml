@@ -1,3 +1,4 @@
+name: Automatic Update Check
 on:
   schedule:
       - cron:  '0 1 * * *'
