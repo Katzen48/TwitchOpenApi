@@ -17,6 +17,11 @@ jobs:
       - name: Install SwaggerHub-CLI
         run: npm i -g swaggerhub-cli
         shell: bash
+      - name: Unpublish Current Version
+        env:
+          SWAGGERHUB_API_KEY: ${{ secrets.SWAGGERHUB_API_KEY }}
+        run: swaggerhub api:unpublish Katzen48/TwitchAPI/Helix
+        shell: bash
       - name: Upload to SwaggerHub
         env:
           SWAGGERHUB_API_KEY: ${{ secrets.SWAGGERHUB_API_KEY }}
