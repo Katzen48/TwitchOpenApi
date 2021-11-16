@@ -1,0 +1,1261 @@
+swagger: "2.0"
+host: api.twitch.tv
+basePath: /helix
+schemes:
+  - https
+externalDocs:
+  description: Official documentation
+  url: https://dev.twitch.tv/docs/api/
+info:
+  title: Twitch Helix API
+  description: The Twitch API is a RESTful API that lets developers build creative
+    integrations for the broader Twitch community.
+  termsOfService: https://www.twitch.tv/p/en/legal/developer-agreement/
+  contact:
+    name: TwitchDev
+    url: https://dev.twitch.tv/support/
+    email: developers@twitch.tv
+  version: 2021‑11‑09
+paths:
+  /channels/commercial:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+      - name: length
+        in: query
+        type: integer
+    get:
+      summary: /channels/commercial
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /analytics/extensions:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: after
+        in: query
+        type: string
+      - name: ended_at
+        in: query
+        type: string
+      - name: extension_id
+        in: query
+        type: string
+      - name: first
+        in: query
+        type: integer
+      - name: started_at
+        in: query
+        type: string
+      - name: type
+        in: query
+        type: string
+    get:
+      summary: /analytics/extensions
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /analytics/games:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: after
+        in: query
+        type: string
+      - name: ended_at
+        in: query
+        type: string
+      - name: first
+        in: query
+        type: integer
+      - name: game_id
+        in: query
+        type: string
+      - name: started_at
+        in: query
+        type: string
+      - name: type
+        in: query
+        type: string
+    get:
+      summary: /analytics/games
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /bits/leaderboard:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: count
+        in: query
+        type: integer
+      - name: period
+        in: query
+        type: string
+      - name: started_at
+        in: query
+        type: string
+      - name: user_id
+        in: query
+        type: string
+    get:
+      summary: /bits/leaderboard
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /bits/cheermotes:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /bits/cheermotes
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /extensions/transactions:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: extension_id
+        in: query
+        type: string
+    get:
+      summary: /extensions/transactions
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /channels:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /channels
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /channels/editors:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /channels/editors
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /channel_points/custom_rewards:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+      - name: id
+        in: query
+        type: string
+    get:
+      summary: /channel_points/custom_rewards
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /channel_points/custom_rewards/redemptions:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: id
+        in: query
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+      - name: reward_id
+        in: query
+        type: string
+    get:
+      summary: /channel_points/custom_rewards/redemptions
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /chat/emotes:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /chat/emotes
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /chat/emotes/global:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /chat/emotes/global
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /chat/emotes/set:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: emote_set_id
+        in: query
+        type: string
+    get:
+      summary: /chat/emotes/set
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /chat/badges:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /chat/badges
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /chat/badges/global:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /chat/badges/global
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /clips:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+      - name: game_id
+        in: query
+        type: string
+      - name: id
+        in: query
+        type: string
+    get:
+      summary: /clips
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /entitlements/codes:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: code
+        in: query
+        type: string
+      - name: user_id
+        in: query
+        type: string
+    get:
+      summary: /entitlements/codes
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /entitlements/drops:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: entitlement_ids
+        in: query
+        type: string
+      - name: fulfillment_status
+        in: query
+        type: string
+    get:
+      summary: /entitlements/drops
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /extensions/configurations:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /extensions/configurations
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /extensions/required_configuration:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /extensions/required_configuration
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /extensions/pubsub:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /extensions/pubsub
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /extensions/live:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: extension_id
+        in: query
+        type: string
+    get:
+      summary: /extensions/live
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /extensions/jwt/secrets:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: delay
+        in: query
+        type: integer
+    get:
+      summary: /extensions/jwt/secrets
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /extensions/chat:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /extensions/chat
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /extensions:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: extension_id
+        in: query
+        type: string
+    get:
+      summary: /extensions
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /extensions/released:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: extension_id
+        in: query
+        type: string
+    get:
+      summary: /extensions/released
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /bits/extensions:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /bits/extensions
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /eventsub/subscriptions:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: status
+        in: query
+        type: string
+      - name: type
+        in: query
+        type: string
+      - name: after
+        in: query
+        type: string
+    get:
+      summary: /eventsub/subscriptions
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /games/top:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: after
+        in: query
+        type: string
+      - name: before
+        in: query
+        type: string
+      - name: first
+        in: query
+        type: integer
+    get:
+      summary: /games/top
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /games:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: id
+        in: query
+        type: string
+      - name: name
+        in: query
+        type: string
+    get:
+      summary: /games
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /goals:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /goals
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /hypetrain/events:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /hypetrain/events
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /moderation/enforcements/status:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /moderation/enforcements/status
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /moderation/automod/message:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /moderation/automod/message
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /moderation/banned/events:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /moderation/banned/events
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /moderation/banned:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /moderation/banned
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /moderation/moderators:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /moderation/moderators
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /moderation/moderators/events:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /moderation/moderators/events
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /polls:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /polls
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /predictions:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /predictions
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /schedule:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /schedule
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /schedule/icalendar:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /schedule/icalendar
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /schedule/settings:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /schedule/settings
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /schedule/segment:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+      - name: id
+        in: query
+        type: string
+    get:
+      summary: /schedule/segment
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /search/categories :
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: query
+        in: query
+        type: string
+    get:
+      summary: /search/categories 
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /search/channels:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: query
+        in: query
+        type: string
+    get:
+      summary: /search/channels
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /streams/key:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /streams/key
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /streams:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: after
+        in: query
+        type: string
+      - name: before
+        in: query
+        type: string
+      - name: first
+        in: query
+        type: integer
+      - name: game_id
+        in: query
+        type: string
+      - name: language
+        in: query
+        type: string
+      - name: user_id
+        in: query
+        type: string
+      - name: user_login
+        in: query
+        type: string
+    get:
+      summary: /streams
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /streams/followed:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: user_id
+        in: query
+        type: string
+    get:
+      summary: /streams/followed
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /streams/markers:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: user_id
+        in: query
+        type: string
+      - name: video_id
+        in: query
+        type: string
+    get:
+      summary: /streams/markers
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /subscriptions:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /subscriptions
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /subscriptions/user:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+      - name: user_id
+        in: query
+        type: string
+    get:
+      summary: /subscriptions/user
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /tags/streams:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: after
+        in: query
+        type: string
+      - name: first
+        in: query
+        type: integer
+      - name: tag_id
+        in: query
+        type: string
+    get:
+      summary: /tags/streams
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /streams/tags:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /streams/tags
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /teams/channel:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: broadcaster_id
+        in: query
+        type: string
+    get:
+      summary: /teams/channel
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /teams:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: name
+        in: query
+        type: string
+      - name: id
+        in: query
+        type: string
+    get:
+      summary: /teams
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /users:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: id
+        in: query
+        type: string
+      - name: login
+        in: query
+        type: string
+    get:
+      summary: /users
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /users?description=<description>:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /users?description=<description>
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /users/follows?from_id=<user:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: after
+        in: query
+        type: string
+      - name: first
+        in: query
+        type: integer
+      - name: from_id
+        in: query
+        type: string
+      - name: to_id
+        in: query
+        type: string
+    get:
+      summary: /users/follows?from_id=<user
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /users/blocks:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: target_user_id
+        in: query
+        type: string
+    get:
+      summary: /users/blocks
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /users/extensions/list:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: can_activate
+        in: query
+        type: boolean
+      - name: id
+        in: query
+        type: string
+      - name: name
+        in: query
+        type: string
+      - name: type
+        in: query
+        type: string
+      - name: version
+        in: query
+        type: string
+    get:
+      summary: /users/extensions/list
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /users/extensions:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /users/extensions
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /videos:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+      - name: id
+        in: query
+        type: string
+    get:
+      summary: /videos
+      responses:
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
