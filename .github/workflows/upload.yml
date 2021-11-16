@@ -18,5 +18,7 @@ jobs:
         run: npm i -g swaggerhub-cli
         shell: bash
       - name: Upload to SwaggerHub
+        env:
+          SWAGGERHUB_API_KEY: ${{ secrets.SWAGGERHUB_API_KEY }}
         run: swaggerhub api:update Katzen48/TwitchAPI/Helix --file swagger.yaml --published=publish --setdefault 
         shell: bash
