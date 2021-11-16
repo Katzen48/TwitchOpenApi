@@ -1,3 +1,4 @@
+name: Check Swagger Definition
 on: [push, pull_request]
 
 jobs:
