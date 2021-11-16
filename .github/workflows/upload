@@ -1,0 +1,22 @@
+name: Upload Swagger Definition
+on:
+  workflow_run: 
+    workflows: ["Check Swagger Definition"]
+    branches: [main]
+    types: [completed]
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    name: Upload Swagger Definition
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install SwaggerHub-CLI
+        run: npm i -g swaggerhub-cli
+        shell: bash
+      - name: Upload to SwaggerHub
+        run: swaggerhub api:update Katzen48/TwitchAPI/Helix --file swagger.yaml --published=publish --setdefault 
+        shell: bash
