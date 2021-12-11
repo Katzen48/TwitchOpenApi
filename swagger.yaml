@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2021‑12‑03
+  version: 2021‑12‑09
 paths:
   /channels/commercial:
     parameters:
@@ -1053,6 +1053,57 @@ paths:
         type: string
     get:
       summary: /search/channels
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /soundtrack/current_track:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /soundtrack/current_track
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /soundtrack/playlist:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /soundtrack/playlist
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /soundtrack/playlists:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        type: string
+    get:
+      summary: /soundtrack/playlists
       responses:
         "200":
           description: OK
