@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check for Updates and pull docs
         id: hello
-        uses: katzen48/TwitchOpenApiGenerator@v0.1
+        uses: katzen48/TwitchOpenApiGenerator@v0.2
       # Use the output from the `hello` step
       - name: Swagger-cli
         uses: mpetrunic/swagger-cli-action@v1.0.0
