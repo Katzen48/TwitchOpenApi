@@ -1,8 +1,7 @@
-swagger: "2.0"
-host: api.twitch.tv
-basePath: /helix
-schemes:
-  - https
+openapi: 3.0.0
+servers:
+  - url: https://api.twitch.tv/helix
+    description: Production API
 externalDocs:
   description: Official documentation
   url: https://dev.twitch.tv/docs/api/
@@ -23,7 +22,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     post:
       summary: Start Commercial
       description: Starts a commercial on a specified channel.
@@ -41,16 +41,19 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: length
           in: query
-          type: integer
+          schema:
+            type: integer
   /analytics/extensions:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Extension Analytics
       description: Gets a URL that Extension developers can use to download analytics
@@ -71,28 +74,35 @@ paths:
       parameters:
         - name: after
           in: query
-          type: string
+          schema:
+            type: string
         - name: ended_at
           in: query
-          type: string
+          schema:
+            type: string
         - name: extension_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: first
           in: query
-          type: integer
+          schema:
+            type: integer
         - name: started_at
           in: query
-          type: string
+          schema:
+            type: string
         - name: type
           in: query
-          type: string
+          schema:
+            type: string
   /analytics/games:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Game Analytics
       description: Gets a URL that game developers can use to download analytics
@@ -111,28 +121,35 @@ paths:
       parameters:
         - name: after
           in: query
-          type: string
+          schema:
+            type: string
         - name: ended_at
           in: query
-          type: string
+          schema:
+            type: string
         - name: first
           in: query
-          type: integer
+          schema:
+            type: integer
         - name: game_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: started_at
           in: query
-          type: string
+          schema:
+            type: string
         - name: type
           in: query
-          type: string
+          schema:
+            type: string
   /bits/leaderboard:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Bits Leaderboard
       description: Gets a ranked list of Bits leaderboard information for an
@@ -151,22 +168,27 @@ paths:
       parameters:
         - name: count
           in: query
-          type: integer
+          schema:
+            type: integer
         - name: period
           in: query
-          type: string
+          schema:
+            type: string
         - name: started_at
           in: query
-          type: string
+          schema:
+            type: string
         - name: user_id
           in: query
-          type: string
+          schema:
+            type: string
   /bits/cheermotes:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Cheermotes
       description: Retrieves the list of available Cheermotes, animated emotes to
@@ -186,13 +208,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /extensions/transactions:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Extension Transactions
       description: Gets the list of Extension transactions for a given Extension. This
@@ -212,13 +236,15 @@ paths:
       parameters:
         - name: extension_id
           in: query
-          type: string
+          schema:
+            type: string
   /channels:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Channel Information
       description: Gets channel information for users.
@@ -236,7 +262,8 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
     patch:
       summary: Modify Channel Information
       description: Modifies channel information for users.
@@ -254,13 +281,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /channels/editors:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Channel Editors
       description: Gets a list of users who have editor permissions for a specific channel.
@@ -278,13 +307,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /channel_points/custom_rewards:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     post:
       summary: Create Custom Rewards
       description: |-
@@ -305,7 +336,8 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
     delete:
       summary: Delete Custom Reward
       description: Deletes a Custom Reward on a channel.
@@ -323,10 +355,12 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
     get:
       summary: Get Custom Reward
       description: Returns a list of Custom Reward objects for the Custom Rewards on a
@@ -345,7 +379,8 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
     patch:
       summary: Update Custom Reward
       description: Updates a Custom Reward created on a channel.
@@ -363,16 +398,19 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
   /channel_points/custom_rewards/redemptions:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Custom Reward Redemption
       description: Returns Custom Reward Redemption objects for a Custom Reward on a
@@ -391,10 +429,12 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: reward_id
           in: query
-          type: string
+          schema:
+            type: string
     patch:
       summary: Update Redemption Status
       description: Updates the status of Custom Reward Redemption objects on a channel
@@ -413,19 +453,23 @@ paths:
       parameters:
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: reward_id
           in: query
-          type: string
+          schema:
+            type: string
   /chat/emotes:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Channel Emotes
       description: Gets all emotes that the specified Twitch channel created. For
@@ -444,13 +488,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /chat/emotes/global:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Global Emotes
       description: Gets all global emotes. Global emotes are Twitch-specific emoticons
@@ -471,7 +517,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Emote Sets
       description: Gets emotes for one or more specified emote sets.
@@ -489,13 +536,15 @@ paths:
       parameters:
         - name: emote_set_id
           in: query
-          type: string
+          schema:
+            type: string
   /chat/badges:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Channel Chat Badges
       description: Gets a list of custom chat badges that can be used in chat for the
@@ -514,13 +563,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /chat/badges/global:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Global Chat Badges
       description: Gets a list of chat badges that can be used in chat for any channel.
@@ -540,7 +591,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Chat Settings
       description: NEW Gets the broadcaster’s chat settings.
@@ -574,7 +626,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     post:
       summary: Create Clip
       description: Creates a clip programmatically. This returns both an ID and an
@@ -593,7 +646,8 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
     get:
       summary: Get Clips
       description: Gets clip information by clip ID (one or more), broadcaster ID (one
@@ -612,19 +666,23 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: game_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
   /entitlements/codes:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Code Status
       description: Gets the status of one or more provided codes. This API requires
@@ -644,10 +702,12 @@ paths:
       parameters:
         - name: code
           in: query
-          type: string
+          schema:
+            type: string
         - name: user_id
           in: query
-          type: string
+          schema:
+            type: string
     post:
       summary: Redeem Code
       description: Redeems one or more redemption codes.
@@ -665,16 +725,19 @@ paths:
       parameters:
         - name: code
           in: query
-          type: string
+          schema:
+            type: string
         - name: user_id
           in: query
-          type: string
+          schema:
+            type: string
   /entitlements/drops:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Drops Entitlements
       description: Gets a list of entitlements for a given organization that have been
@@ -693,22 +756,28 @@ paths:
       parameters:
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
         - name: user_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: game_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: fulfillment_status
           in: query
-          type: string
+          schema:
+            type: string
         - name: after
           in: query
-          type: string
+          schema:
+            type: string
         - name: first
           in: query
-          type: integer
+          schema:
+            type: integer
     patch:
       summary: Update Drops Entitlements
       description: Updates the fulfillment status on a set of Drops entitlements,
@@ -727,16 +796,19 @@ paths:
       parameters:
         - name: entitlement_ids
           in: query
-          type: string
+          schema:
+            type: string
         - name: fulfillment_status
           in: query
-          type: string
+          schema:
+            type: string
   /extensions/configurations:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Extension Configuration Segment
       description: NEW Gets the specified configuration segment from the specified
@@ -755,13 +827,16 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: extension_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: segment
           in: query
-          type: string
+          schema:
+            type: string
     put:
       summary: Set Extension Configuration Segment
       description: NEW Sets a single configuration segment of any type. The segment
@@ -782,7 +857,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     put:
       summary: Set Extension Required Configuration
       description: NEW Enable activation of a specified Extension, after any required
@@ -801,13 +877,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /extensions/pubsub:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     post:
       summary: Send Extension PubSub Message
       description: NEW Forward a message using the same mechanism as the send
@@ -828,7 +906,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Extension Live Channels
       description: NEW Returns one page of live channels that have installed or
@@ -847,13 +926,15 @@ paths:
       parameters:
         - name: extension_id
           in: query
-          type: string
+          schema:
+            type: string
   /extensions/jwt/secrets:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Extension Secrets
       description: NEW Retrieves a specified Extension’s secret data consisting of a
@@ -886,13 +967,15 @@ paths:
       parameters:
         - name: delay
           in: query
-          type: integer
+          schema:
+            type: integer
   /extensions/chat:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     post:
       summary: Send Extension Chat Message
       description: NEW Sends a specified chat message to a specified channel.
@@ -910,13 +993,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /extensions:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Extensions
       description: NEW Gets information about your Extensions; either the current
@@ -935,13 +1020,15 @@ paths:
       parameters:
         - name: extension_id
           in: query
-          type: string
+          schema:
+            type: string
   /extensions/released:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Released Extensions
       description: NEW Gets information about a released Extension; either the current
@@ -960,13 +1047,15 @@ paths:
       parameters:
         - name: extension_id
           in: query
-          type: string
+          schema:
+            type: string
   /bits/extensions:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Extension Bits Products
       description: NEW Gets a list of Bits products that belongs to an Extension.
@@ -984,7 +1073,8 @@ paths:
       parameters:
         - name: should_include_all
           in: query
-          type: boolean
+          schema:
+            type: boolean
     put:
       summary: Update Extension Bits Product
       description: NEW Add or update a Bits products that belongs to an Extension.
@@ -1004,7 +1094,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     post:
       summary: Create EventSub Subscription
       description: Creates an EventSub subscription.
@@ -1022,16 +1113,20 @@ paths:
       parameters:
         - name: type
           in: query
-          type: string
+          schema:
+            type: string
         - name: version
           in: query
-          type: string
+          schema:
+            type: string
         - name: condition
           in: query
-          type: string
+          schema:
+            type: string
         - name: transport
           in: query
-          type: string
+          schema:
+            type: string
     delete:
       summary: Delete EventSub Subscription
       description: Deletes an EventSub subscription.
@@ -1049,7 +1144,8 @@ paths:
       parameters:
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
     get:
       summary: Get EventSub Subscriptions
       description: Gets a list of your EventSub subscriptions. The list is paginated
@@ -1068,19 +1164,23 @@ paths:
       parameters:
         - name: status
           in: query
-          type: string
+          schema:
+            type: string
         - name: type
           in: query
-          type: string
+          schema:
+            type: string
         - name: after
           in: query
-          type: string
+          schema:
+            type: string
   /games/top:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Top Games
       description: Gets games sorted by number of current viewers on Twitch, most
@@ -1099,19 +1199,23 @@ paths:
       parameters:
         - name: after
           in: query
-          type: string
+          schema:
+            type: string
         - name: before
           in: query
-          type: string
+          schema:
+            type: string
         - name: first
           in: query
-          type: integer
+          schema:
+            type: integer
   /games:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Games
       description: Gets game information by game ID or name.
@@ -1129,16 +1233,19 @@ paths:
       parameters:
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
         - name: name
           in: query
-          type: string
+          schema:
+            type: string
   /goals:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Creator Goals
       description: NEW Gets the broadcaster’s list of active goals.
@@ -1156,13 +1263,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /hypetrain/events:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Hype Train Events
       description: Gets the information of the most recent Hype Train of the given
@@ -1181,13 +1290,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /moderation/enforcements/status:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     post:
       summary: Check AutoMod Status
       description: Determines whether a string message meets the channel’s AutoMod
@@ -1206,13 +1317,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /moderation/automod/message:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     post:
       summary: Manage Held AutoMod Messages
       description: Allow or deny a message that was held for review by AutoMod.
@@ -1232,7 +1345,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get AutoMod Settings
       description: NEW Gets the broadcaster’s AutoMod settings.
@@ -1266,7 +1380,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Banned Events
       description: Returns all user ban and un-ban events for a channel.
@@ -1284,13 +1399,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /moderation/banned:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Banned Users
       description: Returns all banned and timed-out users for a channel.
@@ -1308,13 +1425,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /moderation/bans:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     post:
       summary: Ban User
       description: NEW Bans a user from participating in a broadcaster’s chat room, or
@@ -1349,7 +1468,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Blocked Terms
       description: NEW Gets the broadcaster’s list of non-private, blocked words or phrases.
@@ -1398,7 +1518,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Moderators
       description: Returns all moderators in a channel.
@@ -1416,13 +1537,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /moderation/moderators/events:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Moderator Events
       description: Returns a list of moderators or users added and removed as
@@ -1441,13 +1564,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /polls:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Polls
       description: Get information about all polls or specific polls for a Twitch
@@ -1466,7 +1591,8 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
     post:
       summary: Create Poll
       description: Create a poll for a specific Twitch channel.
@@ -1500,7 +1626,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Predictions
       description: Get information about all Channel Points Predictions or specific
@@ -1519,7 +1646,8 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
     post:
       summary: Create Prediction
       description: Create a Channel Points Prediction for a specific Twitch channel.
@@ -1553,7 +1681,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Channel Stream Schedule
       description: NEW Gets all scheduled broadcasts or specific scheduled broadcasts
@@ -1572,13 +1701,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /schedule/icalendar:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Channel iCalendar
       description: NEW Gets all scheduled broadcasts from a channel’s stream schedule
@@ -1597,13 +1728,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /schedule/settings:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     patch:
       summary: Update Channel Stream Schedule
       description: NEW Update the settings for a channel’s stream schedule.
@@ -1621,13 +1754,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /schedule/segment:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     post:
       summary: Create Channel Stream Schedule Segment
       description: NEW Create a single scheduled broadcast or a recurring scheduled
@@ -1646,7 +1781,8 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
     patch:
       summary: Update Channel Stream Schedule Segment
       description: NEW Update a single scheduled broadcast or a recurring scheduled
@@ -1665,10 +1801,12 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
     delete:
       summary: Delete Channel Stream Schedule Segment
       description: NEW Delete a single scheduled broadcast or a recurring scheduled
@@ -1687,16 +1825,19 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
   /search/categories :
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Search Categories
       description: Returns a list of games or categories that match the query via name
@@ -1715,13 +1856,15 @@ paths:
       parameters:
         - name: query
           in: query
-          type: string
+          schema:
+            type: string
   /search/channels:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Search Channels
       description: Returns a list of channels that match the query via channel name or
@@ -1740,13 +1883,15 @@ paths:
       parameters:
         - name: query
           in: query
-          type: string
+          schema:
+            type: string
   /soundtrack/current_track:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Soundtrack Current Track
       description: BETA Gets the Soundtrack track that the broadcaster is playing.
@@ -1766,7 +1911,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Soundtrack Playlist
       description: BETA Gets a Soundtrack playlist, which includes its list of tracks.
@@ -1786,7 +1932,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Soundtrack Playlists
       description: BETA Gets a list of Soundtrack playlists.
@@ -1806,7 +1953,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Stream Key
       description: Gets the channel stream key for a user.
@@ -1824,13 +1972,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /streams:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Streams
       description: Gets information about active streams. Streams are returned sorted
@@ -1849,31 +1999,39 @@ paths:
       parameters:
         - name: after
           in: query
-          type: string
+          schema:
+            type: string
         - name: before
           in: query
-          type: string
+          schema:
+            type: string
         - name: first
           in: query
-          type: integer
+          schema:
+            type: integer
         - name: game_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: language
           in: query
-          type: string
+          schema:
+            type: string
         - name: user_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: user_login
           in: query
-          type: string
+          schema:
+            type: string
   /streams/followed:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Followed Streams
       description: Gets information about active streams belonging to channels that
@@ -1892,13 +2050,15 @@ paths:
       parameters:
         - name: user_id
           in: query
-          type: string
+          schema:
+            type: string
   /streams/markers:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     post:
       summary: Create Stream Marker
       description: Creates a marker in the stream of a user specified by user ID. A
@@ -1918,7 +2078,8 @@ paths:
       parameters:
         - name: user_id
           in: query
-          type: string
+          schema:
+            type: string
     get:
       summary: Get Stream Markers
       description: Gets a list of markers for either a specified user’s most recent
@@ -1938,16 +2099,19 @@ paths:
       parameters:
         - name: user_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: video_id
           in: query
-          type: string
+          schema:
+            type: string
   /subscriptions:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Broadcaster Subscriptions
       description: Gets all of a broadcaster’s subscriptions.
@@ -1965,13 +2129,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /subscriptions/user:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Check User Subscription
       description: Checks if a specific user is subscribed to a specific channel.
@@ -1989,16 +2155,19 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: user_id
           in: query
-          type: string
+          schema:
+            type: string
   /tags/streams:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get All Stream Tags
       description: Gets the list of all stream tags that Twitch defines. You can also
@@ -2017,19 +2186,23 @@ paths:
       parameters:
         - name: after
           in: query
-          type: string
+          schema:
+            type: string
         - name: first
           in: query
-          type: integer
+          schema:
+            type: integer
         - name: tag_id
           in: query
-          type: string
+          schema:
+            type: string
   /streams/tags:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Stream Tags
       description: Gets the list of stream tags that are set on the specified channel.
@@ -2047,7 +2220,8 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
     put:
       summary: Replace Stream Tags
       description: Applies one or more tags to the specified channel, overwriting any
@@ -2066,13 +2240,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /teams/channel:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Channel Teams
       description: Retrieves a list of Twitch Teams of which the specified
@@ -2091,13 +2267,15 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
   /teams:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Teams
       description: Gets information for a specific Twitch Team.
@@ -2115,16 +2293,19 @@ paths:
       parameters:
         - name: name
           in: query
-          type: string
+          schema:
+            type: string
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
   /users:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Users
       description: Gets information about one or more specified Twitch users. Users
@@ -2143,10 +2324,12 @@ paths:
       parameters:
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
         - name: login
           in: query
-          type: string
+          schema:
+            type: string
     put:
       summary: Update User
       description: Updates the description of a user specified by a Bearer token.
@@ -2166,7 +2349,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Users Follows
       description: Gets information on follow relationships between two Twitch users.
@@ -2185,22 +2369,27 @@ paths:
       parameters:
         - name: after
           in: query
-          type: string
+          schema:
+            type: string
         - name: first
           in: query
-          type: integer
+          schema:
+            type: integer
         - name: from_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: to_id
           in: query
-          type: string
+          schema:
+            type: string
   /users/blocks:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get User Block List
       description: Gets a specified user’s block list. The list is sorted by when the
@@ -2219,7 +2408,8 @@ paths:
       parameters:
         - name: broadcaster_id
           in: query
-          type: string
+          schema:
+            type: string
     put:
       summary: Block User
       description: Blocks the specified user on behalf of the authenticated user.
@@ -2237,7 +2427,8 @@ paths:
       parameters:
         - name: target_user_id
           in: query
-          type: string
+          schema:
+            type: string
     delete:
       summary: Unblock User
       description: Unblocks the specified user on behalf of the authenticated user.
@@ -2255,13 +2446,15 @@ paths:
       parameters:
         - name: target_user_id
           in: query
-          type: string
+          schema:
+            type: string
   /users/extensions/list:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get User Extensions
       description: Gets a list of all extensions (both active and inactive) for a
@@ -2280,25 +2473,31 @@ paths:
       parameters:
         - name: can_activate
           in: query
-          type: boolean
+          schema:
+            type: boolean
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
         - name: name
           in: query
-          type: string
+          schema:
+            type: string
         - name: type
           in: query
-          type: string
+          schema:
+            type: string
         - name: version
           in: query
-          type: string
+          schema:
+            type: string
   /users/extensions:
     parameters:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get User Active Extensions
       description: Gets information about active extensions installed by a specified
@@ -2317,7 +2516,8 @@ paths:
       parameters:
         - name: user_id
           in: query
-          type: string
+          schema:
+            type: string
     put:
       summary: Update User Extensions
       description: Updates the activation state, extension ID, and/or version number
@@ -2339,7 +2539,8 @@ paths:
       - in: header
         name: client_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       summary: Get Videos
       description: Gets video information by one or more video IDs, user ID, or game ID.
@@ -2357,13 +2558,16 @@ paths:
       parameters:
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
         - name: user_id
           in: query
-          type: string
+          schema:
+            type: string
         - name: game_id
           in: query
-          type: string
+          schema:
+            type: string
     delete:
       summary: Delete Videos
       description: Deletes one or more videos. Videos are past broadcasts, Highlights,
@@ -2382,4 +2586,5 @@ paths:
       parameters:
         - name: id
           in: query
-          type: string
+          schema:
+            type: string
