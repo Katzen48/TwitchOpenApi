@@ -32,6 +32,22 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        length:
+                          type: number
+                        message:
+                          type: string
+                        retry_after:
+                          type: number
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -65,6 +81,34 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        extension_id:
+                          type: string
+                        URL:
+                          type: string
+                        type:
+                          type: string
+                        date_range:
+                          type: object
+                          properties:
+                            started_at:
+                              type: string
+                            ended_at:
+                              type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -112,6 +156,29 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        game_id:
+                          type: string
+                        URL:
+                          type: string
+                        type:
+                          type: string
+                        date_range:
+                          type: object
+                          properties:
+                            started_at:
+                              type: string
+                            ended_at:
+                              type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -159,6 +226,35 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user_id:
+                          type: string
+                        user_login:
+                          type: string
+                        user_name:
+                          type: string
+                        rank:
+                          type: number
+                        score:
+                          type: number
+                  date_range:
+                    type: object
+                    properties:
+                      started_at:
+                        type: string
+                      ended_at:
+                        type: string
+                  total:
+                    type: number
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -199,6 +295,102 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        prefix:
+                          type: string
+                        tiers:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              min_bits:
+                                type: number
+                              id:
+                                type: string
+                              color:
+                                type: string
+                              images:
+                                type: object
+                                properties:
+                                  dark:
+                                    type: object
+                                    properties:
+                                      animated:
+                                        type: object
+                                        properties:
+                                          "1":
+                                            type: string
+                                          "2":
+                                            type: string
+                                          "3":
+                                            type: string
+                                          "4":
+                                            type: string
+                                          "1.5":
+                                            type: string
+                                      static:
+                                        type: object
+                                        properties:
+                                          "1":
+                                            type: string
+                                          "2":
+                                            type: string
+                                          "3":
+                                            type: string
+                                          "4":
+                                            type: string
+                                          "1.5":
+                                            type: string
+                                  light:
+                                    type: object
+                                    properties:
+                                      animated:
+                                        type: object
+                                        properties:
+                                          "1":
+                                            type: string
+                                          "2":
+                                            type: string
+                                          "3":
+                                            type: string
+                                          "4":
+                                            type: string
+                                          "1.5":
+                                            type: string
+                                      static:
+                                        type: object
+                                        properties:
+                                          "1":
+                                            type: string
+                                          "2":
+                                            type: string
+                                          "3":
+                                            type: string
+                                          "4":
+                                            type: string
+                                          "1.5":
+                                            type: string
+                              can_cheer:
+                                type: boolean
+                              show_in_bits_card:
+                                type: boolean
+                        type:
+                          type: string
+                        order:
+                          type: number
+                        last_updated:
+                          type: string
+                        is_charitable:
+                          type: boolean
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -253,6 +445,32 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        broadcaster_language:
+                          type: string
+                        game_id:
+                          type: string
+                        game_name:
+                          type: string
+                        title:
+                          type: string
+                        delay:
+                          type: number
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -298,6 +516,22 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user_id:
+                          type: string
+                        user_name:
+                          type: string
+                        created_at:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -327,6 +561,78 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        id:
+                          type: string
+                        image:
+                          type: string
+                        background_color:
+                          type: string
+                        is_enabled:
+                          type: boolean
+                        cost:
+                          type: number
+                        title:
+                          type: string
+                        prompt:
+                          type: string
+                        is_user_input_required:
+                          type: boolean
+                        max_per_stream_setting:
+                          type: object
+                          properties:
+                            is_enabled:
+                              type: boolean
+                            max_per_stream:
+                              type: number
+                        max_per_user_per_stream_setting:
+                          type: object
+                          properties:
+                            is_enabled:
+                              type: boolean
+                            max_per_user_per_stream:
+                              type: number
+                        global_cooldown_setting:
+                          type: object
+                          properties:
+                            is_enabled:
+                              type: boolean
+                            global_cooldown_seconds:
+                              type: number
+                        is_paused:
+                          type: boolean
+                        is_in_stock:
+                          type: boolean
+                        default_image:
+                          type: object
+                          properties:
+                            url_1x:
+                              type: string
+                            url_2x:
+                              type: string
+                            url_4x:
+                              type: string
+                        should_redemptions_skip_request_queue:
+                          type: boolean
+                        redemptions_redeemed_current_stream:
+                          type: string
+                        cooldown_expires_at:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -370,6 +676,78 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        id:
+                          type: string
+                        image:
+                          type: string
+                        background_color:
+                          type: string
+                        is_enabled:
+                          type: boolean
+                        cost:
+                          type: number
+                        title:
+                          type: string
+                        prompt:
+                          type: string
+                        is_user_input_required:
+                          type: boolean
+                        max_per_stream_setting:
+                          type: object
+                          properties:
+                            is_enabled:
+                              type: boolean
+                            max_per_stream:
+                              type: number
+                        max_per_user_per_stream_setting:
+                          type: object
+                          properties:
+                            is_enabled:
+                              type: boolean
+                            max_per_user_per_stream:
+                              type: number
+                        global_cooldown_setting:
+                          type: object
+                          properties:
+                            is_enabled:
+                              type: boolean
+                            global_cooldown_seconds:
+                              type: number
+                        is_paused:
+                          type: boolean
+                        is_in_stock:
+                          type: boolean
+                        default_image:
+                          type: object
+                          properties:
+                            url_1x:
+                              type: string
+                            url_2x:
+                              type: string
+                            url_4x:
+                              type: string
+                        should_redemptions_skip_request_queue:
+                          type: boolean
+                        redemptions_redeemed_current_stream:
+                          type: string
+                        cooldown_expires_at:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -389,6 +767,78 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        id:
+                          type: string
+                        image:
+                          type: string
+                        background_color:
+                          type: string
+                        is_enabled:
+                          type: boolean
+                        cost:
+                          type: number
+                        title:
+                          type: string
+                        prompt:
+                          type: string
+                        is_user_input_required:
+                          type: boolean
+                        max_per_stream_setting:
+                          type: object
+                          properties:
+                            is_enabled:
+                              type: boolean
+                            max_per_stream:
+                              type: number
+                        max_per_user_per_stream_setting:
+                          type: object
+                          properties:
+                            is_enabled:
+                              type: boolean
+                            max_per_user_per_stream:
+                              type: number
+                        global_cooldown_setting:
+                          type: object
+                          properties:
+                            is_enabled:
+                              type: boolean
+                            global_cooldown_seconds:
+                              type: number
+                        is_paused:
+                          type: boolean
+                        is_in_stock:
+                          type: boolean
+                        default_image:
+                          type: object
+                          properties:
+                            url_1x:
+                              type: string
+                            url_2x:
+                              type: string
+                            url_4x:
+                              type: string
+                        should_redemptions_skip_request_queue:
+                          type: boolean
+                        redemptions_redeemed_current_stream:
+                          type: number
+                        cooldown_expires_at:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -420,6 +870,52 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        id:
+                          type: string
+                        user_login:
+                          type: string
+                        user_id:
+                          type: string
+                        user_name:
+                          type: string
+                        user_input:
+                          type: string
+                        status:
+                          type: string
+                        redeemed_at:
+                          type: string
+                        reward:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            title:
+                              type: string
+                            prompt:
+                              type: string
+                            cost:
+                              type: number
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -444,6 +940,47 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        id:
+                          type: string
+                        user_id:
+                          type: string
+                        user_name:
+                          type: string
+                        user_login:
+                          type: string
+                        user_input:
+                          type: string
+                        status:
+                          type: string
+                        redeemed_at:
+                          type: string
+                        reward:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            title:
+                              type: string
+                            prompt:
+                              type: string
+                            cost:
+                              type: number
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -506,6 +1043,43 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        images:
+                          type: object
+                          properties:
+                            url_1x:
+                              type: string
+                            url_2x:
+                              type: string
+                            url_4x:
+                              type: string
+                        format:
+                          type: array
+                          items:
+                            type: string
+                        scale:
+                          type: array
+                          items:
+                            type: string
+                        theme_mode:
+                          type: array
+                          items:
+                            type: string
+                  template:
+                    type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -527,6 +1101,49 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        images:
+                          type: object
+                          properties:
+                            url_1x:
+                              type: string
+                            url_2x:
+                              type: string
+                            url_4x:
+                              type: string
+                        emote_type:
+                          type: string
+                        emote_set_id:
+                          type: string
+                        owner_id:
+                          type: string
+                        format:
+                          type: array
+                          items:
+                            type: string
+                        scale:
+                          type: array
+                          items:
+                            type: string
+                        theme_mode:
+                          type: array
+                          items:
+                            type: string
+                  template:
+                    type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -554,6 +1171,31 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        set_id:
+                          type: string
+                        versions:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              image_url_1x:
+                                type: string
+                              image_url_2x:
+                                type: string
+                              image_url_4x:
+                                type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -601,6 +1243,36 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                        slow_mode:
+                          type: boolean
+                        slow_mode_wait_time:
+                          type: string
+                        follower_mode:
+                          type: boolean
+                        follower_mode_duration:
+                          type: number
+                        subscriber_mode:
+                          type: boolean
+                        emote_mode:
+                          type: boolean
+                        unique_chat_mode:
+                          type: boolean
+                        non_moderator_chat_delay:
+                          type: boolean
+                        non_moderator_chat_delay_duration:
+                          type: number
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -615,6 +1287,38 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                        moderator_id:
+                          type: string
+                        slow_mode:
+                          type: boolean
+                        slow_mode_wait_time:
+                          type: number
+                        follower_mode:
+                          type: boolean
+                        follower_mode_duration:
+                          type: string
+                        subscriber_mode:
+                          type: boolean
+                        emote_mode:
+                          type: boolean
+                        unique_chat_mode:
+                          type: boolean
+                        non_moderator_chat_delay:
+                          type: boolean
+                        non_moderator_chat_delay_duration:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -637,6 +1341,20 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        edit_url:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -657,6 +1375,46 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        url:
+                          type: string
+                        embed_url:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        creator_id:
+                          type: string
+                        creator_name:
+                          type: string
+                        video_id:
+                          type: string
+                        game_id:
+                          type: string
+                        language:
+                          type: string
+                        title:
+                          type: string
+                        view_count:
+                          type: number
+                        created_at:
+                          type: string
+                        thumbnail_url:
+                          type: string
+                        duration:
+                          type: number
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -693,6 +1451,20 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        status:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -716,6 +1488,20 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        status:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -747,6 +1533,35 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        benefit_id:
+                          type: string
+                        timestamp:
+                          type: string
+                        user_id:
+                          type: string
+                        game_id:
+                          type: string
+                        fulfillment_status:
+                          type: string
+                        updated_at:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -787,6 +1602,22 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                        ids:
+                          type: array
+                          items:
+                            type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -818,6 +1649,22 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        segment:
+                          type: string
+                        content:
+                          type: string
+                        version:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -917,6 +1764,28 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        game_name:
+                          type: string
+                        game_id:
+                          type: string
+                        title:
+                          type: string
+                  pagination:
+                    type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -944,6 +1813,29 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        format_version:
+                          type: number
+                        secrets:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              content:
+                                type: string
+                              active_at:
+                                type: string
+                              expires_at:
+                                type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -958,6 +1850,29 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        format_version:
+                          type: number
+                        secrets:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              content:
+                                type: string
+                              active_at:
+                                type: string
+                              expires_at:
+                                type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1011,6 +1926,124 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        author_name:
+                          type: string
+                        bits_enabled:
+                          type: boolean
+                        can_install:
+                          type: boolean
+                        configuration_location:
+                          type: string
+                        description:
+                          type: string
+                        eula_tos_url:
+                          type: string
+                        has_chat_support:
+                          type: boolean
+                        icon_url:
+                          type: string
+                        icon_urls:
+                          type: object
+                          properties:
+                            100x100:
+                              type: string
+                            24x24:
+                              type: string
+                            300x200:
+                              type: string
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        privacy_policy_url:
+                          type: string
+                        request_identity_link:
+                          type: boolean
+                        screenshot_urls:
+                          type: array
+                          items:
+                            type: string
+                        state:
+                          type: string
+                        subscriptions_support_level:
+                          type: string
+                        summary:
+                          type: string
+                        support_email:
+                          type: string
+                        version:
+                          type: string
+                        viewer_summary:
+                          type: string
+                        views:
+                          type: object
+                          properties:
+                            mobile:
+                              type: object
+                              properties:
+                                viewer_url:
+                                  type: string
+                            panel:
+                              type: object
+                              properties:
+                                viewer_url:
+                                  type: string
+                                height:
+                                  type: number
+                                can_link_external_content:
+                                  type: boolean
+                            video_overlay:
+                              type: object
+                              properties:
+                                viewer_url:
+                                  type: string
+                                can_link_external_content:
+                                  type: boolean
+                            component:
+                              type: object
+                              properties:
+                                viewer_url:
+                                  type: string
+                                aspect_width:
+                                  type: number
+                                aspect_height:
+                                  type: number
+                                aspect_ratio_x:
+                                  type: number
+                                aspect_ratio_y:
+                                  type: number
+                                autoscale:
+                                  type: boolean
+                                scale_pixels:
+                                  type: number
+                                target_height:
+                                  type: number
+                                size:
+                                  type: number
+                                zoom:
+                                  type: boolean
+                                zoom_pixels:
+                                  type: number
+                                can_link_external_content:
+                                  type: boolean
+                        allowlisted_config_urls:
+                          type: array
+                          items:
+                            type: string
+                        allowlisted_panel_urls:
+                          type: array
+                          items:
+                            type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1038,6 +2071,124 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        author_name:
+                          type: string
+                        bits_enabled:
+                          type: boolean
+                        can_install:
+                          type: boolean
+                        configuration_location:
+                          type: string
+                        description:
+                          type: string
+                        eula_tos_url:
+                          type: string
+                        has_chat_support:
+                          type: boolean
+                        icon_url:
+                          type: string
+                        icon_urls:
+                          type: object
+                          properties:
+                            100x100:
+                              type: string
+                            24x24:
+                              type: string
+                            300x200:
+                              type: string
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        privacy_policy_url:
+                          type: string
+                        request_identity_link:
+                          type: boolean
+                        screenshot_urls:
+                          type: array
+                          items:
+                            type: string
+                        state:
+                          type: string
+                        subscriptions_support_level:
+                          type: string
+                        summary:
+                          type: string
+                        support_email:
+                          type: string
+                        version:
+                          type: string
+                        viewer_summary:
+                          type: string
+                        views:
+                          type: object
+                          properties:
+                            mobile:
+                              type: object
+                              properties:
+                                viewer_url:
+                                  type: string
+                            panel:
+                              type: object
+                              properties:
+                                viewer_url:
+                                  type: string
+                                height:
+                                  type: number
+                                can_link_external_content:
+                                  type: boolean
+                            video_overlay:
+                              type: object
+                              properties:
+                                viewer_url:
+                                  type: string
+                                can_link_external_content:
+                                  type: boolean
+                            component:
+                              type: object
+                              properties:
+                                viewer_url:
+                                  type: string
+                                aspect_width:
+                                  type: number
+                                aspect_height:
+                                  type: number
+                                aspect_ratio_x:
+                                  type: number
+                                aspect_ratio_y:
+                                  type: number
+                                autoscale:
+                                  type: boolean
+                                scale_pixels:
+                                  type: number
+                                target_height:
+                                  type: number
+                                size:
+                                  type: number
+                                zoom:
+                                  type: boolean
+                                zoom_pixels:
+                                  type: number
+                                can_link_external_content:
+                                  type: boolean
+                        allowlisted_config_urls:
+                          type: array
+                          items:
+                            type: string
+                        allowlisted_panel_urls:
+                          type: array
+                          items:
+                            type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1064,6 +2215,33 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sku:
+                          type: string
+                        cost:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                            type:
+                              type: string
+                        in_development:
+                          type: boolean
+                        display_name:
+                          type: string
+                        expiration:
+                          type: string
+                        is_broadcast:
+                          type: boolean
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1083,6 +2261,33 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sku:
+                          type: string
+                        cost:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                            type:
+                              type: string
+                        in_development:
+                          type: boolean
+                        display_name:
+                          type: string
+                        expiration:
+                          type: string
+                        is_broadcast:
+                          type: boolean
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1104,6 +2309,46 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        status:
+                          type: string
+                        type:
+                          type: string
+                        version:
+                          type: string
+                        condition:
+                          type: object
+                          properties:
+                            user_id:
+                              type: string
+                        created_at:
+                          type: string
+                        transport:
+                          type: object
+                          properties:
+                            method:
+                              type: string
+                            callback:
+                              type: string
+                        cost:
+                          type: number
+                  total:
+                    type: number
+                  total_cost:
+                    type: number
+                  max_total_cost:
+                    type: number
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1155,6 +2400,49 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: number
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        status:
+                          type: string
+                        type:
+                          type: string
+                        version:
+                          type: string
+                        condition:
+                          type: object
+                          properties:
+                            broadcaster_user_id:
+                              type: string
+                        created_at:
+                          type: string
+                        transport:
+                          type: object
+                          properties:
+                            method:
+                              type: string
+                            callback:
+                              type: string
+                        cost:
+                          type: number
+                  total_cost:
+                    type: number
+                  max_total_cost:
+                    type: number
+                  pagination:
+                    type: object
+                    properties: {}
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1190,6 +2478,27 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        box_art_url:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1224,6 +2533,27 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        box_art_url:
+                          type: string
+                        id:
+                          type: string
+                        name:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1254,6 +2584,34 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        type:
+                          type: string
+                        description:
+                          type: string
+                        current_amount:
+                          type: number
+                        target_amount:
+                          type: number
+                        created_at:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1281,6 +2639,68 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        event_type:
+                          type: string
+                        event_timestamp:
+                          type: string
+                        version:
+                          type: string
+                        event_data:
+                          type: object
+                          properties:
+                            broadcaster_id:
+                              type: string
+                            cooldown_end_time:
+                              type: string
+                            expires_at:
+                              type: string
+                            goal:
+                              type: number
+                            id:
+                              type: string
+                            last_contribution:
+                              type: object
+                              properties:
+                                total:
+                                  type: number
+                                type:
+                                  type: string
+                                user:
+                                  type: string
+                            level:
+                              type: number
+                            started_at:
+                              type: string
+                            top_contributions:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  total:
+                                    type: number
+                                  type:
+                                    type: string
+                                  user:
+                                    type: string
+                            total:
+                              type: number
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1308,6 +2728,20 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg_id:
+                          type: string
+                        is_permitted:
+                          type: boolean
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1355,6 +2789,38 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                        moderator_id:
+                          type: string
+                        overall_level:
+                          type: string
+                        disability:
+                          type: number
+                        aggression:
+                          type: number
+                        sexuality_sex_or_gender:
+                          type: number
+                        misogyny:
+                          type: number
+                        bullying:
+                          type: number
+                        swearing:
+                          type: number
+                        race_ethnicity_or_religion:
+                          type: number
+                        sex_based_terms:
+                          type: number
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1369,6 +2835,38 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                        moderator_id:
+                          type: string
+                        overall_level:
+                          type: number
+                        disability:
+                          type: number
+                        aggression:
+                          type: number
+                        sexuality_sex_or_gender:
+                          type: number
+                        misogyny:
+                          type: number
+                        bullying:
+                          type: number
+                        swearing:
+                          type: number
+                        race_ethnicity_or_religion:
+                          type: number
+                        sex_based_terms:
+                          type: number
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1390,6 +2888,54 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        event_type:
+                          type: string
+                        event_timestamp:
+                          type: string
+                        version:
+                          type: string
+                        event_data:
+                          type: object
+                          properties:
+                            broadcaster_id:
+                              type: string
+                            broadcaster_login:
+                              type: string
+                            broadcaster_name:
+                              type: string
+                            user_id:
+                              type: string
+                            user_login:
+                              type: string
+                            user_name:
+                              type: string
+                            expires_at:
+                              type: string
+                            reason:
+                              type: string
+                            moderator_id:
+                              type: string
+                            moderator_login:
+                              type: string
+                            moderator_name:
+                              type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1416,6 +2962,37 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user_id:
+                          type: string
+                        user_login:
+                          type: string
+                        user_name:
+                          type: string
+                        expires_at:
+                          type: string
+                        reason:
+                          type: string
+                        moderator_id:
+                          type: string
+                        moderator_login:
+                          type: string
+                        moderator_name:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1443,6 +3020,24 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                        moderator_id:
+                          type: string
+                        user_id:
+                          type: string
+                        end_time:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1492,6 +3087,30 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                        moderator_id:
+                          type: string
+                        id:
+                          type: string
+                        text:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                        expires_at:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1528,6 +3147,27 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user_id:
+                          type: string
+                        user_login:
+                          type: string
+                        user_name:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1555,6 +3195,44 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        event_type:
+                          type: string
+                        event_timestamp:
+                          type: string
+                        version:
+                          type: string
+                        event_data:
+                          type: object
+                          properties:
+                            broadcaster_id:
+                              type: string
+                            broadcaster_login:
+                              type: string
+                            broadcaster_name:
+                              type: string
+                            user_id:
+                              type: string
+                            user_login:
+                              type: string
+                            user_name:
+                              type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1582,6 +3260,58 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        title:
+                          type: string
+                        choices:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              title:
+                                type: string
+                              votes:
+                                type: number
+                              channel_points_votes:
+                                type: number
+                              bits_votes:
+                                type: number
+                        bits_voting_enabled:
+                          type: boolean
+                        bits_per_vote:
+                          type: number
+                        channel_points_voting_enabled:
+                          type: boolean
+                        channel_points_per_vote:
+                          type: number
+                        status:
+                          type: string
+                        duration:
+                          type: number
+                        started_at:
+                          type: string
+                  pagination:
+                    type: object
+                    properties: {}
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1601,6 +3331,55 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        title:
+                          type: string
+                        choices:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              title:
+                                type: string
+                              votes:
+                                type: number
+                              channel_points_votes:
+                                type: number
+                              bits_votes:
+                                type: number
+                        bits_voting_enabled:
+                          type: boolean
+                        bits_per_vote:
+                          type: number
+                        channel_points_voting_enabled:
+                          type: boolean
+                        channel_points_per_vote:
+                          type: number
+                        status:
+                          type: string
+                        duration:
+                          type: number
+                        started_at:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1615,6 +3394,57 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        title:
+                          type: string
+                        choices:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              title:
+                                type: string
+                              votes:
+                                type: number
+                              channel_points_votes:
+                                type: number
+                              bits_votes:
+                                type: number
+                        bits_voting_enabled:
+                          type: boolean
+                        bits_per_vote:
+                          type: number
+                        channel_points_voting_enabled:
+                          type: boolean
+                        channel_points_per_vote:
+                          type: number
+                        status:
+                          type: string
+                        duration:
+                          type: number
+                        started_at:
+                          type: string
+                        ended_at:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1637,6 +3467,58 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        title:
+                          type: string
+                        winning_outcome_id:
+                          type: string
+                        outcomes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              title:
+                                type: string
+                              users:
+                                type: number
+                              channel_points:
+                                type: number
+                              top_predictors:
+                                type: string
+                              color:
+                                type: string
+                        prediction_window:
+                          type: number
+                        status:
+                          type: string
+                        created_at:
+                          type: string
+                        ended_at:
+                          type: string
+                        locked_at:
+                          type: string
+                  pagination:
+                    type: object
+                    properties: {}
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1656,6 +3538,55 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        title:
+                          type: string
+                        winning_outcome_id:
+                          type: string
+                        outcomes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              title:
+                                type: string
+                              users:
+                                type: number
+                              channel_points:
+                                type: number
+                              top_predictors:
+                                type: string
+                              color:
+                                type: string
+                        prediction_window:
+                          type: number
+                        status:
+                          type: string
+                        created_at:
+                          type: string
+                        ended_at:
+                          type: string
+                        locked_at:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1670,6 +3601,55 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        broadcaster_id:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        title:
+                          type: string
+                        winning_outcome_id:
+                          type: string
+                        outcomes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              title:
+                                type: string
+                              users:
+                                type: number
+                              channel_points:
+                                type: number
+                              top_predictors:
+                                type: string
+                              color:
+                                type: string
+                        prediction_window:
+                          type: number
+                        status:
+                          type: string
+                        created_at:
+                          type: string
+                        ended_at:
+                          type: string
+                        locked_at:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1692,6 +3672,49 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      segments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            start_time:
+                              type: string
+                            end_time:
+                              type: string
+                            title:
+                              type: string
+                            canceled_until:
+                              type: string
+                            category:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                name:
+                                  type: string
+                            is_recurring:
+                              type: boolean
+                      broadcaster_id:
+                        type: string
+                      broadcaster_name:
+                        type: string
+                      broadcaster_login:
+                        type: string
+                      vacation:
+                        type: string
+                  pagination:
+                    type: object
+                    properties: {}
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1772,6 +3795,46 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      segments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            start_time:
+                              type: string
+                            end_time:
+                              type: string
+                            title:
+                              type: string
+                            canceled_until:
+                              type: string
+                            category:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                name:
+                                  type: string
+                            is_recurring:
+                              type: boolean
+                      broadcaster_id:
+                        type: string
+                      broadcaster_name:
+                        type: string
+                      broadcaster_login:
+                        type: string
+                      vacation:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1792,6 +3855,46 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      segments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            start_time:
+                              type: string
+                            end_time:
+                              type: string
+                            title:
+                              type: string
+                            canceled_until:
+                              type: string
+                            category:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                name:
+                                  type: string
+                            is_recurring:
+                              type: boolean
+                      broadcaster_id:
+                        type: string
+                      broadcaster_name:
+                        type: string
+                      broadcaster_login:
+                        type: string
+                      vacation:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1847,6 +3950,27 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        box_art_url:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1874,6 +3998,45 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_language:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        display_name:
+                          type: string
+                        game_id:
+                          type: string
+                        game_name:
+                          type: string
+                        id:
+                          type: string
+                        is_live:
+                          type: boolean
+                        tags_ids:
+                          type: array
+                          items:
+                            type: string
+                        thumbnail_url:
+                          type: string
+                        title:
+                          type: string
+                        started_at:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1900,6 +4063,60 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        track:
+                          type: object
+                          properties:
+                            artists:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                  name:
+                                    type: string
+                                  creator_channel_id:
+                                    type: string
+                            id:
+                              type: string
+                            duration:
+                              type: number
+                            title:
+                              type: string
+                            album:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                name:
+                                  type: string
+                                image_url:
+                                  type: string
+                        source:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            content_type:
+                              type: string
+                            title:
+                              type: string
+                            image_url:
+                              type: string
+                            soundtrack_url:
+                              type: string
+                            spotify_url:
+                              type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1921,6 +4138,55 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                        id:
+                          type: string
+                        image_url:
+                          type: string
+                        description:
+                          type: string
+                        tracks:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              artists:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                    name:
+                                      type: string
+                                    creator_channel_id:
+                                      type: string
+                              id:
+                                type: string
+                              duration:
+                                type: number
+                              title:
+                                type: string
+                              album:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                  name:
+                                    type: string
+                                  image_url:
+                                    type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1942,6 +4208,24 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                        id:
+                          type: string
+                        image_url:
+                          type: string
+                        description:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1990,6 +4274,51 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        user_id:
+                          type: string
+                        user_login:
+                          type: string
+                        user_name:
+                          type: string
+                        game_id:
+                          type: string
+                        game_name:
+                          type: string
+                        type:
+                          type: string
+                        title:
+                          type: string
+                        viewer_count:
+                          type: number
+                        started_at:
+                          type: string
+                        language:
+                          type: string
+                        thumbnail_url:
+                          type: string
+                        tag_ids:
+                          type: array
+                          items:
+                            type: string
+                        is_mature:
+                          type: boolean
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2041,6 +4370,49 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        user_id:
+                          type: string
+                        user_login:
+                          type: string
+                        user_name:
+                          type: string
+                        game_id:
+                          type: string
+                        game_name:
+                          type: string
+                        type:
+                          type: string
+                        title:
+                          type: string
+                        viewer_count:
+                          type: number
+                        started_at:
+                          type: string
+                        language:
+                          type: string
+                        thumbnail_url:
+                          type: string
+                        tag_ids:
+                          type: array
+                          items:
+                            type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2069,6 +4441,24 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        created_at:
+                          type: string
+                        description:
+                          type: string
+                        position_seconds:
+                          type: number
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2090,6 +4480,49 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user_id:
+                          type: string
+                        user_name:
+                          type: string
+                        user_login:
+                          type: string
+                        videos:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              video_id:
+                                type: string
+                              markers:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                    created_at:
+                                      type: string
+                                    description:
+                                      type: string
+                                    position_seconds:
+                                      type: number
+                                    URL:
+                                      type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2120,6 +4553,49 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        gifter_id:
+                          type: string
+                        gifter_login:
+                          type: string
+                        gifter_name:
+                          type: string
+                        is_gift:
+                          type: boolean
+                        tier:
+                          type: string
+                        plan_name:
+                          type: string
+                        user_id:
+                          type: string
+                        user_name:
+                          type: string
+                        user_login:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                  total:
+                    type: number
+                  points:
+                    type: number
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2146,6 +4622,26 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        is_gift:
+                          type: boolean
+                        tier:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2258,6 +4754,40 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        broadcaster_login:
+                          type: string
+                        background_image_url:
+                          type: string
+                        banner:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                        info:
+                          type: string
+                        thumbnail_url:
+                          type: string
+                        team_name:
+                          type: string
+                        team_display_name:
+                          type: string
+                        id:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2284,6 +4814,45 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        users:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              user_id:
+                                type: string
+                              user_name:
+                                type: string
+                              user_login:
+                                type: string
+                        background_image_url:
+                          type: string
+                        banner:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                        info:
+                          type: string
+                        thumbnail_url:
+                          type: string
+                        team_name:
+                          type: string
+                        team_display_name:
+                          type: string
+                        id:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2315,6 +4884,38 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        login:
+                          type: string
+                        display_name:
+                          type: string
+                        type:
+                          type: string
+                        broadcaster_type:
+                          type: string
+                        description:
+                          type: string
+                        profile_image_url:
+                          type: string
+                        offline_image_url:
+                          type: string
+                        view_count:
+                          type: number
+                        email:
+                          type: string
+                        created_at:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2338,6 +4939,38 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        login:
+                          type: string
+                        display_name:
+                          type: string
+                        type:
+                          type: string
+                        broadcaster_type:
+                          type: string
+                        description:
+                          type: string
+                        profile_image_url:
+                          type: string
+                        offline_image_url:
+                          type: string
+                        view_count:
+                          type: number
+                        email:
+                          type: string
+                        created_at:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2360,6 +4993,35 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: number
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        from_id:
+                          type: string
+                        from_login:
+                          type: string
+                        from_name:
+                          type: string
+                        to_id:
+                          type: string
+                        to_name:
+                          type: string
+                        followed_at:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2399,6 +5061,22 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user_id:
+                          type: string
+                        user_login:
+                          type: string
+                        display_name:
+                          type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2464,6 +5142,28 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        version:
+                          type: string
+                        name:
+                          type: string
+                        can_activate:
+                          type: boolean
+                        type:
+                          type: array
+                          items:
+                            type: string
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2507,6 +5207,87 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      panel:
+                        type: object
+                        properties:
+                          "1":
+                            type: object
+                            properties:
+                              active:
+                                type: boolean
+                              id:
+                                type: string
+                              version:
+                                type: string
+                              name:
+                                type: string
+                          "2":
+                            type: object
+                            properties:
+                              active:
+                                type: boolean
+                              id:
+                                type: string
+                              version:
+                                type: string
+                              name:
+                                type: string
+                          "3":
+                            type: object
+                            properties:
+                              active:
+                                type: boolean
+                              id:
+                                type: string
+                              version:
+                                type: string
+                              name:
+                                type: string
+                      overlay:
+                        type: object
+                        properties:
+                          "1":
+                            type: object
+                            properties:
+                              active:
+                                type: boolean
+                              id:
+                                type: string
+                              version:
+                                type: string
+                              name:
+                                type: string
+                      component:
+                        type: object
+                        properties:
+                          "1":
+                            type: object
+                            properties:
+                              active:
+                                type: boolean
+                              id:
+                                type: string
+                              version:
+                                type: string
+                              name:
+                                type: string
+                              x:
+                                type: number
+                              y:
+                                type: number
+                          "2":
+                            type: object
+                            properties:
+                              active:
+                                type: boolean
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2528,6 +5309,87 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      panel:
+                        type: object
+                        properties:
+                          "1":
+                            type: object
+                            properties:
+                              active:
+                                type: boolean
+                              id:
+                                type: string
+                              version:
+                                type: string
+                              name:
+                                type: string
+                          "2":
+                            type: object
+                            properties:
+                              active:
+                                type: boolean
+                              id:
+                                type: string
+                              version:
+                                type: string
+                              name:
+                                type: string
+                          "3":
+                            type: object
+                            properties:
+                              active:
+                                type: boolean
+                              id:
+                                type: string
+                              version:
+                                type: string
+                              name:
+                                type: string
+                      overlay:
+                        type: object
+                        properties:
+                          "1":
+                            type: object
+                            properties:
+                              active:
+                                type: boolean
+                              id:
+                                type: string
+                              version:
+                                type: string
+                              name:
+                                type: string
+                      component:
+                        type: object
+                        properties:
+                          "1":
+                            type: object
+                            properties:
+                              active:
+                                type: boolean
+                              id:
+                                type: string
+                              version:
+                                type: string
+                              name:
+                                type: string
+                              x:
+                                type: number
+                              y:
+                                type: number
+                          "2":
+                            type: object
+                            properties:
+                              active:
+                                type: boolean
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2549,6 +5411,60 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        stream_id:
+                          type: string
+                        user_id:
+                          type: string
+                        user_login:
+                          type: string
+                        user_name:
+                          type: string
+                        title:
+                          type: string
+                        description:
+                          type: string
+                        created_at:
+                          type: string
+                        published_at:
+                          type: string
+                        url:
+                          type: string
+                        thumbnail_url:
+                          type: string
+                        viewable:
+                          type: string
+                        view_count:
+                          type: number
+                        language:
+                          type: string
+                        type:
+                          type: string
+                        duration:
+                          type: string
+                        muted_segments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              duration:
+                                type: number
+                              offset:
+                                type: number
+                  pagination:
+                    type: object
+                    properties: {}
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
