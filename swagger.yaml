@@ -44,10 +44,12 @@ paths:
                       properties:
                         length:
                           type: number
+                          example: 60
                         message:
                           type: string
                         retry_after:
                           type: number
+                          example: 480
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -93,22 +95,28 @@ paths:
                       properties:
                         extension_id:
                           type: string
+                          example: efgh
                         URL:
                           type: string
+                          example: https://twitch-piper-reports.s3-us-west-2.amazonaws.com/dynamic/LoL%20ADC_overview_v2_2018-03-01_2018-06-01_8a879932-8e70-7a4c-2b97-e0eaba28c3b0.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAI7LOPgTrAIVYE6KQ%2F20180731%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20180731T202847Z&X-Amz-Expires=60&X-Amz-Security-Token=FQoDYXdzEDMaDObdwyOVISdo6feHSSK3A9R9gMFeS5frG5Dsr4k4tJemqCIazhsQJrpsehBoOufaQkCxrb8RD3oU0xC5pWrZe9kN%2BnezIoLOgTtFRAqTzdIr7J5iUOxGFyKN9XmrmUHGexFfALvoPQWUJNbxoFU6shajSmO3sPK2GnuEaGmIrAqjKrim8saLHDV%2FdSi2ZH3fFx6sBQEGv13Lx0zua7AsvaL%2BSfhIAcOazWjYLMU5N9bxXmaN7IAIF4UjNPqbg07RMWW70hm0edH0RPi%2Fw00faeeSvmreHq6c1C1Lu8a7AysMb0pEGBT7VxmuGmWsXyjLWZ6oNgbx88HXoMJpmAn5Y1hUu7VzOaa84T%2BmCF5Sbn7hbB1xIiPdzaVQ%2Bd85sy4ln09h7dgKh6GFE1VTas2v7RJU1lyD%2FZ%2FWKBwV5Ol8GEGrF1pme8mSBpPGUAJ4vxjLmrGL7ctty%2F0vXke3PyD%2B4%2FtHZ67xaw0y8EKrau23Xvt3blkcDNoQYOfcS%2FqbaK%2BHpyVq4bIBtQq%2BHYU5MuFkgEuwSe5zPDle1ysKSN11B6B6Sy7Httrq542OONS%2BfURkczMbKSPEShddN32Y9VUqKYdUo%2FsWVQQoy7uC2wU%3D&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3Bfilename%3D%22WoW%20Armory_overview_v1_2018-04-30_2018-06-01.csv%22&X-Amz-Signature=eb7721e40cbfd1d7409887dae3792cdb2add025ace953a63ba8e3545b92ae058
                         type:
                           type: string
+                          example: overview_v2
                         date_range:
                           type: object
                           properties:
                             started_at:
                               type: string
+                              example: 2018-03-01T00:00:00Z
                             ended_at:
                               type: string
+                              example: 2018-06-01T00:00:00Z
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6NX19
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -168,17 +176,22 @@ paths:
                       properties:
                         game_id:
                           type: string
+                          example: "493057"
                         URL:
                           type: string
+                          example: https://twitch-piper-reports.s3-us-west-2.amazonaws.com/games/66170/overview/1518307200000.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAJP7WFIAF26K7BC2Q%2F20180222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20180222T220651Z&X-Amz-Expires=60&X-Amz-Security-Token=FQoDYXdzEE0aDLKNl9aCgfuikMKI%2ByK3A4e%2FR%2B4to%2BmRZFUuslNKs%2FOxKeySB%2BAU87PBtNGCxQaQuN2Q8KI4Vg%2Bve2x5eenZdoH0ZM7uviM94sf2GlbE9Z0%2FoJRmNGNhlU3Ua%2FupzvByCoMdefrU8Ziiz4j8EJCgg0M1j2aF9f8bTC%2BRYwcpP0kjaZooJS6RFY1TTkh659KBA%2By%2BICdpVK0fxOlrQ%2FfZ6vIYVFzvywBM05EGWX%2F3flCIW%2BuZ9ZxMAvxcY4C77cOLQ0OvY5g%2F7tuuGSO6nvm9Eb8MeMEzSYPr4emr3zIjxx%2Fu0li9wjcF4qKvdmnyk2Bnd2mepX5z%2BVejtIGBzfpk%2Fe%2FMqpMrcONynKoL6BNxxDL4ITo5yvVzs1x7OumONHcsvrTQsd6aGNQ0E3lrWxcujBAmXmx8n7Qnk4pZnHZLgcBQam1fIGba65Gf5Ern71TwfRUsolxnyIXyHsKhd2jSmXSju8jH3iohjv99a2vGaxSg8SBCrQZ06Bi0pr%2FTiSC52U1g%2BlhXYttdJB4GUdOvaxR8n6PwMS7HuAtDJUui8GKWK%2F9t4OON3qhF2cBt%2BnV%2BDg8bDMZkQ%2FAt5blvIlg6rrlCu0cYko4ojb281AU%3D&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3Bfilename%3DWarframe-overview-2018-02-11.csv&X-Amz-Signature=49cc07cbd9d753b00315b66f49b9e4788570062ff3bd956288ab4f164cf96708
                         type:
                           type: string
+                          example: overview_v2
                         date_range:
                           type: object
                           properties:
                             started_at:
                               type: string
+                              example: 2018-01-01T00:00:00Z
                             ended_at:
                               type: string
+                              example: 2018-03-01T00:00:00Z
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -238,23 +251,31 @@ paths:
                       properties:
                         user_id:
                           type: string
+                          example: "158010205"
                         user_login:
                           type: string
+                          example: tundracowboy
                         user_name:
                           type: string
+                          example: TundraCowboy
                         rank:
                           type: number
+                          example: 1
                         score:
                           type: number
+                          example: 12543
                   date_range:
                     type: object
                     properties:
                       started_at:
                         type: string
+                        example: 2018-02-05T08:00:00Z
                       ended_at:
                         type: string
+                        example: 2018-02-12T08:00:00Z
                   total:
                     type: number
+                    example: 2
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -307,6 +328,7 @@ paths:
                       properties:
                         prefix:
                           type: string
+                          example: Cheer
                         tiers:
                           type: array
                           items:
@@ -314,10 +336,13 @@ paths:
                             properties:
                               min_bits:
                                 type: number
+                                example: 1
                               id:
                                 type: string
+                                example: "1"
                               color:
                                 type: string
+                                example: "#979797"
                               images:
                                 type: object
                                 properties:
@@ -329,27 +354,37 @@ paths:
                                         properties:
                                           "1":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/1/1.gif
                                           "2":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/1/2.gif
                                           "3":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/1/3.gif
                                           "4":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/1/4.gif
                                           "1.5":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/1/1.5.gif
                                       static:
                                         type: object
                                         properties:
                                           "1":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/static/1/1.png
                                           "2":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/static/1/2.png
                                           "3":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/static/1/3.png
                                           "4":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/static/1/4.png
                                           "1.5":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/static/1/1.5.png
                                   light:
                                     type: object
                                     properties:
@@ -358,37 +393,52 @@ paths:
                                         properties:
                                           "1":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/light/animated/1/1.gif
                                           "2":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/light/animated/1/2.gif
                                           "3":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/light/animated/1/3.gif
                                           "4":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/light/animated/1/4.gif
                                           "1.5":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/light/animated/1/1.5.gif
                                       static:
                                         type: object
                                         properties:
                                           "1":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/light/static/1/1.png
                                           "2":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/light/static/1/2.png
                                           "3":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/light/static/1/3.png
                                           "4":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/light/static/1/4.png
                                           "1.5":
                                             type: string
+                                            example: https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/light/static/1/1.5.png
                               can_cheer:
                                 type: boolean
+                                example: true
                               show_in_bits_card:
                                 type: boolean
+                                example: true
                         type:
                           type: string
+                          example: global_first_party
                         order:
                           type: number
+                          example: 1
                         last_updated:
                           type: string
+                          example: 2018-05-22T00:06:04Z
                         is_charitable:
                           type: boolean
         "401":
@@ -457,18 +507,25 @@ paths:
                       properties:
                         broadcaster_id:
                           type: string
+                          example: "141981764"
                         broadcaster_login:
                           type: string
+                          example: twitchdev
                         broadcaster_name:
                           type: string
+                          example: TwitchDev
                         broadcaster_language:
                           type: string
+                          example: en
                         game_id:
                           type: string
+                          example: "509670"
                         game_name:
                           type: string
+                          example: Science & Technology
                         title:
                           type: string
+                          example: TwitchDev Monthly Update // May 6, 2021
                         delay:
                           type: number
         "401":
@@ -528,10 +585,13 @@ paths:
                       properties:
                         user_id:
                           type: string
+                          example: "182891647"
                         user_name:
                           type: string
+                          example: mauerbac
                         created_at:
                           type: string
+                          example: 2019-02-15T21:19:50.380833Z
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -573,22 +633,30 @@ paths:
                       properties:
                         broadcaster_name:
                           type: string
+                          example: torpedo09
                         broadcaster_login:
                           type: string
+                          example: torpedo09
                         broadcaster_id:
                           type: string
+                          example: "274637212"
                         id:
                           type: string
+                          example: afaa7e34-6b17-49f0-a19a-d1e76eaaf673
                         image:
                           type: string
                         background_color:
                           type: string
+                          example: "#00E5CB"
                         is_enabled:
                           type: boolean
+                          example: true
                         cost:
                           type: number
+                          example: 50000
                         title:
                           type: string
+                          example: game analysis 1v1
                         prompt:
                           type: string
                         is_user_input_required:
@@ -618,15 +686,19 @@ paths:
                           type: boolean
                         is_in_stock:
                           type: boolean
+                          example: true
                         default_image:
                           type: object
                           properties:
                             url_1x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/custom-reward-images/default-1.png
                             url_2x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/custom-reward-images/default-2.png
                             url_4x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/custom-reward-images/default-4.png
                         should_redemptions_skip_request_queue:
                           type: boolean
                         redemptions_redeemed_current_stream:
@@ -688,22 +760,30 @@ paths:
                       properties:
                         broadcaster_name:
                           type: string
+                          example: torpedo09
                         broadcaster_login:
                           type: string
+                          example: torpedo09
                         broadcaster_id:
                           type: string
+                          example: "274637212"
                         id:
                           type: string
+                          example: 92af127c-7326-4483-a52b-b0da0be61c01
                         image:
                           type: string
                         background_color:
                           type: string
+                          example: "#00E5CB"
                         is_enabled:
                           type: boolean
+                          example: true
                         cost:
                           type: number
+                          example: 50000
                         title:
                           type: string
+                          example: game analysis
                         prompt:
                           type: string
                         is_user_input_required:
@@ -733,15 +813,19 @@ paths:
                           type: boolean
                         is_in_stock:
                           type: boolean
+                          example: true
                         default_image:
                           type: object
                           properties:
                             url_1x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/custom-reward-images/default-1.png
                             url_2x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/custom-reward-images/default-2.png
                             url_4x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/custom-reward-images/default-4.png
                         should_redemptions_skip_request_queue:
                           type: boolean
                         redemptions_redeemed_current_stream:
@@ -779,22 +863,29 @@ paths:
                       properties:
                         broadcaster_name:
                           type: string
+                          example: torpedo09
                         broadcaster_login:
                           type: string
+                          example: torpedo09
                         broadcaster_id:
                           type: string
+                          example: "274637212"
                         id:
                           type: string
+                          example: 92af127c-7326-4483-a52b-b0da0be61c01
                         image:
                           type: string
                         background_color:
                           type: string
+                          example: "#00E5CB"
                         is_enabled:
                           type: boolean
                         cost:
                           type: number
+                          example: 30000
                         title:
                           type: string
+                          example: game analysis 2v2
                         prompt:
                           type: string
                         is_user_input_required:
@@ -804,8 +895,10 @@ paths:
                           properties:
                             is_enabled:
                               type: boolean
+                              example: true
                             max_per_stream:
                               type: number
+                              example: 60
                         max_per_user_per_stream_setting:
                           type: object
                           properties:
@@ -829,14 +922,19 @@ paths:
                           properties:
                             url_1x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/custom-reward-images/default-1.png
                             url_2x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/custom-reward-images/default-2.png
                             url_4x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/custom-reward-images/default-4.png
                         should_redemptions_skip_request_queue:
                           type: boolean
+                          example: true
                         redemptions_redeemed_current_stream:
                           type: number
+                          example: 60
                         cooldown_expires_at:
                           type: string
         "401":
@@ -882,40 +980,53 @@ paths:
                       properties:
                         broadcaster_name:
                           type: string
+                          example: torpedo09
                         broadcaster_login:
                           type: string
+                          example: torpedo09
                         broadcaster_id:
                           type: string
+                          example: "274637212"
                         id:
                           type: string
+                          example: 17fa2df1-ad76-4804-bfa5-a40ef63efe63
                         user_login:
                           type: string
+                          example: torpedo09
                         user_id:
                           type: string
+                          example: "274637212"
                         user_name:
                           type: string
+                          example: torpedo09
                         user_input:
                           type: string
                         status:
                           type: string
+                          example: CANCELED
                         redeemed_at:
                           type: string
+                          example: 2020-07-01T18:37:32Z
                         reward:
                           type: object
                           properties:
                             id:
                               type: string
+                              example: 92af127c-7326-4483-a52b-b0da0be61c01
                             title:
                               type: string
+                              example: game analysis
                             prompt:
                               type: string
                             cost:
                               type: number
+                              example: 50000
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6Ik1UZG1ZVEprWmpFdFlXUTNOaTAwT0RBMExXSm1ZVFV0WVRRd1pXWTJNMlZtWlRZelgxOHlNREl3TFRBM0xUQXhWREU0T2pNM09qTXlMakl6TXpFeU56RTFOMW89In19
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -952,35 +1063,47 @@ paths:
                       properties:
                         broadcaster_name:
                           type: string
+                          example: torpedo09
                         broadcaster_login:
                           type: string
+                          example: torpedo09
                         broadcaster_id:
                           type: string
+                          example: "274637212"
                         id:
                           type: string
+                          example: 17fa2df1-ad76-4804-bfa5-a40ef63efe63
                         user_id:
                           type: string
+                          example: "274637212"
                         user_name:
                           type: string
+                          example: torpedo09
                         user_login:
                           type: string
+                          example: torpedo09
                         user_input:
                           type: string
                         status:
                           type: string
+                          example: CANCELED
                         redeemed_at:
                           type: string
+                          example: 2020-07-01T18:37:32Z
                         reward:
                           type: object
                           properties:
                             id:
                               type: string
+                              example: 92af127c-7326-4483-a52b-b0da0be61c01
                             title:
                               type: string
+                              example: game analysis
                             prompt:
                               type: string
                             cost:
                               type: number
+                              example: 50000
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1055,31 +1178,40 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: "196892"
                         name:
                           type: string
+                          example: TwitchUnity
                         images:
                           type: object
                           properties:
                             url_1x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/emoticons/v2/196892/static/light/1.0
                             url_2x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/emoticons/v2/196892/static/light/2.0
                             url_4x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/emoticons/v2/196892/static/light/3.0
                         format:
                           type: array
                           items:
                             type: string
+                            example: static
                         scale:
                           type: array
                           items:
                             type: string
+                            example: "1.0"
                         theme_mode:
                           type: array
                           items:
                             type: string
+                            example: light
                   template:
                     type: string
+                    example: https://static-cdn.jtvnw.net/emoticons/v2/{{id}}/{{format}}/{{theme_mode}}/{{scale}}
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1113,37 +1245,49 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: "304456832"
                         name:
                           type: string
+                          example: twitchdevPitchfork
                         images:
                           type: object
                           properties:
                             url_1x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/emoticons/v2/304456832/static/light/1.0
                             url_2x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/emoticons/v2/304456832/static/light/2.0
                             url_4x:
                               type: string
+                              example: https://static-cdn.jtvnw.net/emoticons/v2/304456832/static/light/3.0
                         emote_type:
                           type: string
+                          example: subscriptions
                         emote_set_id:
                           type: string
+                          example: "301590448"
                         owner_id:
                           type: string
+                          example: "141981764"
                         format:
                           type: array
                           items:
                             type: string
+                            example: static
                         scale:
                           type: array
                           items:
                             type: string
+                            example: "1.0"
                         theme_mode:
                           type: array
                           items:
                             type: string
+                            example: light
                   template:
                     type: string
+                    example: https://static-cdn.jtvnw.net/emoticons/v2/{{id}}/{{format}}/{{theme_mode}}/{{scale}}
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1183,6 +1327,7 @@ paths:
                       properties:
                         set_id:
                           type: string
+                          example: bits
                         versions:
                           type: array
                           items:
@@ -1190,12 +1335,16 @@ paths:
                             properties:
                               id:
                                 type: string
+                                example: "1"
                               image_url_1x:
                                 type: string
+                                example: https://static-cdn.jtvnw.net/badges/v1/743a0f3b-84b3-450b-96a0-503d7f4a9764/1
                               image_url_2x:
                                 type: string
+                                example: https://static-cdn.jtvnw.net/badges/v1/743a0f3b-84b3-450b-96a0-503d7f4a9764/2
                               image_url_4x:
                                 type: string
+                                example: https://static-cdn.jtvnw.net/badges/v1/743a0f3b-84b3-450b-96a0-503d7f4a9764/3
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1255,12 +1404,14 @@ paths:
                       properties:
                         broadcaster_id:
                           type: string
+                          example: "713936733"
                         slow_mode:
                           type: boolean
                         slow_mode_wait_time:
                           type: string
                         follower_mode:
                           type: boolean
+                          example: true
                         follower_mode_duration:
                           type: number
                         subscriber_mode:
@@ -1271,8 +1422,10 @@ paths:
                           type: boolean
                         non_moderator_chat_delay:
                           type: boolean
+                          example: true
                         non_moderator_chat_delay_duration:
                           type: number
+                          example: 4
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1299,12 +1452,16 @@ paths:
                       properties:
                         broadcaster_id:
                           type: string
+                          example: "1234"
                         moderator_id:
                           type: string
+                          example: "5678"
                         slow_mode:
                           type: boolean
+                          example: true
                         slow_mode_wait_time:
                           type: number
+                          example: 10
                         follower_mode:
                           type: boolean
                         follower_mode_duration:
@@ -1353,8 +1510,10 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: FiveWordsForClipSlug
                         edit_url:
                           type: string
+                          example: http://clips.twitch.tv/FiveWordsForClipSlug/edit
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1387,34 +1546,49 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: AwkwardHelplessSalamanderSwiftRage
                         url:
                           type: string
+                          example: https://clips.twitch.tv/AwkwardHelplessSalamanderSwiftRage
                         embed_url:
                           type: string
+                          example: https://clips.twitch.tv/embed?clip=AwkwardHelplessSalamanderSwiftRage
                         broadcaster_id:
                           type: string
+                          example: "67955580"
                         broadcaster_name:
                           type: string
+                          example: ChewieMelodies
                         creator_id:
                           type: string
+                          example: "53834192"
                         creator_name:
                           type: string
+                          example: BlackNova03
                         video_id:
                           type: string
+                          example: "205586603"
                         game_id:
                           type: string
+                          example: "488191"
                         language:
                           type: string
+                          example: en
                         title:
                           type: string
+                          example: babymetal
                         view_count:
                           type: number
+                          example: 10
                         created_at:
                           type: string
+                          example: 2017-11-30T22:34:18Z
                         thumbnail_url:
                           type: string
+                          example: https://clips-media-assets.twitch.tv/157589949-preview-480x272.jpg
                         duration:
                           type: number
+                          example: 60
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1463,8 +1637,10 @@ paths:
                       properties:
                         code:
                           type: string
+                          example: KUHXV-4GXYP-AKAKK
                         status:
                           type: string
+                          example: UNUSED
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1500,8 +1676,10 @@ paths:
                       properties:
                         code:
                           type: string
+                          example: 8CD5P-V3J92-2S6JY
                         status:
                           type: string
+                          example: SUCCESSFULLY_REDEEMED
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1545,23 +1723,31 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: fb78259e-fb81-4d1b-8333-34a06ffc24c0
                         benefit_id:
                           type: string
+                          example: 74c52265-e214-48a6-91b9-23b6014e8041
                         timestamp:
                           type: string
+                          example: 2019-01-28T04:17:53.325Z
                         user_id:
                           type: string
+                          example: "25009227"
                         game_id:
                           type: string
+                          example: "33214"
                         fulfillment_status:
                           type: string
+                          example: CLAIMED
                         updated_at:
                           type: string
+                          example: 2019-01-28T04:17:53.325Z
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudW...
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1614,10 +1800,12 @@ paths:
                       properties:
                         status:
                           type: string
+                          example: SUCCESS
                         ids:
                           type: array
                           items:
                             type: string
+                            example: fb78259e-fb81-4d1b-8333-34a06ffc24c0
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1661,10 +1849,13 @@ paths:
                       properties:
                         segment:
                           type: string
+                          example: global
                         content:
                           type: string
+                          example: hello config!
                         version:
                           type: string
+                          example: 0.0.1
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1776,16 +1967,23 @@ paths:
                       properties:
                         broadcaster_id:
                           type: string
+                          example: "252766116"
                         broadcaster_name:
                           type: string
+                          example: swoosh_xii
                         game_name:
                           type: string
+                          example: Tom Clancy's Rainbow Six Siege
                         game_id:
                           type: string
+                          example: "460630"
                         title:
                           type: string
+                          example: "[PS4] ITA/ENG UNRANKED CHILLIN' (SUB 1/15) - !instagram !donation
+                            !sens !team !youtube"
                   pagination:
                     type: string
+                    example: YVc1emRHRnNiQ015TmpJek5qazVOVHBoYWpKbGRIZDFaR0Z5YjNCMGN6UTJNMkZ1TUdwM2FHWnBZbm8yYW5rNjoy
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1825,6 +2023,7 @@ paths:
                       properties:
                         format_version:
                           type: number
+                          example: 1
                         secrets:
                           type: array
                           items:
@@ -1832,10 +2031,13 @@ paths:
                             properties:
                               content:
                                 type: string
+                                example: secret
                               active_at:
                                 type: string
+                                example: 2021-03-29T06:58:40.858343036Z
                               expires_at:
                                 type: string
+                                example: 2121-03-05T06:58:40.858343036Z
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1862,6 +2064,7 @@ paths:
                       properties:
                         format_version:
                           type: number
+                          example: 1
                         secrets:
                           type: array
                           items:
@@ -1869,10 +2072,13 @@ paths:
                             properties:
                               content:
                                 type: string
+                                example: old-secret
                               active_at:
                                 type: string
+                                example: 2021-03-29T06:58:40.858343036Z
                               expires_at:
                                 type: string
+                                example: 2021-04-22T05:21:54.99261682Z
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1938,53 +2144,72 @@ paths:
                       properties:
                         author_name:
                           type: string
+                          example: Twitch Developers
                         bits_enabled:
                           type: boolean
+                          example: true
                         can_install:
                           type: boolean
                         configuration_location:
                           type: string
+                          example: hosted
                         description:
                           type: string
+                          example: An extension for testing all the features that we add to extensions
                         eula_tos_url:
                           type: string
                         has_chat_support:
                           type: boolean
+                          example: true
                         icon_url:
                           type: string
+                          example: https://extensions-discovery-images.twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.8/logob6c995d8-8b45-48cc-a748-b256e92ac1cd
                         icon_urls:
                           type: object
                           properties:
                             100x100:
                               type: string
+                              example: https://extensions-discovery-images.twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.8/logob6c995d8-8b45-48cc-a748-b256e92ac1cd
                             24x24:
                               type: string
+                              example: https://extensions-discovery-images.twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.8/taskbar905b19da-e7e5-4d8f-beb7-f543a861ac1e
                             300x200:
                               type: string
+                              example: https://extensions-discovery-images.twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.8/discoveryd9545b2c-5474-46d7-a523-1c3835d862ce
                         id:
                           type: string
+                          example: pgn0bjv51epi7eaekt53tovjnc82qo
                         name:
                           type: string
+                          example: Official Developers Demo
                         privacy_policy_url:
                           type: string
                         request_identity_link:
                           type: boolean
+                          example: true
                         screenshot_urls:
                           type: array
                           items:
                             type: string
+                            example: https://extensions-discovery-images.twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.8/screenshotbdec475d-3d2f-4378-b334-941dfddc897a
                         state:
                           type: string
+                          example: Released
                         subscriptions_support_level:
                           type: string
+                          example: optional
                         summary:
                           type: string
+                          example: Test ALL the extensions features!
                         support_email:
                           type: string
+                          example: dx-extensions-test-dev@justin.tv
                         version:
                           type: string
+                          example: 0.0.9
                         viewer_summary:
                           type: string
+                          example: Test ALL the extensions features!
                         views:
                           type: object
                           properties:
@@ -1993,13 +2218,16 @@ paths:
                               properties:
                                 viewer_url:
                                   type: string
+                                  example: https://pgn0bjv51epi7eaekt53tovjnc82qo.ext-twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.9/f9a0d8aae0f9dd0b2d6ef3416b96bc79/index.html
                             panel:
                               type: object
                               properties:
                                 viewer_url:
                                   type: string
+                                  example: https://pgn0bjv51epi7eaekt53tovjnc82qo.ext-twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.9/f9a0d8aae0f9dd0b2d6ef3416b96bc79/index.html
                                 height:
                                   type: number
+                                  example: 300
                                 can_link_external_content:
                                   type: boolean
                             video_overlay:
@@ -2007,6 +2235,7 @@ paths:
                               properties:
                                 viewer_url:
                                   type: string
+                                  example: https://pgn0bjv51epi7eaekt53tovjnc82qo.ext-twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.9/f9a0d8aae0f9dd0b2d6ef3416b96bc79/index.html
                                 can_link_external_content:
                                   type: boolean
                             component:
@@ -2014,20 +2243,26 @@ paths:
                               properties:
                                 viewer_url:
                                   type: string
+                                  example: https://pgn0bjv51epi7eaekt53tovjnc82qo.ext-twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.9/f9a0d8aae0f9dd0b2d6ef3416b96bc79/index.html
                                 aspect_width:
                                   type: number
                                 aspect_height:
                                   type: number
                                 aspect_ratio_x:
                                   type: number
+                                  example: 48000
                                 aspect_ratio_y:
                                   type: number
+                                  example: 36000
                                 autoscale:
                                   type: boolean
+                                  example: true
                                 scale_pixels:
                                   type: number
+                                  example: 1024
                                 target_height:
                                   type: number
+                                  example: 5333
                                 size:
                                   type: number
                                 zoom:
@@ -2083,53 +2318,72 @@ paths:
                       properties:
                         author_name:
                           type: string
+                          example: Twitch Developer Experience
                         bits_enabled:
                           type: boolean
+                          example: true
                         can_install:
                           type: boolean
                         configuration_location:
                           type: string
+                          example: hosted
                         description:
                           type: string
+                          example: An extension for testing all the features that we add to extensions
                         eula_tos_url:
                           type: string
                         has_chat_support:
                           type: boolean
+                          example: true
                         icon_url:
                           type: string
+                          example: https://extensions-discovery-images.twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.8/logob6c995d8-8b45-48cc-a748-b256e92ac1cd
                         icon_urls:
                           type: object
                           properties:
                             100x100:
                               type: string
+                              example: https://extensions-discovery-images.twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.8/logob6c995d8-8b45-48cc-a748-b256e92ac1cd
                             24x24:
                               type: string
+                              example: https://extensions-discovery-images.twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.8/taskbar905b19da-e7e5-4d8f-beb7-f543a861ac1e
                             300x200:
                               type: string
+                              example: https://extensions-discovery-images.twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.8/discoveryd9545b2c-5474-46d7-a523-1c3835d862ce
                         id:
                           type: string
+                          example: pgn0bjv51epi7eaekt53tovjnc82qo
                         name:
                           type: string
+                          example: Official Developer Experience Demo
                         privacy_policy_url:
                           type: string
                         request_identity_link:
                           type: boolean
+                          example: true
                         screenshot_urls:
                           type: array
                           items:
                             type: string
+                            example: https://extensions-discovery-images.twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.8/screenshotbdec475d-3d2f-4378-b334-941dfddc897a
                         state:
                           type: string
+                          example: Released
                         subscriptions_support_level:
                           type: string
+                          example: optional
                         summary:
                           type: string
+                          example: Test ALL the extensions features!
                         support_email:
                           type: string
+                          example: dx-extensions-test-dev@justin.tv
                         version:
                           type: string
+                          example: 0.0.9
                         viewer_summary:
                           type: string
+                          example: Test ALL the extensions features!
                         views:
                           type: object
                           properties:
@@ -2138,13 +2392,16 @@ paths:
                               properties:
                                 viewer_url:
                                   type: string
+                                  example: https://pgn0bjv51epi7eaekt53tovjnc82qo.ext-twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.9/f9a0d8aae0f9dd0b2d6ef3416b96bc79/index.html
                             panel:
                               type: object
                               properties:
                                 viewer_url:
                                   type: string
+                                  example: https://pgn0bjv51epi7eaekt53tovjnc82qo.ext-twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.9/f9a0d8aae0f9dd0b2d6ef3416b96bc79/index.html
                                 height:
                                   type: number
+                                  example: 300
                                 can_link_external_content:
                                   type: boolean
                             video_overlay:
@@ -2152,6 +2409,7 @@ paths:
                               properties:
                                 viewer_url:
                                   type: string
+                                  example: https://pgn0bjv51epi7eaekt53tovjnc82qo.ext-twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.9/f9a0d8aae0f9dd0b2d6ef3416b96bc79/index.html
                                 can_link_external_content:
                                   type: boolean
                             component:
@@ -2159,20 +2417,26 @@ paths:
                               properties:
                                 viewer_url:
                                   type: string
+                                  example: https://pgn0bjv51epi7eaekt53tovjnc82qo.ext-twitch.tv/pgn0bjv51epi7eaekt53tovjnc82qo/0.0.9/f9a0d8aae0f9dd0b2d6ef3416b96bc79/index.html
                                 aspect_width:
                                   type: number
                                 aspect_height:
                                   type: number
                                 aspect_ratio_x:
                                   type: number
+                                  example: 48000
                                 aspect_ratio_y:
                                   type: number
+                                  example: 36000
                                 autoscale:
                                   type: boolean
+                                  example: true
                                 scale_pixels:
                                   type: number
+                                  example: 1024
                                 target_height:
                                   type: number
+                                  example: 5333
                                 size:
                                   type: number
                                 zoom:
@@ -2227,19 +2491,25 @@ paths:
                       properties:
                         sku:
                           type: string
+                          example: "1010"
                         cost:
                           type: object
                           properties:
                             amount:
                               type: number
+                              example: 990
                             type:
                               type: string
+                              example: bits
                         in_development:
                           type: boolean
+                          example: true
                         display_name:
                           type: string
+                          example: Rusty Crate 2
                         expiration:
                           type: string
+                          example: 2021-05-18T09:10:13.397Z
                         is_broadcast:
                           type: boolean
         "401":
@@ -2273,21 +2543,28 @@ paths:
                       properties:
                         sku:
                           type: string
+                          example: "1010"
                         cost:
                           type: object
                           properties:
                             amount:
                               type: number
+                              example: 990
                             type:
                               type: string
+                              example: bits
                         in_development:
                           type: boolean
+                          example: true
                         display_name:
                           type: string
+                          example: Rusty Crate 2
                         expiration:
                           type: string
+                          example: 2021-05-18T09:10:13.397Z
                         is_broadcast:
                           type: boolean
+                          example: true
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2321,34 +2598,46 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: 26b1c993-bfcf-44d9-b876-379dacafe75a
                         status:
                           type: string
+                          example: webhook_callback_verification_pending
                         type:
                           type: string
+                          example: user.update
                         version:
                           type: string
+                          example: "1"
                         condition:
                           type: object
                           properties:
                             user_id:
                               type: string
+                              example: "1234"
                         created_at:
                           type: string
+                          example: 2020-11-10T14:32:18.730260295Z
                         transport:
                           type: object
                           properties:
                             method:
                               type: string
+                              example: webhook
                             callback:
                               type: string
+                              example: https://this-is-a-callback.com
                         cost:
                           type: number
+                          example: 1
                   total:
                     type: number
+                    example: 1
                   total_cost:
                     type: number
+                    example: 1
                   max_total_cost:
                     type: number
+                    example: 10000
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2407,6 +2696,7 @@ paths:
                 properties:
                   total:
                     type: number
+                    example: 2
                   data:
                     type: array
                     items:
@@ -2414,32 +2704,43 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: 26b1c993-bfcf-44d9-b876-379dacafe75a
                         status:
                           type: string
+                          example: enabled
                         type:
                           type: string
+                          example: stream.online
                         version:
                           type: string
+                          example: "1"
                         condition:
                           type: object
                           properties:
                             broadcaster_user_id:
                               type: string
+                              example: "1234"
                         created_at:
                           type: string
+                          example: 2020-11-10T20:08:33.12345678Z
                         transport:
                           type: object
                           properties:
                             method:
                               type: string
+                              example: webhook
                             callback:
                               type: string
+                              example: https://this-is-a-callback.com
                         cost:
                           type: number
+                          example: 1
                   total_cost:
                     type: number
+                    example: 1
                   max_total_cost:
                     type: number
+                    example: 10000
                   pagination:
                     type: object
                     properties: {}
@@ -2490,15 +2791,19 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: "493057"
                         name:
                           type: string
+                          example: PLAYERUNKNOWN'S BATTLEGROUNDS
                         box_art_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/ttv-boxart/PLAYERUNKNOWN%27S%20BATTLEGROUNDS-{width}x{height}.jpg
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6MjB9fQ==
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2545,15 +2850,19 @@ paths:
                       properties:
                         box_art_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-52x72.jpg
                         id:
                           type: string
+                          example: "33214"
                         name:
                           type: string
+                          example: Fortnite
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudWxsLCJhIjp7IkN
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2596,22 +2905,31 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: 1woowvbkiNv8BRxEWSqmQz6Zk92
                         broadcaster_id:
                           type: string
+                          example: "141981764"
                         broadcaster_name:
                           type: string
+                          example: TwitchDev
                         broadcaster_login:
                           type: string
+                          example: twitchdev
                         type:
                           type: string
+                          example: follower
                         description:
                           type: string
+                          example: Follow goal for Helix testing
                         current_amount:
                           type: number
+                          example: 27062
                         target_amount:
                           type: number
+                          example: 30000
                         created_at:
                           type: string
+                          example: 2021-08-16T17:22:23Z
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2651,38 +2969,52 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: 1b0AsbInCHZW2SQFQkCzqN07Ib2
                         event_type:
                           type: string
+                          example: hypetrain.progression
                         event_timestamp:
                           type: string
+                          example: 2020-04-24T20:07:24Z
                         version:
                           type: string
+                          example: "1.0"
                         event_data:
                           type: object
                           properties:
                             broadcaster_id:
                               type: string
+                              example: "270954519"
                             cooldown_end_time:
                               type: string
+                              example: 2020-04-24T20:13:21.003802269Z
                             expires_at:
                               type: string
+                              example: 2020-04-24T20:12:21.003802269Z
                             goal:
                               type: number
+                              example: 1800
                             id:
                               type: string
+                              example: 70f0c7d8-ff60-4c50-b138-f3a352833b50
                             last_contribution:
                               type: object
                               properties:
                                 total:
                                   type: number
+                                  example: 200
                                 type:
                                   type: string
+                                  example: BITS
                                 user:
                                   type: string
+                                  example: "134247454"
                             level:
                               type: number
+                              example: 2
                             started_at:
                               type: string
+                              example: 2020-04-24T20:05:47.30473127Z
                             top_contributions:
                               type: array
                               items:
@@ -2690,17 +3022,22 @@ paths:
                                 properties:
                                   total:
                                     type: number
+                                    example: 600
                                   type:
                                     type: string
+                                    example: BITS
                                   user:
                                     type: string
+                                    example: "134247450"
                             total:
                               type: number
+                              example: 600
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6IjI3MDk1NDUxOToxNTg3NzU4ODQ0OjFiMEFzYkluQ0haVzJTUUZRa0N6cU4wN0liMiJ9fQ
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2740,8 +3077,10 @@ paths:
                       properties:
                         msg_id:
                           type: string
+                          example: "123"
                         is_permitted:
                           type: boolean
+                          example: true
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2801,8 +3140,10 @@ paths:
                       properties:
                         broadcaster_id:
                           type: string
+                          example: "1234"
                         moderator_id:
                           type: string
+                          example: "5678"
                         overall_level:
                           type: string
                         disability:
@@ -2847,26 +3188,36 @@ paths:
                       properties:
                         broadcaster_id:
                           type: string
+                          example: "1234"
                         moderator_id:
                           type: string
+                          example: "5678"
                         overall_level:
                           type: number
+                          example: 3
                         disability:
                           type: number
+                          example: 3
                         aggression:
                           type: number
+                          example: 3
                         sexuality_sex_or_gender:
                           type: number
+                          example: 3
                         misogyny:
                           type: number
+                          example: 3
                         bullying:
                           type: number
+                          example: 2
                         swearing:
                           type: number
                         race_ethnicity_or_religion:
                           type: number
+                          example: 3
                         sex_based_terms:
                           type: number
+                          example: 3
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2900,42 +3251,57 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: 1IPFqAb0p0JncbPSTEPhx8JF1Sa
                         event_type:
                           type: string
+                          example: moderation.user.ban
                         event_timestamp:
                           type: string
+                          example: 2019-03-13T15:55:14Z
                         version:
                           type: string
+                          example: "1.0"
                         event_data:
                           type: object
                           properties:
                             broadcaster_id:
                               type: string
+                              example: "198704263"
                             broadcaster_login:
                               type: string
+                              example: racageneg
                             broadcaster_name:
                               type: string
+                              example: racageneg
                             user_id:
                               type: string
+                              example: "424596340"
                             user_login:
                               type: string
+                              example: quotrok
                             user_name:
                               type: string
+                              example: quotrok
                             expires_at:
                               type: string
                             reason:
                               type: string
+                              example: Does not like pineapple on pizza.
                             moderator_id:
                               type: string
+                              example: "141981764"
                             moderator_login:
                               type: string
+                              example: twitchdev
                             moderator_name:
                               type: string
+                              example: TwitchDev
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6IjE5OTYwNDI2MzoyMDIxMjA1MzE6MUlQRnFtbHU5VzJxNG1YWGpVTHlNOHpYMHJiIn19
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2974,25 +3340,34 @@ paths:
                       properties:
                         user_id:
                           type: string
+                          example: "423374343"
                         user_login:
                           type: string
+                          example: glowillig
                         user_name:
                           type: string
+                          example: glowillig
                         expires_at:
                           type: string
+                          example: 2022-03-15T02:00:28Z
                         reason:
                           type: string
+                          example: Does not like pineapple on pizza.
                         moderator_id:
                           type: string
+                          example: "141981764"
                         moderator_login:
                           type: string
+                          example: twitchdev
                         moderator_name:
                           type: string
+                          example: TwitchDev
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6IjEwMDQ3MzA2NDo4NjQwNjU3MToxSVZCVDFKMnY5M1BTOXh3d1E0dUdXMkJOMFcifX0
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -3032,10 +3407,13 @@ paths:
                       properties:
                         broadcaster_id:
                           type: string
+                          example: "1234"
                         moderator_id:
                           type: string
+                          example: "5678"
                         user_id:
                           type: string
+                          example: "9876"
                         end_time:
                           type: string
         "401":
@@ -3099,16 +3477,22 @@ paths:
                       properties:
                         broadcaster_id:
                           type: string
+                          example: "713936733"
                         moderator_id:
                           type: string
+                          example: "713936733"
                         id:
                           type: string
+                          example: 3bb6e5d3-afb1-416c-ad4e-21af970ccfe7
                         text:
                           type: string
+                          example: A phrase I’m not fond of
                         created_at:
                           type: string
+                          example: 2021-09-29T15:36:45Z
                         updated_at:
                           type: string
+                          example: 2021-09-29T15:36:45Z
                         expires_at:
                           type: string
         "401":
@@ -3159,15 +3543,19 @@ paths:
                       properties:
                         user_id:
                           type: string
+                          example: "424596340"
                         user_login:
                           type: string
+                          example: quotrok
                         user_name:
                           type: string
+                          example: quotrok
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6IjEwMDQ3MzA2NDo4NjQwNjU3MToxSVZCVDFKMnY5M1BTOXh3d1E0dUdXMkJOMFcifX0
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -3207,32 +3595,43 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: 1IVBTnDSUDApiBQW4UBcVTK4hPr
                         event_type:
                           type: string
+                          example: moderation.moderator.remove
                         event_timestamp:
                           type: string
+                          example: 2019-03-15T18:18:14Z
                         version:
                           type: string
+                          example: "1.0"
                         event_data:
                           type: object
                           properties:
                             broadcaster_id:
                               type: string
+                              example: "198704263"
                             broadcaster_login:
                               type: string
+                              example: aan22209
                             broadcaster_name:
                               type: string
+                              example: aan22209
                             user_id:
                               type: string
+                              example: "423374343"
                             user_login:
                               type: string
+                              example: glowillig
                             user_name:
                               type: string
+                              example: glowillig
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6IjEwMDQ3MzA2NDo4NjQwNjU3MToxSVZCVDFKMnY5M1BTOXh3d1E0dUdXMkJOMFcifX0
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -3272,14 +3671,19 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: ed961efd-8a3f-4cf5-a9d0-e616c590cd2a
                         broadcaster_id:
                           type: string
+                          example: "55696719"
                         broadcaster_name:
                           type: string
+                          example: TwitchDev
                         broadcaster_login:
                           type: string
+                          example: twitchdev
                         title:
                           type: string
+                          example: Heads or Tails?
                         choices:
                           type: array
                           items:
@@ -3287,8 +3691,10 @@ paths:
                             properties:
                               id:
                                 type: string
+                                example: 4c123012-1351-4f33-84b7-43856e7a0f47
                               title:
                                 type: string
+                                example: Heads
                               votes:
                                 type: number
                               channel_points_votes:
@@ -3305,10 +3711,13 @@ paths:
                           type: number
                         status:
                           type: string
+                          example: ACTIVE
                         duration:
                           type: number
+                          example: 1800
                         started_at:
                           type: string
+                          example: 2021-03-19T06:08:33.871278372Z
                   pagination:
                     type: object
                     properties: {}
@@ -3343,14 +3752,19 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: ed961efd-8a3f-4cf5-a9d0-e616c590cd2a
                         broadcaster_id:
                           type: string
+                          example: "141981764"
                         broadcaster_name:
                           type: string
+                          example: TwitchDev
                         broadcaster_login:
                           type: string
+                          example: twitchdev
                         title:
                           type: string
+                          example: Heads or Tails?
                         choices:
                           type: array
                           items:
@@ -3358,8 +3772,10 @@ paths:
                             properties:
                               id:
                                 type: string
+                                example: 4c123012-1351-4f33-84b7-43856e7a0f47
                               title:
                                 type: string
+                                example: Heads
                               votes:
                                 type: number
                               channel_points_votes:
@@ -3372,14 +3788,19 @@ paths:
                           type: number
                         channel_points_voting_enabled:
                           type: boolean
+                          example: true
                         channel_points_per_vote:
                           type: number
+                          example: 100
                         status:
                           type: string
+                          example: ACTIVE
                         duration:
                           type: number
+                          example: 1800
                         started_at:
                           type: string
+                          example: 2021-03-19T06:08:33.871278372Z
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -3406,14 +3827,19 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: ed961efd-8a3f-4cf5-a9d0-e616c590cd2a
                         broadcaster_id:
                           type: string
+                          example: "141981764"
                         broadcaster_name:
                           type: string
+                          example: TwitchDev
                         broadcaster_login:
                           type: string
+                          example: twitchdev
                         title:
                           type: string
+                          example: Heads or Tails?
                         choices:
                           type: array
                           items:
@@ -3421,8 +3847,10 @@ paths:
                             properties:
                               id:
                                 type: string
+                                example: 4c123012-1351-4f33-84b7-43856e7a0f47
                               title:
                                 type: string
+                                example: Heads
                               votes:
                                 type: number
                               channel_points_votes:
@@ -3435,16 +3863,22 @@ paths:
                           type: number
                         channel_points_voting_enabled:
                           type: boolean
+                          example: true
                         channel_points_per_vote:
                           type: number
+                          example: 100
                         status:
                           type: string
+                          example: TERMINATED
                         duration:
                           type: number
+                          example: 1800
                         started_at:
                           type: string
+                          example: 2021-03-19T06:08:33.871278372Z
                         ended_at:
                           type: string
+                          example: 2021-03-19T06:11:26.746889614Z
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -3479,14 +3913,19 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: d6676d5c-c86e-44d2-bfc4-100fb48f0656
                         broadcaster_id:
                           type: string
+                          example: "55696719"
                         broadcaster_name:
                           type: string
+                          example: TwitchDev
                         broadcaster_login:
                           type: string
+                          example: twitchdev
                         title:
                           type: string
+                          example: Will there be any leaks today?
                         winning_outcome_id:
                           type: string
                         outcomes:
@@ -3496,8 +3935,10 @@ paths:
                             properties:
                               id:
                                 type: string
+                                example: 021e9234-5893-49b4-982e-cfe9a0aaddd9
                               title:
                                 type: string
+                                example: Yes
                               users:
                                 type: number
                               channel_points:
@@ -3506,12 +3947,16 @@ paths:
                                 type: string
                               color:
                                 type: string
+                                example: BLUE
                         prediction_window:
                           type: number
+                          example: 600
                         status:
                           type: string
+                          example: ACTIVE
                         created_at:
                           type: string
+                          example: 2021-04-28T16:03:06.320848689Z
                         ended_at:
                           type: string
                         locked_at:
@@ -3550,14 +3995,19 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: bc637af0-7766-4525-9308-4112f4cbf178
                         broadcaster_id:
                           type: string
+                          example: "141981764"
                         broadcaster_name:
                           type: string
+                          example: TwitchDev
                         broadcaster_login:
                           type: string
+                          example: twitchdev
                         title:
                           type: string
+                          example: Any leeks in the stream?
                         winning_outcome_id:
                           type: string
                         outcomes:
@@ -3567,8 +4017,10 @@ paths:
                             properties:
                               id:
                                 type: string
+                                example: 73085848-a94d-4040-9d21-2cb7a89374b7
                               title:
                                 type: string
+                                example: Yes, give it time.
                               users:
                                 type: number
                               channel_points:
@@ -3577,12 +4029,16 @@ paths:
                                 type: string
                               color:
                                 type: string
+                                example: BLUE
                         prediction_window:
                           type: number
+                          example: 120
                         status:
                           type: string
+                          example: ACTIVE
                         created_at:
                           type: string
+                          example: 2021-04-28T17:11:22.595914172Z
                         ended_at:
                           type: string
                         locked_at:
@@ -3613,16 +4069,22 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: bc637af0-7766-4525-9308-4112f4cbf178
                         broadcaster_id:
                           type: string
+                          example: "141981764"
                         broadcaster_name:
                           type: string
+                          example: TwitchDev
                         broadcaster_login:
                           type: string
+                          example: twitchdev
                         title:
                           type: string
+                          example: Will we win all the games?
                         winning_outcome_id:
                           type: string
+                          example: 73085848-a94d-4040-9d21-2cb7a89374b7
                         outcomes:
                           type: array
                           items:
@@ -3630,8 +4092,10 @@ paths:
                             properties:
                               id:
                                 type: string
+                                example: 73085848-a94d-4040-9d21-2cb7a89374b7
                               title:
                                 type: string
+                                example: yes
                               users:
                                 type: number
                               channel_points:
@@ -3640,16 +4104,22 @@ paths:
                                 type: string
                               color:
                                 type: string
+                                example: BLUE
                         prediction_window:
                           type: number
+                          example: 120
                         status:
                           type: string
+                          example: RESOLVED
                         created_at:
                           type: string
+                          example: 2021-04-28T21:48:19.480371331Z
                         ended_at:
                           type: string
+                          example: 2021-04-28T21:54:24.026833954Z
                         locked_at:
                           type: string
+                          example: 2021-04-28T21:48:34.636685705Z
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -3687,12 +4157,16 @@ paths:
                           properties:
                             id:
                               type: string
+                              example: eyJzZWdtZW50SUQiOiJlNGFjYzcyNC0zNzFmLTQwMmMtODFjYS0yM2FkYTc5NzU5ZDQiLCJpc29ZZWFyIjoyMDIxLCJpc29XZWVrIjoyNn0=
                             start_time:
                               type: string
+                              example: 2021-07-01T18:00:00Z
                             end_time:
                               type: string
+                              example: 2021-07-01T19:00:00Z
                             title:
                               type: string
+                              example: TwitchDev Monthly Update // July 1, 2021
                             canceled_until:
                               type: string
                             category:
@@ -3700,16 +4174,21 @@ paths:
                               properties:
                                 id:
                                   type: string
+                                  example: "509670"
                                 name:
                                   type: string
+                                  example: Science & Technology
                             is_recurring:
                               type: boolean
                       broadcaster_id:
                         type: string
+                        example: "141981764"
                       broadcaster_name:
                         type: string
+                        example: TwitchDev
                       broadcaster_login:
                         type: string
+                        example: twitchdev
                       vacation:
                         type: string
                   pagination:
@@ -3810,12 +4289,16 @@ paths:
                           properties:
                             id:
                               type: string
+                              example: eyJzZWdtZW50SUQiOiJlNGFjYzcyNC0zNzFmLTQwMmMtODFjYS0yM2FkYTc5NzU5ZDQiLCJpc29ZZWFyIjoyMDIxLCJpc29XZWVrIjoyNn0=
                             start_time:
                               type: string
+                              example: 2021-07-01T18:00:00Z
                             end_time:
                               type: string
+                              example: 2021-07-01T19:00:00Z
                             title:
                               type: string
+                              example: TwitchDev Monthly Update // July 1, 2021
                             canceled_until:
                               type: string
                             category:
@@ -3823,16 +4306,21 @@ paths:
                               properties:
                                 id:
                                   type: string
+                                  example: "509670"
                                 name:
                                   type: string
+                                  example: Science & Technology
                             is_recurring:
                               type: boolean
                       broadcaster_id:
                         type: string
+                        example: "141981764"
                       broadcaster_name:
                         type: string
+                        example: TwitchDev
                       broadcaster_login:
                         type: string
+                        example: twitchdev
                       vacation:
                         type: string
         "401":
@@ -3870,12 +4358,16 @@ paths:
                           properties:
                             id:
                               type: string
+                              example: eyJzZWdtZW50SUQiOiJlNGFjYzcyNC0zNzFmLTQwMmMtODFjYS0yM2FkYTc5NzU5ZDQiLCJpc29ZZWFyIjoyMDIxLCJpc29XZWVrIjoyNn0=
                             start_time:
                               type: string
+                              example: 2021-07-01T18:00:00Z
                             end_time:
                               type: string
+                              example: 2021-07-01T20:00:00Z
                             title:
                               type: string
+                              example: TwitchDev Monthly Update // July 1, 2021
                             canceled_until:
                               type: string
                             category:
@@ -3883,16 +4375,21 @@ paths:
                               properties:
                                 id:
                                   type: string
+                                  example: "509670"
                                 name:
                                   type: string
+                                  example: Science & Technology
                             is_recurring:
                               type: boolean
                       broadcaster_id:
                         type: string
+                        example: "141981764"
                       broadcaster_name:
                         type: string
+                        example: TwitchDev
                       broadcaster_login:
                         type: string
+                        example: twitchdev
                       vacation:
                         type: string
         "401":
@@ -3962,15 +4459,19 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: "33214"
                         name:
                           type: string
+                          example: Fortnite
                         box_art_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-{width}x{height}.jpg
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudWxsLCJhIjp7IkN
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4010,16 +4511,22 @@ paths:
                       properties:
                         broadcaster_language:
                           type: string
+                          example: en
                         broadcaster_login:
                           type: string
+                          example: loserfruit
                         display_name:
                           type: string
+                          example: Loserfruit
                         game_id:
                           type: string
+                          example: "498000"
                         game_name:
                           type: string
+                          example: House Flipper
                         id:
                           type: string
+                          example: "41245072"
                         is_live:
                           type: boolean
                         tags_ids:
@@ -4028,8 +4535,10 @@ paths:
                             type: string
                         thumbnail_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/jtv_user_pictures/fd17325a-7dc2-46c6-8617-e90ec259501c-profile_image-300x300.png
                         title:
                           type: string
+                          example: loserfruit
                         started_at:
                           type: string
                   pagination:
@@ -4037,6 +4546,7 @@ paths:
                     properties:
                       cursor:
                         type: string
+                        example: Mg==
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4083,40 +4593,55 @@ paths:
                                 properties:
                                   id:
                                     type: string
+                                    example: B07S7JG3TK
                                   name:
                                     type: string
+                                    example: Enoth
                                   creator_channel_id:
                                     type: string
+                                    example: "39051113"
                             id:
                               type: string
+                              example: B08D6QFS38
                             duration:
                               type: number
+                              example: 153
                             title:
                               type: string
+                              example: Please stay
                             album:
                               type: object
                               properties:
                                 id:
                                   type: string
+                                  example: B08D6PMKYL
                                 name:
                                   type: string
+                                  example: Summer 2020
                                 image_url:
                                   type: string
+                                  example: https://m.media-amazon.com/images/I/51zs1JZY8tL.jpg
                         source:
                           type: object
                           properties:
                             id:
                               type: string
+                              example: B08HCW84SF
                             content_type:
                               type: string
+                              example: PLAYLIST
                             title:
                               type: string
+                              example: Beats To Stream To
                             image_url:
                               type: string
+                              example: https://m.media-amazon.com/images/I/419WuvMXzEL.jpg
                             soundtrack_url:
                               type: string
+                              example: https://soundtrack.twitch.tv/playlist?playlistID=B08HCW84SF
                             spotify_url:
                               type: string
+                              example: https://open.spotify.com/playlist/1LOP14236oTUscowY3NvYN
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4150,12 +4675,16 @@ paths:
                       properties:
                         title:
                           type: string
+                          example: Night Shift
                         id:
                           type: string
+                          example: B0912YMKSL
                         image_url:
                           type: string
+                          example: https://m.media-amazon.com/images/I/41UoIaB4VaL.jpg
                         description:
                           type: string
+                          example: R&B to ride out to.
                         tracks:
                           type: array
                           items:
@@ -4168,25 +4697,33 @@ paths:
                                   properties:
                                     id:
                                       type: string
+                                      example: B002F8OLPK
                                     name:
                                       type: string
+                                      example: BJ The Chicago Kid
                                     creator_channel_id:
                                       type: string
                               id:
                                 type: string
+                                example: B09J7FZ92D
                               duration:
                                 type: number
+                                example: 210
                               title:
                                 type: string
+                                example: Smooth [Explicit]
                               album:
                                 type: object
                                 properties:
                                   id:
                                     type: string
+                                    example: B09J7B37VS
                                   name:
                                     type: string
+                                    example: Smooth [Explicit]
                                   image_url:
                                     type: string
+                                    example: https://m.media-amazon.com/images/I/316SDaD-XQL.jpg
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4220,12 +4757,17 @@ paths:
                       properties:
                         title:
                           type: string
+                          example: "Label Spotlight: Radio Juicy"
                         id:
                           type: string
+                          example: B08P3N4ZPD
                         image_url:
                           type: string
+                          example: https://m.media-amazon.com/images/I/517kGzeaRhL.jpg
                         description:
                           type: string
+                          example: Journey through boom-bap, lo-fi, trap and ambient sounds, courtesy of
+                            esteemed label Radio Juicy.
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4286,32 +4828,45 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: "41375541868"
                         user_id:
                           type: string
+                          example: "459331509"
                         user_login:
                           type: string
+                          example: auronplay
                         user_name:
                           type: string
+                          example: auronplay
                         game_id:
                           type: string
+                          example: "494131"
                         game_name:
                           type: string
+                          example: Little Nightmares
                         type:
                           type: string
+                          example: live
                         title:
                           type: string
+                          example: hablamos y le damos a Little Nightmares 1
                         viewer_count:
                           type: number
+                          example: 78365
                         started_at:
                           type: string
+                          example: 2021-03-10T15:04:21Z
                         language:
                           type: string
+                          example: es
                         thumbnail_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/previews-ttv/live_user_auronplay-{width}x{height}.jpg
                         tag_ids:
                           type: array
                           items:
                             type: string
+                            example: d4bb9c58-2141-4881-bcdc-3fe0505457d1
                         is_mature:
                           type: boolean
                   pagination:
@@ -4319,6 +4874,7 @@ paths:
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjp7IkN1cnNvciI6ImV5SnpJam8zT0RNMk5TNDBORFF4TlRjMU1UY3hOU3dpWkNJNlptRnNjMlVzSW5RaU9uUnlkV1Y5In0sImEiOnsiQ3Vyc29yIjoiZXlKeklqb3hOVGs0TkM0MU56RXhNekExTVRZNU1ESXNJbVFpT21aaGJITmxMQ0owSWpwMGNuVmxmUT09In19
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4382,37 +4938,51 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: "42170724654"
                         user_id:
                           type: string
+                          example: "132954738"
                         user_login:
                           type: string
+                          example: aws
                         user_name:
                           type: string
+                          example: AWS
                         game_id:
                           type: string
+                          example: "417752"
                         game_name:
                           type: string
+                          example: Talk Shows & Podcasts
                         type:
                           type: string
+                          example: live
                         title:
                           type: string
+                          example: AWS Howdy Partner! Y'all welcome ExtraHop to the show!
                         viewer_count:
                           type: number
+                          example: 20
                         started_at:
                           type: string
+                          example: 2021-03-31T20:57:26Z
                         language:
                           type: string
+                          example: en
                         thumbnail_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/previews-ttv/live_user_aws-{width}x{height}.jpg
                         tag_ids:
                           type: array
                           items:
                             type: string
+                            example: 6ea6bca4-4712-4ab9-a906-e3336a9d8039
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjp7IkN1cnNvciI6ImV5SnpJam8zT0RNMk5TNDBORFF4TlRjMU1UY3hOU3dpWkNJNlptRnNjMlVzSW5RaU9uUnlkV1Y5In0sImEiOnsiQ3Vyc29yIjoiZXlKeklqb3hOVGs0TkM0MU56RXhNekExTVRZNU1ESXNJbVFpT21aaGJITmxMQ0owSWpwMGNuVmxmUT09In19
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4453,12 +5023,16 @@ paths:
                       properties:
                         id:
                           type: number
+                          example: 123
                         created_at:
                           type: string
+                          example: 2018-08-20T20:10:03Z
                         description:
                           type: string
+                          example: hello, this is a marker!
                         position_seconds:
                           type: number
+                          example: 244
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4492,10 +5066,13 @@ paths:
                       properties:
                         user_id:
                           type: string
+                          example: "123"
                         user_name:
                           type: string
+                          example: TwitchName
                         user_login:
                           type: string
+                          example: twitchname
                         videos:
                           type: array
                           items:
@@ -4503,6 +5080,7 @@ paths:
                             properties:
                               video_id:
                                 type: string
+                                example: "456"
                               markers:
                                 type: array
                                 items:
@@ -4510,19 +5088,25 @@ paths:
                                   properties:
                                     id:
                                       type: string
+                                      example: 106b8d6243a4f883d25ad75e6cdffdc4
                                     created_at:
                                       type: string
+                                      example: 2018-08-20T20:10:03Z
                                     description:
                                       type: string
+                                      example: hello, this is a marker!
                                     position_seconds:
                                       type: number
+                                      example: 244
                                     URL:
                                       type: string
+                                      example: https://twitch.tv/videos/456?t=0h4m06s
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudWxsLCJhIjoiMjk1MjA0Mzk3OjI1Mzpib29rbWFyazoxMDZiOGQ1Y
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4565,37 +5149,52 @@ paths:
                       properties:
                         broadcaster_id:
                           type: string
+                          example: "141981764"
                         broadcaster_login:
                           type: string
+                          example: twitchdev
                         broadcaster_name:
                           type: string
+                          example: TwitchDev
                         gifter_id:
                           type: string
+                          example: "12826"
                         gifter_login:
                           type: string
+                          example: twitch
                         gifter_name:
                           type: string
+                          example: Twitch
                         is_gift:
                           type: boolean
+                          example: true
                         tier:
                           type: string
+                          example: "1000"
                         plan_name:
                           type: string
+                          example: Channel Subscription (twitchdev)
                         user_id:
                           type: string
+                          example: "527115020"
                         user_name:
                           type: string
+                          example: twitchgaming
                         user_login:
                           type: string
+                          example: twitchgaming
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: xxxx
                   total:
                     type: number
+                    example: 13
                   points:
                     type: number
+                    example: 13
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4634,14 +5233,18 @@ paths:
                       properties:
                         broadcaster_id:
                           type: string
+                          example: "149747285"
                         broadcaster_name:
                           type: string
+                          example: TwitchPresents
                         broadcaster_login:
                           type: string
+                          example: twitchpresents
                         is_gift:
                           type: boolean
                         tier:
                           type: string
+                          example: "1000"
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4766,28 +5369,40 @@ paths:
                       properties:
                         broadcaster_id:
                           type: string
+                          example: "96909659"
                         broadcaster_name:
                           type: string
+                          example: CSharpFritz
                         broadcaster_login:
                           type: string
+                          example: csharpfritz
                         background_image_url:
                           type: string
                         banner:
                           type: string
                         created_at:
                           type: string
+                          example: 2019-02-11T12:09:22Z
                         updated_at:
                           type: string
+                          example: 2020-11-18T15:56:41Z
                         info:
                           type: string
+                          example: <p>An outgoing and enthusiastic group of friendly channels that write
+                            code, teach about technology, and promote the
+                            technical community.</p>
                         thumbnail_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/jtv_user_pictures/team-livecoders-team_logo_image-bf1d9a87ca81432687de60e24ad9593d-600x600.png
                         team_name:
                           type: string
+                          example: livecoders
                         team_display_name:
                           type: string
+                          example: Live Coders
                         id:
                           type: string
+                          example: "6358"
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4831,28 +5446,40 @@ paths:
                             properties:
                               user_id:
                                 type: string
+                                example: "278217731"
                               user_name:
                                 type: string
+                                example: mastermndio
                               user_login:
                                 type: string
+                                example: mastermndio
                         background_image_url:
                           type: string
                         banner:
                           type: string
                         created_at:
                           type: string
+                          example: 2019-02-11T12:09:22Z
                         updated_at:
                           type: string
+                          example: 2020-11-18T15:56:41Z
                         info:
                           type: string
+                          example: <p>An outgoing and enthusiastic group of friendly channels that write
+                            code, teach about technology, and promote the
+                            technical community.</p>
                         thumbnail_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/jtv_user_pictures/team-livecoders-team_logo_image-bf1d9a87ca81432687de60e24ad9593d-600x600.png
                         team_name:
                           type: string
+                          example: livecoders
                         team_display_name:
                           type: string
+                          example: Live Coders
                         id:
                           type: string
+                          example: "6358"
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4896,26 +5523,37 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: "141981764"
                         login:
                           type: string
+                          example: twitchdev
                         display_name:
                           type: string
+                          example: TwitchDev
                         type:
                           type: string
                         broadcaster_type:
                           type: string
+                          example: partner
                         description:
                           type: string
+                          example: Supporting third-party developers building Twitch integrations from
+                            chatbots to game integrations.
                         profile_image_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/jtv_user_pictures/8a6381c7-d0c0-4576-b179-38bd5ce1d6af-profile_image-300x300.png
                         offline_image_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/jtv_user_pictures/3f13ab61-ec78-4fe6-8481-8682cb3b0ac2-channel_offline_image-1920x1080.png
                         view_count:
                           type: number
+                          example: 5980557
                         email:
                           type: string
+                          example: not-real@email.com
                         created_at:
                           type: string
+                          example: 2016-12-14T20:32:28Z
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4951,26 +5589,37 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: "44322889"
                         login:
                           type: string
+                          example: dallas
                         display_name:
                           type: string
+                          example: dallas
                         type:
                           type: string
+                          example: staff
                         broadcaster_type:
                           type: string
+                          example: affiliate
                         description:
                           type: string
+                          example: BaldAngel
                         profile_image_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/jtv_user_pictures/4d1f36cbf1f0072d-profile_image-300x300.png
                         offline_image_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/jtv_user_pictures/dallas-channel_offline_image-2e82c1df2a464df7-1920x1080.jpeg
                         view_count:
                           type: number
+                          example: 6995
                         email:
                           type: string
+                          example: not-real@email.com
                         created_at:
                           type: string
+                          example: 2013-06-03T19:12:02.580593Z
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -5000,6 +5649,7 @@ paths:
                 properties:
                   total:
                     type: number
+                    example: 12345
                   data:
                     type: array
                     items:
@@ -5007,21 +5657,28 @@ paths:
                       properties:
                         from_id:
                           type: string
+                          example: "171003792"
                         from_login:
                           type: string
+                          example: iiisutha067iii
                         from_name:
                           type: string
+                          example: IIIsutha067III
                         to_id:
                           type: string
+                          example: "23161357"
                         to_name:
                           type: string
+                          example: LIRIK
                         followed_at:
                           type: string
+                          example: 2017-08-22T22:55:24Z
                   pagination:
                     type: object
                     properties:
                       cursor:
                         type: string
+                        example: eyJiIjpudWxsLCJhIjoiMTUwMzQ0MTc3NjQyNDQyMjAwMCJ9
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -5073,10 +5730,13 @@ paths:
                       properties:
                         user_id:
                           type: string
+                          example: "135093069"
                         user_login:
                           type: string
+                          example: bluelava
                         display_name:
                           type: string
+                          example: BlueLava
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -5154,16 +5814,21 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: wi08ebtatdc7oj83wtl9uxwz807l8b
                         version:
                           type: string
+                          example: 1.1.8
                         name:
                           type: string
+                          example: Streamlabs Leaderboard
                         can_activate:
                           type: boolean
+                          example: true
                         type:
                           type: array
                           items:
                             type: string
+                            example: panel
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -5223,34 +5888,46 @@ paths:
                             properties:
                               active:
                                 type: boolean
+                                example: true
                               id:
                                 type: string
+                                example: rh6jq1q334hqc2rr1qlzqbvwlfl3x0
                               version:
                                 type: string
+                                example: 1.1.0
                               name:
                                 type: string
+                                example: TopClip
                           "2":
                             type: object
                             properties:
                               active:
                                 type: boolean
+                                example: true
                               id:
                                 type: string
+                                example: wi08ebtatdc7oj83wtl9uxwz807l8b
                               version:
                                 type: string
+                                example: 1.1.8
                               name:
                                 type: string
+                                example: Streamlabs Leaderboard
                           "3":
                             type: object
                             properties:
                               active:
                                 type: boolean
+                                example: true
                               id:
                                 type: string
+                                example: naty2zwfp7vecaivuve8ef1hohh6bo
                               version:
                                 type: string
+                                example: 1.0.9
                               name:
                                 type: string
+                                example: Streamlabs Stream Schedule & Countdown
                       overlay:
                         type: object
                         properties:
@@ -5259,12 +5936,16 @@ paths:
                             properties:
                               active:
                                 type: boolean
+                                example: true
                               id:
                                 type: string
+                                example: zfh2irvx2jb4s60f02jq0ajm8vwgka
                               version:
                                 type: string
+                                example: 1.0.19
                               name:
                                 type: string
+                                example: Streamlabs
                       component:
                         type: object
                         properties:
@@ -5273,12 +5954,16 @@ paths:
                             properties:
                               active:
                                 type: boolean
+                                example: true
                               id:
                                 type: string
+                                example: lqnf3zxk0rv0g7gq92mtmnirjz2cjj
                               version:
                                 type: string
+                                example: 0.0.1
                               name:
                                 type: string
+                                example: Dev Experience Test
                               x:
                                 type: number
                               y:
@@ -5325,34 +6010,46 @@ paths:
                             properties:
                               active:
                                 type: boolean
+                                example: true
                               id:
                                 type: string
+                                example: rh6jq1q334hqc2rr1qlzqbvwlfl3x0
                               version:
                                 type: string
+                                example: 1.1.0
                               name:
                                 type: string
+                                example: TopClip
                           "2":
                             type: object
                             properties:
                               active:
                                 type: boolean
+                                example: true
                               id:
                                 type: string
+                                example: wi08ebtatdc7oj83wtl9uxwz807l8b
                               version:
                                 type: string
+                                example: 1.1.8
                               name:
                                 type: string
+                                example: Streamlabs Leaderboard
                           "3":
                             type: object
                             properties:
                               active:
                                 type: boolean
+                                example: true
                               id:
                                 type: string
+                                example: naty2zwfp7vecaivuve8ef1hohh6bo
                               version:
                                 type: string
+                                example: 1.0.9
                               name:
                                 type: string
+                                example: Streamlabs Stream Schedule & Countdown
                       overlay:
                         type: object
                         properties:
@@ -5361,12 +6058,16 @@ paths:
                             properties:
                               active:
                                 type: boolean
+                                example: true
                               id:
                                 type: string
+                                example: zfh2irvx2jb4s60f02jq0ajm8vwgka
                               version:
                                 type: string
+                                example: 1.0.19
                               name:
                                 type: string
+                                example: Streamlabs
                       component:
                         type: object
                         properties:
@@ -5375,12 +6076,16 @@ paths:
                             properties:
                               active:
                                 type: boolean
+                                example: true
                               id:
                                 type: string
+                                example: lqnf3zxk0rv0g7gq92mtmnirjz2cjj
                               version:
                                 type: string
+                                example: 0.0.1
                               name:
                                 type: string
+                                example: Dev Experience Test
                               x:
                                 type: number
                               y:
@@ -5423,36 +6128,52 @@ paths:
                       properties:
                         id:
                           type: string
+                          example: "335921245"
                         stream_id:
                           type: string
                         user_id:
                           type: string
+                          example: "141981764"
                         user_login:
                           type: string
+                          example: twitchdev
                         user_name:
                           type: string
+                          example: TwitchDev
                         title:
                           type: string
+                          example: Twitch Developers 101
                         description:
                           type: string
+                          example: Welcome to Twitch development! Here is a quick overview of our products
+                            and information to help you get started.
                         created_at:
                           type: string
+                          example: 2018-11-14T21:30:18Z
                         published_at:
                           type: string
+                          example: 2018-11-14T22:04:30Z
                         url:
                           type: string
+                          example: https://www.twitch.tv/videos/335921245
                         thumbnail_url:
                           type: string
+                          example: https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/twitchdev/335921245/ce0f3a7f-57a3-4152-bc06-0c6610189fb3/thumb/index-0000000000-%{width}x%{height}.jpg
                         viewable:
                           type: string
+                          example: public
                         view_count:
                           type: number
+                          example: 1863062
                         language:
                           type: string
+                          example: en
                         type:
                           type: string
+                          example: upload
                         duration:
                           type: string
+                          example: 3m21s
                         muted_segments:
                           type: array
                           items:
@@ -5460,8 +6181,10 @@ paths:
                             properties:
                               duration:
                                 type: number
+                                example: 30
                               offset:
                                 type: number
+                                example: 120
                   pagination:
                     type: object
                     properties: {}
