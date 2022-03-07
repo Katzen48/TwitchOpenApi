@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2022‑02‑25
+  version: 2022‑02‑28
 paths:
   /channels/commercial:
     parameters:
