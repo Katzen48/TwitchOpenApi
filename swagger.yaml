@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2022‑06‑08
+  version: 2022‑06‑27
 paths:
   /channels/commercial:
     parameters:
@@ -1812,15 +1812,6 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
-      parameters:
-        - name: entitlement_ids
-          in: query
-          schema:
-            type: string
-        - name: fulfillment_status
-          in: query
-          schema:
-            type: string
   /extensions/configurations:
     parameters:
       - in: header
@@ -2086,10 +2077,10 @@ paths:
         "500":
           description: "Internal Server Error: Something bad happened on our side"
       parameters:
-        - name: delay
+        - name: extension_id
           in: query
           schema:
-            type: integer
+            type: string
   /extensions/chat:
     parameters:
       - in: header
@@ -2756,6 +2747,10 @@ paths:
           schema:
             type: string
         - name: type
+          in: query
+          schema:
+            type: string
+        - name: user_id
           in: query
           schema:
             type: string
@@ -3976,7 +3971,7 @@ paths:
           type: string
     post:
       summary: Start a raid
-      description: BETA Raid another channel by sending the broadcaster’s viewers to
+      description: NEW Raid another channel by sending the broadcaster’s viewers to
         the targeted channel.
       tags:
         - Raids
@@ -4006,7 +4001,7 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     delete:
       summary: Cancel a raid
-      description: BETA Cancel a pending raid.
+      description: NEW Cancel a pending raid.
       tags:
         - Raids
       responses:
@@ -4495,6 +4490,9 @@ paths:
                             id:
                               type: string
                               example: B08D6QFS38
+                            isrc:
+                              type: string
+                              example: CCXXXYYNNNNN
                             duration:
                               type: number
                               example: 153
@@ -4549,7 +4547,7 @@ paths:
           type: string
     get:
       summary: Get Soundtrack Playlist
-      description: BETA Gets a Soundtrack playlist, which includes its list of tracks.
+      description: BETA Gets the tracks of a Soundtrack playlist.
       tags:
         - Music
       responses:
@@ -4565,57 +4563,43 @@ paths:
                     items:
                       type: object
                       properties:
-                        title:
-                          type: string
-                          example: Night Shift
-                        id:
-                          type: string
-                          example: B0912YMKSL
-                        image_url:
-                          type: string
-                          example: https://m.media-amazon.com/images/I/41UoIaB4VaL.jpg
-                        description:
-                          type: string
-                          example: R&B to ride out to.
-                        tracks:
+                        artists:
                           type: array
                           items:
                             type: object
                             properties:
-                              artists:
-                                type: array
-                                items:
-                                  type: object
-                                  properties:
-                                    id:
-                                      type: string
-                                      example: B002F8OLPK
-                                    name:
-                                      type: string
-                                      example: BJ The Chicago Kid
-                                    creator_channel_id:
-                                      type: string
                               id:
                                 type: string
-                                example: B09J7FZ92D
-                              duration:
-                                type: number
-                                example: 210
-                              title:
+                                example: B002F8OLPK
+                              name:
                                 type: string
-                                example: Smooth [Explicit]
-                              album:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                    example: B09J7B37VS
-                                  name:
-                                    type: string
-                                    example: Smooth [Explicit]
-                                  image_url:
-                                    type: string
-                                    example: https://m.media-amazon.com/images/I/316SDaD-XQL.jpg
+                                example: BJ The Chicago Kid
+                              creator_channel_id:
+                                type: string
+                        id:
+                          type: string
+                          example: B09J7FZ92D
+                        isrc:
+                          type: string
+                          example: QM24S2106597
+                        duration:
+                          type: number
+                          example: 210
+                        title:
+                          type: string
+                          example: Smooth [Explicit]
+                        album:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: B09J7B37VS
+                            name:
+                              type: string
+                              example: Smooth [Explicit]
+                            image_url:
+                              type: string
+                              example: https://m.media-amazon.com/images/I/316SDaD-XQL.jpg
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
