@@ -1482,6 +1482,84 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+  /chat/announcements:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Send Chat Announcement
+      description: BETA Sends an announcement to the broadcaster’s chat room.
+      tags:
+        - Chat
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /chat/color:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get User Chat Color
+      description: BETA Gets the color used for the user’s name in chat.
+      tags:
+        - Chat
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user_id:
+                          type: string
+                          example: "11111"
+                        user_name:
+                          type: string
+                          example: SpeedySpeedster1
+                        user_login:
+                          type: string
+                          example: speedyspeedster1
+                        color:
+                          type: string
+                          example: "#9146FF"
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+    put:
+      summary: Update User Chat Color
+      description: BETA Updates the color used for the user’s name in chat.
+      tags:
+        - Chat
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
   /clips:
     parameters:
       - in: header
@@ -3428,6 +3506,28 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+  /moderation/chat:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    delete:
+      summary: Delete Chat Messages
+      description: BETA Removes a single chat message or all chat messages from the
+        broadcaster’s chat room.
+      tags:
+        - Moderation
+      responses:
+        "204":
+          description: Deleted
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
   /moderation/moderators:
     parameters:
       - in: header
@@ -3479,6 +3579,108 @@ paths:
           in: query
           schema:
             type: string
+    post:
+      summary: Add Channel Moderator
+      description: BETA Adds a moderator to the broadcaster’s chat room.
+      tags:
+        - Moderation
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+    delete:
+      summary: Remove Channel Moderator
+      description: BETA Removes a moderator from the broadcaster’s chat room.
+      tags:
+        - Moderation
+      responses:
+        "204":
+          description: Deleted
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+  /channels/vips:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get VIPs
+      description: BETA Gets a list of the channel’s VIPs.
+      tags:
+        - Moderation
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user_id:
+                          type: string
+                          example: "11111"
+                        user_name:
+                          type: string
+                          example: UserDisplayName
+                        user_login:
+                          type: string
+                          example: userloginname
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        example: eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6NX19
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+    post:
+      summary: Add Channel VIP
+      description: BETA Adds a VIP to the broadcaster’s chat room.
+      tags:
+        - Moderation
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+    delete:
+      summary: Remove Channel VIP
+      description: BETA Removes a VIP from the broadcaster’s chat room.
+      tags:
+        - Moderation
+      responses:
+        "204":
+          description: Deleted
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
   /polls:
     parameters:
       - in: header
@@ -6103,3 +6305,24 @@ paths:
           in: query
           schema:
             type: string
+  /whispers:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Send Whisper
+      description: BETA Sends a whisper message to the specified user.
+      tags:
+        - Whispers
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
