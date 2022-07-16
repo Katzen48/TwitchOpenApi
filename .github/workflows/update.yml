@@ -12,6 +12,7 @@ on:
 jobs:
   UpdateCheck:
     runs-on: ubuntu-latest
+    environment: prod
     name: Check for Docs Updates
     steps:
       - uses: actions/checkout@v2
