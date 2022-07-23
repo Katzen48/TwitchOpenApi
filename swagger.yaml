@@ -1667,6 +1667,9 @@ paths:
                         duration:
                           type: number
                           example: 60
+                        vod_offset:
+                          type: number
+                          example: 480
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
