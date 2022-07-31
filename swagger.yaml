@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2022‑07‑22
+  version: 2022‑07‑29
 paths:
   /channels/commercial:
     parameters:
@@ -1386,7 +1386,7 @@ paths:
           type: string
     get:
       summary: Get Chat Settings
-      description: NEW Gets the broadcaster’s chat settings.
+      description: Gets the broadcaster’s chat settings.
       tags:
         - Chat
       responses:
@@ -1434,7 +1434,7 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     patch:
       summary: Update Chat Settings
-      description: NEW Updates the broadcaster’s chat settings.
+      description: Updates the broadcaster’s chat settings.
       tags:
         - Chat
       responses:
@@ -1491,7 +1491,7 @@ paths:
           type: string
     post:
       summary: Send Chat Announcement
-      description: BETA Sends an announcement to the broadcaster’s chat room.
+      description: NEW Sends an announcement to the broadcaster’s chat room.
       tags:
         - Chat
       responses:
@@ -1512,7 +1512,7 @@ paths:
           type: string
     get:
       summary: Get User Chat Color
-      description: BETA Gets the color used for the user’s name in chat.
+      description: NEW Gets the color used for the user’s name in chat.
       tags:
         - Chat
       responses:
@@ -1548,7 +1548,7 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     put:
       summary: Update User Chat Color
-      description: BETA Updates the color used for the user’s name in chat.
+      description: NEW Updates the color used for the user’s name in chat.
       tags:
         - Chat
       responses:
@@ -1902,8 +1902,7 @@ paths:
           type: string
     get:
       summary: Get Extension Configuration Segment
-      description: NEW Gets the specified configuration segment from the specified
-        extension.
+      description: Gets the specified configuration segment from the specified extension.
       tags:
         - Extensions
       responses:
@@ -1949,8 +1948,8 @@ paths:
             type: string
     put:
       summary: Set Extension Configuration Segment
-      description: NEW Sets a single configuration segment of any type. The segment
-        type is specified as a body parameter.
+      description: Sets a single configuration segment of any type. The segment type
+        is specified as a body parameter.
       tags:
         - Extensions
       responses:
@@ -1971,7 +1970,7 @@ paths:
           type: string
     put:
       summary: Set Extension Required Configuration
-      description: NEW Enable activation of a specified Extension, after any required
+      description: Enable activation of a specified Extension, after any required
         broadcaster configuration is correct.
       tags:
         - Extensions
@@ -1998,8 +1997,8 @@ paths:
           type: string
     post:
       summary: Send Extension PubSub Message
-      description: NEW Forward a message using the same mechanism as the send
-        JavaScript helper function.
+      description: Forward a message using the same mechanism as the send JavaScript
+        helper function.
       tags:
         - Extensions
       responses:
@@ -2020,8 +2019,8 @@ paths:
           type: string
     get:
       summary: Get Extension Live Channels
-      description: NEW Returns one page of live channels that have installed or
-        activated a specific Extension.
+      description: Returns one page of live channels that have installed or activated
+        a specific Extension.
       tags:
         - Extensions
       responses:
@@ -2076,7 +2075,7 @@ paths:
           type: string
     get:
       summary: Get Extension Secrets
-      description: NEW Retrieves a specified Extension’s secret data consisting of a
+      description: Retrieves a specified Extension’s secret data consisting of a
         version and an array of secret objects.
       tags:
         - Extensions
@@ -2118,7 +2117,7 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     post:
       summary: Create Extension Secret
-      description: NEW Creates a JWT signing secret for a specific Extension
+      description: Creates a JWT signing secret for a specific Extension
       tags:
         - Extensions
       responses:
@@ -2171,7 +2170,7 @@ paths:
           type: string
     post:
       summary: Send Extension Chat Message
-      description: NEW Sends a specified chat message to a specified channel.
+      description: Sends a specified chat message to a specified channel.
       tags:
         - Extensions
       responses:
@@ -2197,8 +2196,8 @@ paths:
           type: string
     get:
       summary: Get Extensions
-      description: NEW Gets information about your Extensions; either the current
-        version or a specified version.
+      description: Gets information about your Extensions; either the current version
+        or a specified version.
       tags:
         - Extensions
       responses:
@@ -2371,7 +2370,7 @@ paths:
           type: string
     get:
       summary: Get Released Extensions
-      description: NEW Gets information about a released Extension; either the current
+      description: Gets information about a released Extension; either the current
         version or a specified version.
       tags:
         - Extensions
@@ -2545,7 +2544,7 @@ paths:
           type: string
     get:
       summary: Get Extension Bits Products
-      description: NEW Gets a list of Bits products that belongs to an Extension.
+      description: Gets a list of Bits products that belongs to an Extension.
       tags:
         - Extensions
       responses:
@@ -2597,7 +2596,7 @@ paths:
             type: boolean
     put:
       summary: Update Extension Bits Product
-      description: NEW Add or update a Bits products that belongs to an Extension.
+      description: Add or update a Bits products that belongs to an Extension.
       tags:
         - Extensions
       responses:
@@ -2963,7 +2962,7 @@ paths:
           type: string
     get:
       summary: Get Creator Goals
-      description: NEW Gets the broadcaster’s list of active goals.
+      description: Gets the broadcaster’s list of active goals.
       tags:
         - Goals
       responses:
@@ -3198,7 +3197,7 @@ paths:
           type: string
     get:
       summary: Get AutoMod Settings
-      description: NEW Gets the broadcaster’s AutoMod settings.
+      description: Gets the broadcaster’s AutoMod settings.
       tags:
         - Moderation
       responses:
@@ -3246,7 +3245,7 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     put:
       summary: Update AutoMod Settings
-      description: NEW Updates the broadcaster’s AutoMod settings.
+      description: Updates the broadcaster’s AutoMod settings.
       tags:
         - Moderation
       responses:
@@ -3378,7 +3377,7 @@ paths:
           type: string
     post:
       summary: Ban User
-      description: NEW Bans a user from participating in a broadcaster’s chat room, or
+      description: Bans a user from participating in a broadcaster’s chat room, or
         puts them in a timeout.
       tags:
         - Moderation
@@ -3417,7 +3416,7 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     delete:
       summary: Unban User
-      description: NEW Removes the ban or timeout that was placed on the specified user.
+      description: Removes the ban or timeout that was placed on the specified user.
       tags:
         - Moderation
       responses:
@@ -3438,7 +3437,7 @@ paths:
           type: string
     get:
       summary: Get Blocked Terms
-      description: NEW Gets the broadcaster’s list of non-private, blocked words or phrases.
+      description: Gets the broadcaster’s list of non-private, blocked words or phrases.
       tags:
         - Moderation
       responses:
@@ -3452,7 +3451,7 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     post:
       summary: Add Blocked Term
-      description: NEW Adds a word or phrase to the broadcaster’s list of blocked terms.
+      description: Adds a word or phrase to the broadcaster’s list of blocked terms.
       tags:
         - Moderation
       responses:
@@ -3496,8 +3495,8 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     delete:
       summary: Remove Blocked Term
-      description: NEW Removes the word or phrase that the broadcaster is blocking
-        users from using in their chat room.
+      description: Removes the word or phrase that the broadcaster is blocking users
+        from using in their chat room.
       tags:
         - Moderation
       responses:
@@ -3518,7 +3517,7 @@ paths:
           type: string
     delete:
       summary: Delete Chat Messages
-      description: BETA Removes a single chat message or all chat messages from the
+      description: NEW Removes a single chat message or all chat messages from the
         broadcaster’s chat room.
       tags:
         - Moderation
@@ -3584,7 +3583,7 @@ paths:
             type: string
     post:
       summary: Add Channel Moderator
-      description: BETA Adds a moderator to the broadcaster’s chat room.
+      description: NEW Adds a moderator to the broadcaster’s chat room.
       tags:
         - Moderation
       responses:
@@ -3598,7 +3597,7 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     delete:
       summary: Remove Channel Moderator
-      description: BETA Removes a moderator from the broadcaster’s chat room.
+      description: NEW Removes a moderator from the broadcaster’s chat room.
       tags:
         - Moderation
       responses:
@@ -3619,7 +3618,7 @@ paths:
           type: string
     get:
       summary: Get VIPs
-      description: BETA Gets a list of the channel’s VIPs.
+      description: NEW Gets a list of the channel’s VIPs.
       tags:
         - Moderation
       responses:
@@ -3658,7 +3657,7 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     post:
       summary: Add Channel VIP
-      description: BETA Adds a VIP to the broadcaster’s chat room.
+      description: NEW Adds a VIP to the broadcaster’s chat room.
       tags:
         - Moderation
       responses:
@@ -3672,7 +3671,7 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     delete:
       summary: Remove Channel VIP
-      description: BETA Removes a VIP from the broadcaster’s chat room.
+      description: NEW Removes a VIP from the broadcaster’s chat room.
       tags:
         - Moderation
       responses:
@@ -4227,8 +4226,8 @@ paths:
           type: string
     get:
       summary: Get Channel Stream Schedule
-      description: NEW Gets all scheduled broadcasts or specific scheduled broadcasts
-        from a channel’s stream schedule.
+      description: Gets all scheduled broadcasts or specific scheduled broadcasts from
+        a channel’s stream schedule.
       tags:
         - Schedule
       responses:
@@ -4306,8 +4305,8 @@ paths:
           type: string
     get:
       summary: Get Channel iCalendar
-      description: NEW Gets all scheduled broadcasts from a channel’s stream schedule
-        as an iCalendar.
+      description: Gets all scheduled broadcasts from a channel’s stream schedule as
+        an iCalendar.
       tags:
         - Schedule
       responses:
@@ -4333,7 +4332,7 @@ paths:
           type: string
     patch:
       summary: Update Channel Stream Schedule
-      description: NEW Update the settings for a channel’s stream schedule.
+      description: Update the settings for a channel’s stream schedule.
       tags:
         - Schedule
       responses:
@@ -4359,7 +4358,7 @@ paths:
           type: string
     post:
       summary: Create Channel Stream Schedule Segment
-      description: NEW Create a single scheduled broadcast or a recurring scheduled
+      description: Create a single scheduled broadcast or a recurring scheduled
         broadcast for a channel’s stream schedule.
       tags:
         - Schedule
@@ -4428,7 +4427,7 @@ paths:
             type: string
     patch:
       summary: Update Channel Stream Schedule Segment
-      description: NEW Update a single scheduled broadcast or a recurring scheduled
+      description: Update a single scheduled broadcast or a recurring scheduled
         broadcast for a channel’s stream schedule.
       tags:
         - Schedule
@@ -4501,7 +4500,7 @@ paths:
             type: string
     delete:
       summary: Delete Channel Stream Schedule Segment
-      description: NEW Delete a single scheduled broadcast or a recurring scheduled
+      description: Delete a single scheduled broadcast or a recurring scheduled
         broadcast for a channel’s stream schedule.
       tags:
         - Schedule
@@ -6317,7 +6316,7 @@ paths:
           type: string
     post:
       summary: Send Whisper
-      description: BETA Sends a whisper message to the specified user.
+      description: NEW Sends a whisper message to the specified user.
       tags:
         - Whispers
       responses:
