@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2022‑08‑12
+  version: 2022‑08‑25
 paths:
   /channels/commercial:
     parameters:
@@ -1150,6 +1150,85 @@ paths:
           in: query
           schema:
             type: string
+  /charity/campaigns:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get Charity Campaign
+      description: BETA Gets information about the broadcaster’s active charity campaign.
+      tags:
+        - Charity
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 123-abc-456-def
+                        broadcaster_id:
+                          type: string
+                          example: "123456"
+                        broadcaster_name:
+                          type: string
+                          example: SunnySideUp
+                        broadcaster_login:
+                          type: string
+                          example: sunnysideup
+                        charity_name:
+                          type: string
+                          example: Example name
+                        charity_description:
+                          type: string
+                          example: Example description
+                        charity_logo:
+                          type: string
+                          example: https://example.url/logo.png
+                        charity_website:
+                          type: string
+                          example: https://www.example.com
+                        current_amount:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                              example: 86000
+                            decimal_places:
+                              type: number
+                              example: 2
+                            currency:
+                              type: string
+                              example: USD
+                        target_amount:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                              example: 1500000
+                            decimal_places:
+                              type: number
+                              example: 2
+                            currency:
+                              type: string
+                              example: USD
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
   /chat/emotes/global:
     parameters:
       - in: header
