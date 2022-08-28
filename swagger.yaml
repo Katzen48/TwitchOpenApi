@@ -1450,6 +1450,36 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        set_id:
+                          type: string
+                          example: vip
+                        versions:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: "1"
+                              image_url_1x:
+                                type: string
+                                example: https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/1
+                              image_url_2x:
+                                type: string
+                                example: https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/2
+                              image_url_4x:
+                                type: string
+                                example: https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/3
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
