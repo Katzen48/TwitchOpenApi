@@ -1218,6 +1218,61 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "304456832"
+                        name:
+                          type: string
+                          example: twitchdevPitchfork
+                        images:
+                          type: object
+                          properties:
+                            url_1x:
+                              type: string
+                              example: https://static-cdn.jtvnw.net/emoticons/v2/304456832/static/light/1.0
+                            url_2x:
+                              type: string
+                              example: https://static-cdn.jtvnw.net/emoticons/v2/304456832/static/light/2.0
+                            url_4x:
+                              type: string
+                              example: https://static-cdn.jtvnw.net/emoticons/v2/304456832/static/light/3.0
+                        tier:
+                          type: string
+                          example: "1000"
+                        emote_type:
+                          type: string
+                          example: subscriptions
+                        emote_set_id:
+                          type: string
+                          example: "301590448"
+                        format:
+                          type: array
+                          items:
+                            type: string
+                            example: static
+                        scale:
+                          type: array
+                          items:
+                            type: string
+                            example: "1.0"
+                        theme_mode:
+                          type: array
+                          items:
+                            type: string
+                            example: light
+                  template:
+                    type: string
+                    example: https://static-cdn.jtvnw.net/emoticons/v2/{{id}}/{{format}}/{{theme_mode}}/{{scale}}
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1450,6 +1505,36 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        set_id:
+                          type: string
+                          example: vip
+                        versions:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: "1"
+                              image_url_1x:
+                                type: string
+                                example: https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/1
+                              image_url_2x:
+                                type: string
+                                example: https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/2
+                              image_url_4x:
+                                type: string
+                                example: https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/3
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -3522,6 +3607,42 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                          example: "1234"
+                        moderator_id:
+                          type: string
+                          example: "5678"
+                        id:
+                          type: string
+                          example: 520e4d4e-0cda-49c7-821e-e5ef4f88c2f2
+                        text:
+                          type: string
+                          example: A phrase I’m not fond of
+                        created_at:
+                          type: string
+                          example: 2021-09-29T19:45:37Z
+                        updated_at:
+                          type: string
+                          example: 2021-09-29T19:45:37Z
+                        expires_at:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        example: eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6I...
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4948,6 +5069,19 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        stream_key:
+                          type: string
+                          example: live_44322889_a34ub37c8ajv98a0
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -5435,6 +5569,76 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        tag_id:
+                          type: string
+                          example: 621fb5bf-5498-4d8f-b4ac-db4d40d401bf
+                        is_auto:
+                          type: boolean
+                        localization_names:
+                          type: object
+                          properties:
+                            bg-bg:
+                              type: string
+                              example: Изчистване на 1 кредит
+                            cs-cz:
+                              type: string
+                              example: 1 čistý kredit
+                            da-dk:
+                              type: string
+                              example: 1 credit klaret
+                            de-de:
+                              type: string
+                              example: Mit 1 Leben abschließen
+                            el-gr:
+                              type: string
+                              example: 1 μόνο πίστωση
+                            en-us:
+                              type: string
+                              example: 1 Credit Clear
+                        localization_descriptions:
+                          type: object
+                          properties:
+                            bg-bg:
+                              type: string
+                              example: За потоци с акцент върху завършване на аркадна игра с монети, в която
+                                не се използва продължаване
+                            cs-cz:
+                              type: string
+                              example: Pro vysílání s důrazem na plnění mincových arkádových her bez použití
+                                pokračování.
+                            da-dk:
+                              type: string
+                              example: Til streams med vægt på at gennemføre et arkadespil uden at bruge
+                                continues
+                            de-de:
+                              type: string
+                              example: Für Streams mit dem Ziel, ein Coin-op-Arcade-Game mit nur einem Leben
+                                abzuschließen.
+                            el-gr:
+                              type: string
+                              example: Για μεταδόσεις με έμφαση στην ολοκλήρωση παλαιού τύπου ηλεκτρονικών
+                                παιχνιδιών που λειτουργούν με κέρμα, χωρίς να
+                                χρησιμοποιούν συνέχειες
+                            en-us:
+                              type: string
+                              example: For streams with an emphasis on completing a coin-op arcade game
+                                without using any continues
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        example: eyJiI...
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -5469,6 +5673,64 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        tag_id:
+                          type: string
+                          example: 6ea6bca4-4712-4ab9-a906-e3336a9d8039
+                        is_auto:
+                          type: boolean
+                          example: true
+                        localization_names:
+                          type: object
+                          properties:
+                            bg-bg:
+                              type: string
+                              example: английски
+                            cs-cz:
+                              type: string
+                              example: Angličtina
+                            da-dk:
+                              type: string
+                              example: Engelsk
+                            de-de:
+                              type: string
+                              example: Englisch
+                            el-gr:
+                              type: string
+                              example: Αγγλικά
+                            en-us:
+                              type: string
+                              example: English
+                        localization_descriptions:
+                          type: object
+                          properties:
+                            bg-bg:
+                              type: string
+                              example: За потоци с използване на английски
+                            cs-cz:
+                              type: string
+                              example: Pro vysílání obsahující angličtinu.
+                            da-dk:
+                              type: string
+                              example: Til streams, hvori der indgår engelsk
+                            de-de:
+                              type: string
+                              example: Für Streams auf Englisch.
+                            el-gr:
+                              type: string
+                              example: Για μεταδόσεις που περιλαμβάνουν τη χρήση Αγγλικών
+                            en-us:
+                              type: string
+                              example: For streams featuring the use of English
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
