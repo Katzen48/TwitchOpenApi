@@ -469,6 +469,76 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 74c52265-e214-48a6-91b9-23b6014e8041
+                        timestamp:
+                          type: string
+                          example: 2019-01-28T04:15:53.325Z
+                        broadcaster_id:
+                          type: string
+                          example: "439964613"
+                        broadcaster_login:
+                          type: string
+                          example: chikuseuma
+                        broadcaster_name:
+                          type: string
+                          example: chikuseuma
+                        user_id:
+                          type: string
+                          example: "424596340"
+                        user_login:
+                          type: string
+                          example: quotrok
+                        user_name:
+                          type: string
+                          example: quotrok
+                        product_type:
+                          type: string
+                          example: BITS_IN_EXTENSION
+                        product_data:
+                          type: object
+                          properties:
+                            domain:
+                              type: string
+                              example: twitch.ext.uo6dggojyb8d6soh92zknwmi5ej1q2
+                            sku:
+                              type: string
+                              example: testSku100
+                            cost:
+                              type: object
+                              properties:
+                                amount:
+                                  type: number
+                                  example: 100
+                                type:
+                                  type: string
+                                  example: bits
+                            inDevelopment:
+                              type: boolean
+                            displayName:
+                              type: string
+                              example: Test Product 100
+                            expiration:
+                              type: string
+                            broadcast:
+                              type: boolean
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        example: cursorString
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -5004,6 +5074,12 @@ paths:
                             image_url:
                               type: string
                               example: https://m.media-amazon.com/images/I/316SDaD-XQL.jpg
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        example: eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6MjB9fQ
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -5048,6 +5124,12 @@ paths:
                           type: string
                           example: Journey through boom-bap, lo-fi, trap and ambient sounds, courtesy of
                             esteemed label Radio Juicy.
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        example: eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6MjB9fQ
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -5393,7 +5475,7 @@ paths:
                                       example: 244
                                     URL:
                                       type: string
-                                      example: https://twitch.tv/videos/456?t=0h4m06s
+                                      example: https://twitch.tv/twitchname/manager/highlighter/456?t=0h4m06s
                   pagination:
                     type: object
                     properties:
