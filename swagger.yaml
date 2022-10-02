@@ -1272,6 +1272,50 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+  /chat/chatters:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get Chatters
+      description: BETA Gets the list of users that are connected to the specified
+        broadcaster’s chat session.
+      tags:
+        - Chat
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user_login:
+                          type: string
+                          example: smittysmithers
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        example: eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6NX19
+                  total:
+                    type: number
+                    example: 8
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
   /chat/emotes:
     parameters:
       - in: header
