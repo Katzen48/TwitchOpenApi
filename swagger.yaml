@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2022‑09‑29
+  version: 2022‑11‑02
 paths:
   /channels/commercial:
     parameters:
@@ -1238,7 +1238,7 @@ paths:
                           example: Example description
                         charity_logo:
                           type: string
-                          example: https://example.url/logo.png
+                          example: https://abc.cloudfront.net/ppgf/1000/100.png
                         charity_website:
                           type: string
                           example: https://www.example.com
@@ -2993,23 +2993,6 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
-      parameters:
-        - name: type
-          in: query
-          schema:
-            type: string
-        - name: version
-          in: query
-          schema:
-            type: string
-        - name: condition
-          in: query
-          schema:
-            type: string
-        - name: transport
-          in: query
-          schema:
-            type: string
     delete:
       summary: Delete EventSub Subscription
       description: Deletes an EventSub subscription.
@@ -3024,15 +3007,10 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
-      parameters:
-        - name: id
-          in: query
-          schema:
-            type: string
     get:
       summary: Get EventSub Subscriptions
-      description: Gets a list of your EventSub subscriptions. The list is paginated
-        and ordered by the oldest subscription first.
+      description: Gets a list of EventSub subscriptions that the client in the access
+        token created.
       tags:
         - EventSub
       responses:
@@ -3099,23 +3077,6 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
-      parameters:
-        - name: status
-          in: query
-          schema:
-            type: string
-        - name: type
-          in: query
-          schema:
-            type: string
-        - name: user_id
-          in: query
-          schema:
-            type: string
-        - name: after
-          in: query
-          schema:
-            type: string
   /games/top:
     parameters:
       - in: header
