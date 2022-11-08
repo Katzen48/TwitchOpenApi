@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2022‑09‑29
+  version: 2022‑11‑04
 paths:
   /channels/commercial:
     parameters:
@@ -26,9 +26,12 @@ paths:
           type: string
     post:
       summary: Start Commercial
-      description: Starts a commercial on a specified channel.
+      description: Starts a commercial on the specified channel.
       tags:
         - Ads
+      security:
+        - oauth:
+            - channel:edit:commercial
       responses:
         "200":
           description: OK
@@ -56,15 +59,6 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
-      parameters:
-        - name: broadcaster_id
-          in: query
-          schema:
-            type: string
-        - name: length
-          in: query
-          schema:
-            type: integer
   /analytics/extensions:
     parameters:
       - in: header
@@ -74,12 +68,12 @@ paths:
           type: string
     get:
       summary: Get Extension Analytics
-      description: Gets a URL that Extension developers can use to download analytics
-        reports (CSV files) for their Extensions. The URL is valid for 5
-        minutes. For details about analytics and the fields returned, see the
-        Insights & Analytics guide.
+      description: Gets an analytics report for one or more extensions.
       tags:
         - Analytics
+      security:
+        - oauth:
+            - analytics:read:extensions
       responses:
         "200":
           description: OK
@@ -98,7 +92,7 @@ paths:
                           example: efgh
                         URL:
                           type: string
-                          example: https://twitch-piper-reports.s3-us-west-2.amazonaws.com/dynamic/LoL%20ADC_overview_v2_2018-03-01_2018-06-01_8a879932-8e70-7a4c-2b97-e0eaba28c3b0.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAI7LOPgTrAIVYE6KQ%2F20180731%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20180731T202847Z&X-Amz-Expires=60&X-Amz-Security-Token=FQoDYXdzEDMaDObdwyOVISdo6feHSSK3A9R9gMFeS5frG5Dsr4k4tJemqCIazhsQJrpsehBoOufaQkCxrb8RD3oU0xC5pWrZe9kN%2BnezIoLOgTtFRAqTzdIr7J5iUOxGFyKN9XmrmUHGexFfALvoPQWUJNbxoFU6shajSmO3sPK2GnuEaGmIrAqjKrim8saLHDV%2FdSi2ZH3fFx6sBQEGv13Lx0zua7AsvaL%2BSfhIAcOazWjYLMU5N9bxXmaN7IAIF4UjNPqbg07RMWW70hm0edH0RPi%2Fw00faeeSvmreHq6c1C1Lu8a7AysMb0pEGBT7VxmuGmWsXyjLWZ6oNgbx88HXoMJpmAn5Y1hUu7VzOaa84T%2BmCF5Sbn7hbB1xIiPdzaVQ%2Bd85sy4ln09h7dgKh6GFE1VTas2v7RJU1lyD%2FZ%2FWKBwV5Ol8GEGrF1pme8mSBpPGUAJ4vxjLmrGL7ctty%2F0vXke3PyD%2B4%2FtHZ67xaw0y8EKrau23Xvt3blkcDNoQYOfcS%2FqbaK%2BHpyVq4bIBtQq%2BHYU5MuFkgEuwSe5zPDle1ysKSN11B6B6Sy7Httrq542OONS%2BfURkczMbKSPEShddN32Y9VUqKYdUo%2FsWVQQoy7uC2wU%3D&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3Bfilename%3D%22WoW%20Armory_overview_v1_2018-04-30_2018-06-01.csv%22&X-Amz-Signature=eb7721e40cbfd1d7409887dae3792cdb2add025ace953a63ba8e3545b92ae058
+                          example: https://twitch-piper-reports.s3-us-west-2.amazonaws.com/dynamic/LoL%20ADC...
                         type:
                           type: string
                           example: overview_v2
@@ -124,7 +118,15 @@ paths:
         "500":
           description: "Internal Server Error: Something bad happened on our side"
       parameters:
-        - name: after
+        - name: extension_id
+          in: query
+          schema:
+            type: string
+        - name: type
+          in: query
+          schema:
+            type: string
+        - name: started_at
           in: query
           schema:
             type: string
@@ -132,19 +134,11 @@ paths:
           in: query
           schema:
             type: string
-        - name: extension_id
-          in: query
-          schema:
-            type: string
         - name: first
           in: query
           schema:
-            type: integer
-        - name: started_at
-          in: query
-          schema:
             type: string
-        - name: type
+        - name: after
           in: query
           schema:
             type: string
@@ -157,10 +151,12 @@ paths:
           type: string
     get:
       summary: Get Game Analytics
-      description: Gets a URL that game developers can use to download analytics
-        reports (CSV files) for their games. The URL is valid for 5 minutes.
+      description: Gets an analytics report for one or more games.
       tags:
         - Analytics
+      security:
+        - oauth:
+            - analytics:read:games
       responses:
         "200":
           description: OK
@@ -179,7 +175,7 @@ paths:
                           example: "493057"
                         URL:
                           type: string
-                          example: https://twitch-piper-reports.s3-us-west-2.amazonaws.com/games/66170/overview/1518307200000.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAJP7WFIAF26K7BC2Q%2F20180222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20180222T220651Z&X-Amz-Expires=60&X-Amz-Security-Token=FQoDYXdzEE0aDLKNl9aCgfuikMKI%2ByK3A4e%2FR%2B4to%2BmRZFUuslNKs%2FOxKeySB%2BAU87PBtNGCxQaQuN2Q8KI4Vg%2Bve2x5eenZdoH0ZM7uviM94sf2GlbE9Z0%2FoJRmNGNhlU3Ua%2FupzvByCoMdefrU8Ziiz4j8EJCgg0M1j2aF9f8bTC%2BRYwcpP0kjaZooJS6RFY1TTkh659KBA%2By%2BICdpVK0fxOlrQ%2FfZ6vIYVFzvywBM05EGWX%2F3flCIW%2BuZ9ZxMAvxcY4C77cOLQ0OvY5g%2F7tuuGSO6nvm9Eb8MeMEzSYPr4emr3zIjxx%2Fu0li9wjcF4qKvdmnyk2Bnd2mepX5z%2BVejtIGBzfpk%2Fe%2FMqpMrcONynKoL6BNxxDL4ITo5yvVzs1x7OumONHcsvrTQsd6aGNQ0E3lrWxcujBAmXmx8n7Qnk4pZnHZLgcBQam1fIGba65Gf5Ern71TwfRUsolxnyIXyHsKhd2jSmXSju8jH3iohjv99a2vGaxSg8SBCrQZ06Bi0pr%2FTiSC52U1g%2BlhXYttdJB4GUdOvaxR8n6PwMS7HuAtDJUui8GKWK%2F9t4OON3qhF2cBt%2BnV%2BDg8bDMZkQ%2FAt5blvIlg6rrlCu0cYko4ojb281AU%3D&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3Bfilename%3DWarframe-overview-2018-02-11.csv&X-Amz-Signature=49cc07cbd9d753b00315b66f49b9e4788570062ff3bd956288ab4f164cf96708
+                          example: https://twitch-piper-reports.s3-us-west-2.amazonaws.com/games/66170/overview/15183...
                         type:
                           type: string
                           example: overview_v2
@@ -199,7 +195,15 @@ paths:
         "500":
           description: "Internal Server Error: Something bad happened on our side"
       parameters:
-        - name: after
+        - name: game_id
+          in: query
+          schema:
+            type: string
+        - name: type
+          in: query
+          schema:
+            type: string
+        - name: started_at
           in: query
           schema:
             type: string
@@ -210,16 +214,8 @@ paths:
         - name: first
           in: query
           schema:
-            type: integer
-        - name: game_id
-          in: query
-          schema:
             type: string
-        - name: started_at
-          in: query
-          schema:
-            type: string
-        - name: type
+        - name: after
           in: query
           schema:
             type: string
@@ -232,10 +228,12 @@ paths:
           type: string
     get:
       summary: Get Bits Leaderboard
-      description: Gets a ranked list of Bits leaderboard information for an
-        authorized broadcaster.
+      description: Gets the Bits leaderboard for the authenticated broadcaster.
       tags:
         - Bits
+      security:
+        - oauth:
+            - bits:read
       responses:
         "200":
           description: OK
@@ -286,7 +284,7 @@ paths:
         - name: count
           in: query
           schema:
-            type: integer
+            type: string
         - name: period
           in: query
           schema:
@@ -308,11 +306,11 @@ paths:
           type: string
     get:
       summary: Get Cheermotes
-      description: Retrieves the list of available Cheermotes, animated emotes to
-        which viewers can assign Bits, to cheer in chat. Cheermotes returned are
-        available throughout Twitch, in all Bits-enabled channels.
+      description: Gets a list of Cheermotes that users can use to cheer Bits.
       tags:
         - Bits
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -461,11 +459,11 @@ paths:
           type: string
     get:
       summary: Get Extension Transactions
-      description: Gets the list of Extension transactions for a given Extension. This
-        allows Extension back-end servers to fetch a list of transactions that
-        have occurred for their Extension across all of Twitch.
+      description: Gets a list of transactions for an extension.
       tags:
         - Bits
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -550,6 +548,18 @@ paths:
           in: query
           schema:
             type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /channels:
     parameters:
       - in: header
@@ -559,9 +569,11 @@ paths:
           type: string
     get:
       summary: Get Channel Information
-      description: Gets channel information for users.
+      description: Gets information about one or more channels.
       tags:
         - Channels
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -611,9 +623,12 @@ paths:
             type: string
     patch:
       summary: Modify Channel Information
-      description: Modifies channel information for users.
+      description: Updates a channel’s properties.
       tags:
         - Channels
+      security:
+        - oauth:
+            - channel:manage:broadcast
       responses:
         "200":
           description: OK
@@ -637,9 +652,12 @@ paths:
           type: string
     get:
       summary: Get Channel Editors
-      description: Gets a list of users who have editor permissions for a specific channel.
+      description: Gets a list of users that are editors for the specified broadcaster.
       tags:
         - Channels
+      security:
+        - oauth:
+            - channel:read:editors
       responses:
         "200":
           description: OK
@@ -682,12 +700,12 @@ paths:
           type: string
     post:
       summary: Create Custom Rewards
-      description: |-
-        Creates a Custom Reward on a channel.
-
-         
+      description: Creates a Custom Reward in the broadcaster’s channel.
       tags:
         - Channel Points
+      security:
+        - oauth:
+            - channel:manage:redemptions
       responses:
         "200":
           description: OK
@@ -788,9 +806,12 @@ paths:
             type: string
     delete:
       summary: Delete Custom Reward
-      description: Deletes a Custom Reward on a channel.
+      description: Deletes a custom reward that the broadcaster created.
       tags:
         - Channel Points
+      security:
+        - oauth:
+            - channel:manage:redemptions
       responses:
         "204":
           description: Deleted
@@ -811,10 +832,12 @@ paths:
             type: string
     get:
       summary: Get Custom Reward
-      description: Returns a list of Custom Reward objects for the Custom Rewards on a
-        channel.
+      description: Gets a list of custom rewards that the specified broadcaster created.
       tags:
         - Channel Points
+      security:
+        - oauth:
+            - channel:read:redemptions
       responses:
         "200":
           description: OK
@@ -913,11 +936,22 @@ paths:
           in: query
           schema:
             type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: only_manageable_rewards
+          in: query
+          schema:
+            type: string
     patch:
       summary: Update Custom Reward
-      description: Updates a Custom Reward created on a channel.
+      description: Updates a custom reward.
       tags:
         - Channel Points
+      security:
+        - oauth:
+            - channel:manage:redemptions
       responses:
         "200":
           description: OK
@@ -1031,10 +1065,12 @@ paths:
           type: string
     get:
       summary: Get Custom Reward Redemption
-      description: Returns Custom Reward Redemption objects for a Custom Reward on a
-        channel that was created by the same client_id. 
+      description: Gets a list of redemptions for a custom reward.
       tags:
         - Channel Points
+      security:
+        - oauth:
+            - channel:read:redemptions
       responses:
         "200":
           description: OK
@@ -1112,12 +1148,34 @@ paths:
           in: query
           schema:
             type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: sort
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
     patch:
       summary: Update Redemption Status
-      description: Updates the status of Custom Reward Redemption objects on a channel
-        that are in the UNFULFILLED status.
+      description: Updates a redemption’s status.
       tags:
         - Channel Points
+      security:
+        - oauth:
+            - channel:manage:redemptions
       responses:
         "200":
           description: OK
@@ -1205,6 +1263,9 @@ paths:
       description: BETA Gets information about the broadcaster’s active charity campaign.
       tags:
         - Charity
+      security:
+        - oauth:
+            - channel:read:charity
       responses:
         "200":
           description: OK
@@ -1238,7 +1299,7 @@ paths:
                           example: Example description
                         charity_logo:
                           type: string
-                          example: https://example.url/logo.png
+                          example: https://abc.cloudfront.net/ppgf/1000/100.png
                         charity_website:
                           type: string
                           example: https://www.example.com
@@ -1272,6 +1333,11 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
   /chat/chatters:
     parameters:
       - in: header
@@ -1285,6 +1351,9 @@ paths:
         broadcaster’s chat session.
       tags:
         - Chat
+      security:
+        - oauth:
+            - moderator:read:chatters
       responses:
         "200":
           description: OK
@@ -1316,6 +1385,23 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /chat/emotes:
     parameters:
       - in: header
@@ -1325,10 +1411,11 @@ paths:
           type: string
     get:
       summary: Get Channel Emotes
-      description: Gets all emotes that the specified Twitch channel created. For
-        example, subscriber emotes, follower emotes, and Bits tier emotes.
+      description: Gets all emotes that the specified Twitch channel created.
       tags:
         - Chat
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -1407,10 +1494,11 @@ paths:
           type: string
     get:
       summary: Get Global Emotes
-      description: Gets all global emotes. Global emotes are Twitch-specific emoticons
-        that every user can use in Twitch chat.
+      description: Gets all global emotes.
       tags:
         - Chat
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -1478,6 +1566,8 @@ paths:
       description: Gets emotes for one or more specified emote sets.
       tags:
         - Chat
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -1556,10 +1646,11 @@ paths:
           type: string
     get:
       summary: Get Channel Chat Badges
-      description: Gets a list of custom chat badges that can be used in chat for the
-        specified channel.
+      description: Gets all badges that the specified broadcaster created.
       tags:
         - Chat
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -1613,9 +1704,11 @@ paths:
           type: string
     get:
       summary: Get Global Chat Badges
-      description: Gets a list of chat badges that can be used in chat for any channel.
+      description: Gets the list of chat badges that Twitch created.
       tags:
         - Chat
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -1667,6 +1760,9 @@ paths:
       description: Gets the broadcaster’s chat settings.
       tags:
         - Chat
+      security:
+        - oauth:
+            - moderator:read:chat_settings
       responses:
         "200":
           description: OK
@@ -1710,11 +1806,23 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
     patch:
       summary: Update Chat Settings
       description: Updates the broadcaster’s chat settings.
       tags:
         - Chat
+      security:
+        - oauth:
+            - moderator:manage:chat_settings
       responses:
         "200":
           description: OK
@@ -1760,6 +1868,15 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
   /chat/announcements:
     parameters:
       - in: header
@@ -1769,9 +1886,12 @@ paths:
           type: string
     post:
       summary: Send Chat Announcement
-      description: NEW Sends an announcement to the broadcaster’s chat room.
+      description: Sends an announcement to the broadcaster’s chat room.
       tags:
         - Chat
+      security:
+        - oauth:
+            - moderator:manage:announcements
       responses:
         "200":
           description: OK
@@ -1781,6 +1901,15 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
   /chat/color:
     parameters:
       - in: header
@@ -1790,9 +1919,11 @@ paths:
           type: string
     get:
       summary: Get User Chat Color
-      description: NEW Gets the color used for the user’s name in chat.
+      description: Gets the color used for the user’s name in chat.
       tags:
         - Chat
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -1824,11 +1955,19 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: string
     put:
       summary: Update User Chat Color
-      description: NEW Updates the color used for the user’s name in chat.
+      description: Updates the color used for the user’s name in chat.
       tags:
         - Chat
+      security:
+        - oauth:
+            - user:manage:chat_color
       responses:
         "200":
           description: OK
@@ -1838,6 +1977,15 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: color
+          in: query
+          schema:
+            type: string
   /clips:
     parameters:
       - in: header
@@ -1847,10 +1995,12 @@ paths:
           type: string
     post:
       summary: Create Clip
-      description: Creates a clip programmatically. This returns both an ID and an
-        edit URL for the new clip.
+      description: Creates a clip from the broadcaster’s stream.
       tags:
         - Clips
+      security:
+        - oauth:
+            - clips:edit
       responses:
         "200":
           description: OK
@@ -1881,12 +2031,17 @@ paths:
           in: query
           schema:
             type: string
+        - name: has_delay
+          in: query
+          schema:
+            type: string
     get:
       summary: Get Clips
-      description: Gets clip information by clip ID (one or more), broadcaster ID (one
-        only), or game ID (one only).
+      description: Gets one or more video clips.
       tags:
         - Clips
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -1967,6 +2122,26 @@ paths:
           in: query
           schema:
             type: string
+        - name: started_at
+          in: query
+          schema:
+            type: string
+        - name: ended_at
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: before
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /entitlements/codes:
     parameters:
       - in: header
@@ -1976,11 +2151,11 @@ paths:
           type: string
     get:
       summary: Get Code Status
-      description: Gets the status of one or more provided codes. This API requires
-        that the caller is an authenticated Twitch user. The API is throttled to
-        one request per second per authenticated user.
+      description: Gets the status of one or more redemption codes for a Bits reward.
       tags:
         - Entitlements
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2020,6 +2195,8 @@ paths:
       description: Redeems one or more redemption codes.
       tags:
         - Entitlements
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2063,10 +2240,12 @@ paths:
           type: string
     get:
       summary: Get Drops Entitlements
-      description: Gets a list of entitlements for a given organization that have been
-        granted to a game, user, or both.
+      description: Gets an organization’s list of entitlements that have been granted
+        to a game, a user, or both.
       tags:
         - Entitlements
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2137,13 +2316,14 @@ paths:
         - name: first
           in: query
           schema:
-            type: integer
+            type: string
     patch:
       summary: Update Drops Entitlements
-      description: Updates the fulfillment status on a set of Drops entitlements,
-        specified by their entitlement IDs.
+      description: Updates the Drop entitlement’s fulfillment status.
       tags:
         - Entitlements
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2183,6 +2363,8 @@ paths:
       description: Gets the specified configuration segment from the specified extension.
       tags:
         - Extensions
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2226,10 +2408,11 @@ paths:
             type: string
     put:
       summary: Set Extension Configuration Segment
-      description: Sets a single configuration segment of any type. The segment type
-        is specified as a body parameter.
+      description: Updates a configuration segment.
       tags:
         - Extensions
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2248,10 +2431,11 @@ paths:
           type: string
     put:
       summary: Set Extension Required Configuration
-      description: Enable activation of a specified Extension, after any required
-        broadcaster configuration is correct.
+      description: Updates the extension’s required_configuration string.
       tags:
         - Extensions
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2275,10 +2459,11 @@ paths:
           type: string
     post:
       summary: Send Extension PubSub Message
-      description: Forward a message using the same mechanism as the send JavaScript
-        helper function.
+      description: Sends a message to one or more viewers.
       tags:
         - Extensions
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2297,10 +2482,12 @@ paths:
           type: string
     get:
       summary: Get Extension Live Channels
-      description: Returns one page of live channels that have installed or activated
-        a specific Extension.
+      description: Gets a list of broadcasters that are streaming live and have
+        installed or activated the extension.
       tags:
         - Extensions
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2344,6 +2531,14 @@ paths:
           in: query
           schema:
             type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /extensions/jwt/secrets:
     parameters:
       - in: header
@@ -2353,10 +2548,11 @@ paths:
           type: string
     get:
       summary: Get Extension Secrets
-      description: Retrieves a specified Extension’s secret data consisting of a
-        version and an array of secret objects.
+      description: Gets an extension’s list of shared secrets.
       tags:
         - Extensions
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2395,9 +2591,11 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     post:
       summary: Create Extension Secret
-      description: Creates a JWT signing secret for a specific Extension
+      description: Creates a shared secret used to sign and verify JWT tokens.
       tags:
         - Extensions
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2439,6 +2637,10 @@ paths:
           in: query
           schema:
             type: string
+        - name: delay
+          in: query
+          schema:
+            type: string
   /extensions/chat:
     parameters:
       - in: header
@@ -2448,9 +2650,11 @@ paths:
           type: string
     post:
       summary: Send Extension Chat Message
-      description: Sends a specified chat message to a specified channel.
+      description: Sends a message to the specified broadcaster’s chat room.
       tags:
         - Extensions
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2474,10 +2678,11 @@ paths:
           type: string
     get:
       summary: Get Extensions
-      description: Gets information about your Extensions; either the current version
-        or a specified version.
+      description: Gets information about an extension.
       tags:
         - Extensions
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2639,6 +2844,10 @@ paths:
           in: query
           schema:
             type: string
+        - name: extension_version
+          in: query
+          schema:
+            type: string
   /extensions/released:
     parameters:
       - in: header
@@ -2648,10 +2857,11 @@ paths:
           type: string
     get:
       summary: Get Released Extensions
-      description: Gets information about a released Extension; either the current
-        version or a specified version.
+      description: Gets information about a released extension.
       tags:
         - Extensions
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2813,6 +3023,10 @@ paths:
           in: query
           schema:
             type: string
+        - name: extension_version
+          in: query
+          schema:
+            type: string
   /bits/extensions:
     parameters:
       - in: header
@@ -2822,9 +3036,11 @@ paths:
           type: string
     get:
       summary: Get Extension Bits Products
-      description: Gets a list of Bits products that belongs to an Extension.
+      description: Gets the list of Bits products that belongs to the extension.
       tags:
         - Extensions
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2871,12 +3087,14 @@ paths:
         - name: should_include_all
           in: query
           schema:
-            type: boolean
+            type: string
     put:
       summary: Update Extension Bits Product
-      description: Add or update a Bits products that belongs to an Extension.
+      description: Adds or updates a Bits product that the extension created.
       tags:
         - Extensions
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2932,6 +3150,8 @@ paths:
       description: Creates an EventSub subscription.
       tags:
         - EventSub
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -2993,28 +3213,13 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
-      parameters:
-        - name: type
-          in: query
-          schema:
-            type: string
-        - name: version
-          in: query
-          schema:
-            type: string
-        - name: condition
-          in: query
-          schema:
-            type: string
-        - name: transport
-          in: query
-          schema:
-            type: string
     delete:
       summary: Delete EventSub Subscription
       description: Deletes an EventSub subscription.
       tags:
         - EventSub
+      security:
+        - oauth: []
       responses:
         "204":
           description: Deleted
@@ -3031,10 +3236,12 @@ paths:
             type: string
     get:
       summary: Get EventSub Subscriptions
-      description: Gets a list of your EventSub subscriptions. The list is paginated
-        and ordered by the oldest subscription first.
+      description: Gets a list of EventSub subscriptions that the client in the access
+        token created.
       tags:
         - EventSub
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -3125,10 +3332,11 @@ paths:
           type: string
     get:
       summary: Get Top Games
-      description: Gets games sorted by number of current viewers on Twitch, most
-        popular first.
+      description: Gets information about all broadcasts on Twitch.
       tags:
         - Games
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -3164,6 +3372,10 @@ paths:
         "500":
           description: "Internal Server Error: Something bad happened on our side"
       parameters:
+        - name: first
+          in: query
+          schema:
+            type: string
         - name: after
           in: query
           schema:
@@ -3172,10 +3384,6 @@ paths:
           in: query
           schema:
             type: string
-        - name: first
-          in: query
-          schema:
-            type: integer
   /games:
     parameters:
       - in: header
@@ -3185,9 +3393,11 @@ paths:
           type: string
     get:
       summary: Get Games
-      description: Gets game information by game ID or name.
+      description: Gets information about specified games.
       tags:
         - Games
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -3201,15 +3411,15 @@ paths:
                     items:
                       type: object
                       properties:
-                        box_art_url:
-                          type: string
-                          example: https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-52x72.jpg
                         id:
                           type: string
                           example: "33214"
                         name:
                           type: string
                           example: Fortnite
+                        box_art_url:
+                          type: string
+                          example: https://static-cdn.jtvnw.net/ttv-boxart/33214-{width}x{height}.jpg
                   pagination:
                     type: object
                     properties:
@@ -3243,6 +3453,9 @@ paths:
       description: Gets the broadcaster’s list of active goals.
       tags:
         - Goals
+      security:
+        - oauth:
+            - channel:read:goals
       responses:
         "200":
           description: OK
@@ -3303,10 +3516,13 @@ paths:
           type: string
     get:
       summary: Get Hype Train Events
-      description: Gets the information of the most recent Hype Train of the given
-        channel ID.
+      description: Gets information about the broadcaster’s current or most recent
+        Hype Train event.
       tags:
         - Hype Train
+      security:
+        - oauth:
+            - channel:read:hype_train
       responses:
         "200":
           description: OK
@@ -3402,6 +3618,14 @@ paths:
           in: query
           schema:
             type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /moderation/enforcements/status:
     parameters:
       - in: header
@@ -3411,10 +3635,12 @@ paths:
           type: string
     post:
       summary: Check AutoMod Status
-      description: Determines whether a string message meets the channel’s AutoMod
-        requirements.
+      description: Checks whether AutoMod would flag the specified message for review.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - moderation:read
       responses:
         "200":
           description: OK
@@ -3454,9 +3680,12 @@ paths:
           type: string
     post:
       summary: Manage Held AutoMod Messages
-      description: Allow or deny a message that was held for review by AutoMod.
+      description: Allow or deny the message that AutoMod flagged for review.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - moderator:manage:automod
       responses:
         "200":
           description: OK
@@ -3478,6 +3707,9 @@ paths:
       description: Gets the broadcaster’s AutoMod settings.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - moderator:read:automod_settings
       responses:
         "200":
           description: OK
@@ -3521,11 +3753,23 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
     put:
       summary: Update AutoMod Settings
       description: Updates the broadcaster’s AutoMod settings.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - moderator:manage:automod_settings
       responses:
         "200":
           description: OK
@@ -3577,6 +3821,15 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
   /moderation/banned:
     parameters:
       - in: header
@@ -3586,9 +3839,12 @@ paths:
           type: string
     get:
       summary: Get Banned Users
-      description: Returns all banned and timed-out users for a channel.
+      description: Gets all users that the broadcaster banned or put in a timeout.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - moderation:read
       responses:
         "200":
           description: OK
@@ -3646,6 +3902,22 @@ paths:
           in: query
           schema:
             type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+        - name: before
+          in: query
+          schema:
+            type: string
   /moderation/bans:
     parameters:
       - in: header
@@ -3655,10 +3927,13 @@ paths:
           type: string
     post:
       summary: Ban User
-      description: Bans a user from participating in a broadcaster’s chat room, or
-        puts them in a timeout.
+      description: Bans a user from participating in a broadcaster’s chat room or puts
+        them in a timeout.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - moderator:manage:banned_users
       responses:
         "200":
           description: OK
@@ -3692,11 +3967,23 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
     delete:
       summary: Unban User
       description: Removes the ban or timeout that was placed on the specified user.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - moderator:manage:banned_users
       responses:
         "204":
           description: Deleted
@@ -3706,6 +3993,19 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
   /moderation/blocked_terms:
     parameters:
       - in: header
@@ -3718,6 +4018,9 @@ paths:
       description: Gets the broadcaster’s list of non-private, blocked words or phrases.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - moderator:read:blocked_terms
       responses:
         "200":
           description: OK
@@ -3763,11 +4066,31 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
     post:
       summary: Add Blocked Term
       description: Adds a word or phrase to the broadcaster’s list of blocked terms.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - moderator:manage:blocked_terms
       responses:
         "200":
           description: OK
@@ -3807,12 +4130,23 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
     delete:
       summary: Remove Blocked Term
-      description: Removes the word or phrase that the broadcaster is blocking users
-        from using in their chat room.
+      description: Removes the word or phrase from the broadcaster’s list of blocked terms.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - moderator:manage:blocked_terms
       responses:
         "204":
           description: Deleted
@@ -3822,6 +4156,19 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
+        - name: id
+          in: query
+          schema:
+            type: string
   /moderation/chat:
     parameters:
       - in: header
@@ -3831,10 +4178,13 @@ paths:
           type: string
     delete:
       summary: Delete Chat Messages
-      description: NEW Removes a single chat message or all chat messages from the
+      description: Removes a single chat message or all chat messages from the
         broadcaster’s chat room.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - moderator:manage:chat_messages
       responses:
         "204":
           description: Deleted
@@ -3844,6 +4194,19 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
+        - name: message_id
+          in: query
+          schema:
+            type: string
   /moderation/moderators:
     parameters:
       - in: header
@@ -3853,9 +4216,12 @@ paths:
           type: string
     get:
       summary: Get Moderators
-      description: Returns all moderators in a channel.
+      description: Gets all users allowed to moderate the broadcaster’s chat room.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - moderation:read
       responses:
         "200":
           description: OK
@@ -3895,11 +4261,26 @@ paths:
           in: query
           schema:
             type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
     post:
       summary: Add Channel Moderator
-      description: NEW Adds a moderator to the broadcaster’s chat room.
+      description: Adds a moderator to the broadcaster’s chat room.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - channel:manage:moderators
       responses:
         "200":
           description: OK
@@ -3909,11 +4290,23 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
     delete:
       summary: Remove Channel Moderator
-      description: NEW Removes a moderator from the broadcaster’s chat room.
+      description: Removes a moderator from the broadcaster’s chat room.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - channel:manage:moderators
       responses:
         "204":
           description: Deleted
@@ -3923,6 +4316,15 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
   /channels/vips:
     parameters:
       - in: header
@@ -3932,9 +4334,13 @@ paths:
           type: string
     get:
       summary: Get VIPs
-      description: NEW Gets a list of the channel’s VIPs.
+      description: Gets a list of the broadcaster’s VIPs.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - channel:read:vips
+            - channel:manage:vips
       responses:
         "200":
           description: OK
@@ -3969,11 +4375,31 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
     post:
       summary: Add Channel VIP
-      description: NEW Adds a VIP to the broadcaster’s chat room.
+      description: Adds the specified user as a VIP in the broadcaster’s channel.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - channel:manage:vips
       responses:
         "200":
           description: OK
@@ -3983,11 +4409,23 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
     delete:
       summary: Remove Channel VIP
-      description: NEW Removes a VIP from the broadcaster’s chat room.
+      description: Removes the specified user as a VIP in the broadcaster’s channel.
       tags:
         - Moderation
+      security:
+        - oauth:
+            - channel:manage:vips
       responses:
         "204":
           description: Deleted
@@ -3997,6 +4435,15 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
   /polls:
     parameters:
       - in: header
@@ -4006,10 +4453,12 @@ paths:
           type: string
     get:
       summary: Get Polls
-      description: Get information about all polls or specific polls for a Twitch
-        channel. Poll information is available for 90 days.
+      description: Gets a list of polls that the broadcaster created.
       tags:
         - Polls
+      security:
+        - oauth:
+            - channel:read:polls
       responses:
         "200":
           description: OK
@@ -4086,11 +4535,26 @@ paths:
           in: query
           schema:
             type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
     post:
       summary: Create Poll
-      description: Create a poll for a specific Twitch channel.
+      description: Creates a poll that viewers in the broadcaster’s channel can vote on.
       tags:
         - Polls
+      security:
+        - oauth:
+            - channel:manage:polls
       responses:
         "200":
           description: OK
@@ -4163,9 +4627,12 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     patch:
       summary: End Poll
-      description: End a poll that is currently active.
+      description: End an active poll.
       tags:
         - Polls
+      security:
+        - oauth:
+            - channel:manage:polls
       responses:
         "200":
           description: OK
@@ -4248,10 +4715,12 @@ paths:
           type: string
     get:
       summary: Get Predictions
-      description: Get information about all Channel Points Predictions or specific
-        Channel Points Predictions for a Twitch channel.
+      description: Gets a list of Channel Points Predictions that the broadcaster created.
       tags:
         - Predictions
+      security:
+        - oauth:
+            - channel:read:predictions
       responses:
         "200":
           description: OK
@@ -4329,11 +4798,26 @@ paths:
           in: query
           schema:
             type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
     post:
       summary: Create Prediction
-      description: Create a Channel Points Prediction for a specific Twitch channel.
+      description: Create a Channel Points Prediction.
       tags:
         - Predictions
+      security:
+        - oauth:
+            - channel:manage:predictions
       responses:
         "200":
           description: OK
@@ -4405,9 +4889,12 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
     patch:
       summary: End Prediction
-      description: Lock, resolve, or cancel a Channel Points Prediction.
+      description: Locks, resolves, or cancels a Channel Points Prediction.
       tags:
         - Predictions
+      security:
+        - oauth:
+            - channel:manage:predictions
       responses:
         "200":
           description: OK
@@ -4489,10 +4976,13 @@ paths:
           type: string
     post:
       summary: Start a raid
-      description: NEW Raid another channel by sending the broadcaster’s viewers to
-        the targeted channel.
+      description: Raid another channel by sending the broadcaster’s viewers to the
+        targeted channel.
       tags:
         - Raids
+      security:
+        - oauth:
+            - channel:manage:raids
       responses:
         "200":
           description: OK
@@ -4517,11 +5007,23 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: from_broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: to_broadcaster_id
+          in: query
+          schema:
+            type: string
     delete:
       summary: Cancel a raid
-      description: NEW Cancel a pending raid.
+      description: Cancel a pending raid.
       tags:
         - Raids
+      security:
+        - oauth:
+            - channel:manage:raids
       responses:
         "204":
           description: Deleted
@@ -4531,6 +5033,11 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
   /schedule:
     parameters:
       - in: header
@@ -4540,10 +5047,11 @@ paths:
           type: string
     get:
       summary: Get Channel Stream Schedule
-      description: Gets all scheduled broadcasts or specific scheduled broadcasts from
-        a channel’s stream schedule.
+      description: Gets the broadcaster’s streaming schedule.
       tags:
         - Schedule
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -4610,6 +5118,26 @@ paths:
           in: query
           schema:
             type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: start_time
+          in: query
+          schema:
+            type: string
+        - name: utc_offset
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /schedule/icalendar:
     parameters:
       - in: header
@@ -4619,10 +5147,11 @@ paths:
           type: string
     get:
       summary: Get Channel iCalendar
-      description: Gets all scheduled broadcasts from a channel’s stream schedule as
-        an iCalendar.
+      description: Gets the broadcaster’s streaming schedule as an iCalendar.
       tags:
         - Schedule
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -4646,9 +5175,13 @@ paths:
           type: string
     patch:
       summary: Update Channel Stream Schedule
-      description: Update the settings for a channel’s stream schedule.
+      description: Updates the broadcaster’s schedule settings, such as scheduling a
+        vacation.
       tags:
         - Schedule
+      security:
+        - oauth:
+            - channel:manage:schedule
       responses:
         "200":
           description: OK
@@ -4663,6 +5196,22 @@ paths:
           in: query
           schema:
             type: string
+        - name: is_vacation_enabled
+          in: query
+          schema:
+            type: string
+        - name: vacation_start_time
+          in: query
+          schema:
+            type: string
+        - name: vacation_end_time
+          in: query
+          schema:
+            type: string
+        - name: timezone
+          in: query
+          schema:
+            type: string
   /schedule/segment:
     parameters:
       - in: header
@@ -4672,10 +5221,13 @@ paths:
           type: string
     post:
       summary: Create Channel Stream Schedule Segment
-      description: Create a single scheduled broadcast or a recurring scheduled
-        broadcast for a channel’s stream schedule.
+      description: Adds a single or recurring broadcast to the broadcaster’s streaming
+        schedule.
       tags:
         - Schedule
+      security:
+        - oauth:
+            - channel:manage:schedule
       responses:
         "200":
           description: OK
@@ -4741,10 +5293,12 @@ paths:
             type: string
     patch:
       summary: Update Channel Stream Schedule Segment
-      description: Update a single scheduled broadcast or a recurring scheduled
-        broadcast for a channel’s stream schedule.
+      description: Updates a scheduled broadcast segment.
       tags:
         - Schedule
+      security:
+        - oauth:
+            - channel:manage:schedule
       responses:
         "200":
           description: OK
@@ -4814,10 +5368,12 @@ paths:
             type: string
     delete:
       summary: Delete Channel Stream Schedule Segment
-      description: Delete a single scheduled broadcast or a recurring scheduled
-        broadcast for a channel’s stream schedule.
+      description: Deletes a broadcast from the broadcaster’s streaming schedule.
       tags:
         - Schedule
+      security:
+        - oauth:
+            - channel:manage:schedule
       responses:
         "204":
           description: Deleted
@@ -4836,7 +5392,7 @@ paths:
           in: query
           schema:
             type: string
-  /search/categories :
+  /search/categories:
     parameters:
       - in: header
         name: client_id
@@ -4845,10 +5401,11 @@ paths:
           type: string
     get:
       summary: Search Categories
-      description: Returns a list of games or categories that match the query via name
-        either entirely or partially.
+      description: Gets the games or categories that match the specified query.
       tags:
         - Search
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -4870,7 +5427,7 @@ paths:
                           example: Fortnite
                         box_art_url:
                           type: string
-                          example: https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-{width}x{height}.jpg
+                          example: https://static-cdn.jtvnw.net/ttv-boxart/33214-52x72.jpg
                   pagination:
                     type: object
                     properties:
@@ -4888,6 +5445,14 @@ paths:
           in: query
           schema:
             type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /search/channels:
     parameters:
       - in: header
@@ -4897,10 +5462,12 @@ paths:
           type: string
     get:
       summary: Search Channels
-      description: Returns a list of channels that match the query via channel name or
-        description either entirely or partially.
+      description: Gets the channels that match the specified query and have streamed
+        content within the past 6 months.
       tags:
         - Search
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -4963,6 +5530,18 @@ paths:
           in: query
           schema:
             type: string
+        - name: live_only
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /soundtrack/current_track:
     parameters:
       - in: header
@@ -4972,9 +5551,11 @@ paths:
           type: string
     get:
       summary: Get Soundtrack Current Track
-      description: BETA Gets the Soundtrack track that the broadcaster is playing.
+      description: Gets the Soundtrack track that the broadcaster is playing.
       tags:
         - Music
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -5056,6 +5637,11 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
   /soundtrack/playlist:
     parameters:
       - in: header
@@ -5065,9 +5651,11 @@ paths:
           type: string
     get:
       summary: Get Soundtrack Playlist
-      description: BETA Gets the tracks of a Soundtrack playlist.
+      description: Gets the Soundtrack playlist’s tracks.
       tags:
         - Music
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -5130,6 +5718,19 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /soundtrack/playlists:
     parameters:
       - in: header
@@ -5139,9 +5740,11 @@ paths:
           type: string
     get:
       summary: Get Soundtrack Playlists
-      description: BETA Gets a list of Soundtrack playlists.
+      description: Gets a list of Soundtrack playlists.
       tags:
         - Music
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -5180,6 +5783,19 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /streams/key:
     parameters:
       - in: header
@@ -5189,9 +5805,12 @@ paths:
           type: string
     get:
       summary: Get Stream Key
-      description: Gets the channel stream key for a user.
+      description: Gets the channel’s stream key.
       tags:
         - Streams
+      security:
+        - oauth:
+            - channel:read:stream_key
       responses:
         "200":
           description: OK
@@ -5228,10 +5847,11 @@ paths:
           type: string
     get:
       summary: Get Streams
-      description: Gets information about active streams. Streams are returned sorted
-        by number of current viewers, in descending order.
+      description: Gets a list of all broadcasters that are streaming.
       tags:
         - Streams
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -5301,19 +5921,19 @@ paths:
         "500":
           description: "Internal Server Error: Something bad happened on our side"
       parameters:
-        - name: after
+        - name: user_id
           in: query
           schema:
             type: string
-        - name: before
+        - name: user_login
           in: query
           schema:
             type: string
-        - name: first
-          in: query
-          schema:
-            type: integer
         - name: game_id
+          in: query
+          schema:
+            type: string
+        - name: type
           in: query
           schema:
             type: string
@@ -5321,11 +5941,15 @@ paths:
           in: query
           schema:
             type: string
-        - name: user_id
+        - name: first
           in: query
           schema:
             type: string
-        - name: user_login
+        - name: before
+          in: query
+          schema:
+            type: string
+        - name: after
           in: query
           schema:
             type: string
@@ -5338,10 +5962,13 @@ paths:
           type: string
     get:
       summary: Get Followed Streams
-      description: Gets information about active streams belonging to channels that
-        the authenticated user follows.
+      description: Gets a list of live streams of broadcasters that the specified user
+        follows.
       tags:
         - Streams
+      security:
+        - oauth:
+            - user:read:follows
       responses:
         "200":
           description: OK
@@ -5413,6 +6040,14 @@ paths:
           in: query
           schema:
             type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /streams/markers:
     parameters:
       - in: header
@@ -5422,11 +6057,12 @@ paths:
           type: string
     post:
       summary: Create Stream Marker
-      description: Creates a marker in the stream of a user specified by user ID. A
-        marker is an arbitrary point in a stream that the broadcaster wants to
-        mark.
+      description: Adds a marker to a live stream.
       tags:
         - Streams
+      security:
+        - oauth:
+            - channel:manage:broadcast
       responses:
         "200":
           description: OK
@@ -5458,18 +6094,15 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
-      parameters:
-        - name: user_id
-          in: query
-          schema:
-            type: string
     get:
       summary: Get Stream Markers
-      description: Gets a list of markers for either a specified user’s most recent
-        stream or a specified VOD/video (stream), ordered by recency. A marker
-        is an arbitrary point in a stream that the broadcaster wants to mark.
+      description: Gets a list of markers from the user’s most recent stream or from
+        the specified VOD/video.
       tags:
         - Streams
+      security:
+        - oauth:
+            - user:read:broadcast
       responses:
         "200":
           description: OK
@@ -5541,6 +6174,18 @@ paths:
           in: query
           schema:
             type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: before
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /subscriptions:
     parameters:
       - in: header
@@ -5550,9 +6195,12 @@ paths:
           type: string
     get:
       summary: Get Broadcaster Subscriptions
-      description: Gets all of a broadcaster’s subscriptions.
+      description: Gets a list of users that subscribe to the specified broadcaster.
       tags:
         - Subscriptions
+      security:
+        - oauth:
+            - channel:read:subscriptions
       responses:
         "200":
           description: OK
@@ -5625,6 +6273,22 @@ paths:
           in: query
           schema:
             type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+        - name: before
+          in: query
+          schema:
+            type: string
   /subscriptions/user:
     parameters:
       - in: header
@@ -5634,9 +6298,12 @@ paths:
           type: string
     get:
       summary: Check User Subscription
-      description: Checks if a specific user is subscribed to a specific channel.
+      description: Checks whether the user subscribes to the broadcaster’s channel.
       tags:
         - Subscriptions
+      security:
+        - oauth:
+            - user:read:subscriptions
       responses:
         "200":
           description: OK
@@ -5692,6 +6359,8 @@ paths:
         filter the list by one or more tag IDs.
       tags:
         - Tags
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -5772,15 +6441,15 @@ paths:
         "500":
           description: "Internal Server Error: Something bad happened on our side"
       parameters:
-        - name: after
+        - name: tag_id
           in: query
           schema:
             type: string
         - name: first
           in: query
           schema:
-            type: integer
-        - name: tag_id
+            type: string
+        - name: after
           in: query
           schema:
             type: string
@@ -5793,9 +6462,12 @@ paths:
           type: string
     get:
       summary: Get Stream Tags
-      description: Gets the list of stream tags that are set on the specified channel.
+      description: Gets the list of stream tags that the broadcaster or Twitch added
+        to their channel.
       tags:
         - Tags
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -5870,10 +6542,13 @@ paths:
             type: string
     put:
       summary: Replace Stream Tags
-      description: Applies one or more tags to the specified channel, overwriting any
+      description: Applies one or more tags to the specified channel, overwriting
         existing tags.
       tags:
         - Tags
+      security:
+        - oauth:
+            - channel:manage:broadcast
       responses:
         "200":
           description: OK
@@ -5897,10 +6572,11 @@ paths:
           type: string
     get:
       summary: Get Channel Teams
-      description: Retrieves a list of Twitch Teams of which the specified
-        channel/broadcaster is a member.
+      description: Gets the list of Twitch teams that the broadcaster is a member of.
       tags:
         - Teams
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -5970,9 +6646,11 @@ paths:
           type: string
     get:
       summary: Get Teams
-      description: Gets information for a specific Twitch Team.
+      description: Gets information about the specified Twitch team.
       tags:
         - Teams
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -6051,10 +6729,12 @@ paths:
           type: string
     get:
       summary: Get Users
-      description: Gets information about one or more specified Twitch users. Users
-        are identified by optional user IDs and/or login name.
+      description: Gets information about one or more users.
       tags:
         - Users
+      security:
+        - oauth:
+            - user:read:email
       responses:
         "200":
           description: OK
@@ -6118,9 +6798,12 @@ paths:
             type: string
     put:
       summary: Update User
-      description: Updates the description of a user specified by a Bearer token.
+      description: Updates the user’s information.
       tags:
         - Users
+      security:
+        - oauth:
+            - user:edit
       responses:
         "200":
           description: OK
@@ -6173,6 +6856,11 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: description
+          in: query
+          schema:
+            type: string
   /users/follows:
     parameters:
       - in: header
@@ -6182,10 +6870,11 @@ paths:
           type: string
     get:
       summary: Get Users Follows
-      description: Gets information on follow relationships between two Twitch users.
-        Information returned is sorted in order, most recent follow first.
+      description: Gets information about users that are following other users.
       tags:
         - Users
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -6233,19 +6922,19 @@ paths:
         "500":
           description: "Internal Server Error: Something bad happened on our side"
       parameters:
-        - name: after
+        - name: from_id
+          in: query
+          schema:
+            type: string
+        - name: to_id
           in: query
           schema:
             type: string
         - name: first
           in: query
           schema:
-            type: integer
-        - name: from_id
-          in: query
-          schema:
             type: string
-        - name: to_id
+        - name: after
           in: query
           schema:
             type: string
@@ -6258,10 +6947,12 @@ paths:
           type: string
     get:
       summary: Get User Block List
-      description: Gets a specified user’s block list. The list is sorted by when the
-        block occurred in descending order (i.e. most recent block first).
+      description: Gets the list of users that the broadcaster has blocked.
       tags:
         - Users
+      security:
+        - oauth:
+            - user:read:blocked_users
       responses:
         "200":
           description: OK
@@ -6295,11 +6986,23 @@ paths:
           in: query
           schema:
             type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
     put:
       summary: Block User
-      description: Blocks the specified user on behalf of the authenticated user.
+      description: Blocks the specified user from interacting with or having contact
+        with the broadcaster.
       tags:
         - Users
+      security:
+        - oauth:
+            - user:manage:blocked_users
       responses:
         "200":
           description: OK
@@ -6314,11 +7017,22 @@ paths:
           in: query
           schema:
             type: string
+        - name: source_context
+          in: query
+          schema:
+            type: string
+        - name: reason
+          in: query
+          schema:
+            type: string
     delete:
       summary: Unblock User
-      description: Unblocks the specified user on behalf of the authenticated user.
+      description: Removes the user from the broadcaster’s list of blocked users.
       tags:
         - Users
+      security:
+        - oauth:
+            - user:manage:blocked_users
       responses:
         "204":
           description: Deleted
@@ -6342,10 +7056,13 @@ paths:
           type: string
     get:
       summary: Get User Extensions
-      description: Gets a list of all extensions (both active and inactive) for a
-        specified user, identified by a Bearer token.
+      description: Gets a list of all extensions (both active and inactive) that the
+        broadcaster has installed.
       tags:
         - Users
+      security:
+        - oauth:
+            - user:read:broadcast
       responses:
         "200":
           description: OK
@@ -6382,27 +7099,6 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
-      parameters:
-        - name: can_activate
-          in: query
-          schema:
-            type: boolean
-        - name: id
-          in: query
-          schema:
-            type: string
-        - name: name
-          in: query
-          schema:
-            type: string
-        - name: type
-          in: query
-          schema:
-            type: string
-        - name: version
-          in: query
-          schema:
-            type: string
   /users/extensions:
     parameters:
       - in: header
@@ -6412,10 +7108,14 @@ paths:
           type: string
     get:
       summary: Get User Active Extensions
-      description: Gets information about active extensions installed by a specified
-        user, identified by a user ID or Bearer token.
+      description: Gets the active extensions that the broadcaster has installed for
+        each configuration.
       tags:
         - Users
+      security:
+        - oauth:
+            - channel:manage:extensions
+            - user:read:broadcast
       responses:
         "200":
           description: OK
@@ -6533,11 +7233,12 @@ paths:
             type: string
     put:
       summary: Update User Extensions
-      description: Updates the activation state, extension ID, and/or version number
-        of installed extensions for a specified user, identified by a Bearer
-        token.
+      description: Updates an installed extension’s information.
       tags:
         - Users
+      security:
+        - oauth:
+            - channel:manage:extensions
       responses:
         "200":
           description: OK
@@ -6657,9 +7358,11 @@ paths:
           type: string
     get:
       summary: Get Videos
-      description: Gets video information by one or more video IDs, user ID, or game ID.
+      description: Gets information about one or more published videos.
       tags:
         - Videos
+      security:
+        - oauth: []
       responses:
         "200":
           description: OK
@@ -6754,12 +7457,42 @@ paths:
           in: query
           schema:
             type: string
+        - name: language
+          in: query
+          schema:
+            type: string
+        - name: period
+          in: query
+          schema:
+            type: string
+        - name: sort
+          in: query
+          schema:
+            type: string
+        - name: type
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+        - name: before
+          in: query
+          schema:
+            type: string
     delete:
       summary: Delete Videos
-      description: Deletes one or more videos. Videos are past broadcasts, Highlights,
-        or uploads.
+      description: Deletes one or more videos.
       tags:
         - Videos
+      security:
+        - oauth:
+            - channel:manage:videos
       responses:
         "204":
           description: Deleted
@@ -6783,9 +7516,12 @@ paths:
           type: string
     post:
       summary: Send Whisper
-      description: NEW Sends a whisper message to the specified user.
+      description: Sends a whisper message to the specified user.
       tags:
         - Whispers
+      security:
+        - oauth:
+            - user:manage:whispers
       responses:
         "200":
           description: OK
@@ -6795,3 +7531,147 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: from_user_id
+          in: query
+          schema:
+            type: string
+        - name: to_user_id
+          in: query
+          schema:
+            type: string
+components:
+  securitySchemes:
+    oauth:
+      type: oauth2
+      description: Twitch APIs use OAuth 2.0 access tokens to access resources. If
+        you’re not already familiar with the specification, reading it may help
+        you better understand how to get access tokens to use with the Twitch
+        API.
+      flows:
+        implicit:
+          authorizationUrl: https://id.twitch.tv/oauth2/authorize
+          scopes:
+            channel:edit:commercial: Run commercials on a channel.
+            analytics:read:extensions: View analytics data for the Twitch Extensions owned
+              by the authenticated account.
+            analytics:read:games: View analytics data for the games owned by the
+              authenticated account.
+            bits:read: View Bits information for a channel.
+            channel:manage:broadcast: Manage a channel’s broadcast configuration, including
+              updating channel configuration and managing stream markers and
+              stream tags.
+            channel:read:editors: View a list of users with the editor role for a channel.
+            channel:manage:redemptions: Manage Channel Points custom rewards and their
+              redemptions on a channel.
+            channel:read:redemptions: View Channel Points custom rewards and their
+              redemptions on a channel.
+            channel:read:charity: Read charity campaign details and user donations on your channel.
+            moderator:read:chatters: View the chatters in a broadcaster’s chat room.
+            moderator:read:chat_settings: View a broadcaster’s chat room settings.
+            moderator:manage:chat_settings: Manage a broadcaster’s chat room settings.
+            moderator:manage:announcements: Send announcements in channels where you have the moderator role.
+            user:manage:chat_color: Update the color used for the user’s name in chat.
+            clips:edit: Manage Clips for a channel.
+            channel:read:goals: View Creator Goals for a channel.
+            channel:read:hype_train: View Hype Train information for a channel.
+            moderation:read: View a channel’s moderation data including Moderators, Bans,
+              Timeouts, and Automod settings.
+            moderator:manage:automod: Manage messages held for review by AutoMod in channels
+              where you are a moderator.
+            moderator:read:automod_settings: View a broadcaster’s AutoMod settings.
+            moderator:manage:automod_settings: Manage a broadcaster’s AutoMod settings.
+            moderator:manage:banned_users: Ban and unban users.
+            moderator:read:blocked_terms: View a broadcaster’s list of blocked terms.
+            moderator:manage:blocked_terms: Manage a broadcaster’s list of blocked terms.
+            moderator:manage:chat_messages: Delete chat messages in channels where you have the moderator role
+            channel:manage:moderators: Add or remove the moderator role from users in your channel.
+            channel:read:vips: Read the list of VIPs in your channel.
+            channel:manage:vips: Add or remove the VIP role from users in your channel.
+            channel:read:polls: View a channel’s polls.
+            channel:manage:polls: Manage a channel’s polls.
+            channel:read:predictions: View a channel’s Channel Points Predictions.
+            channel:manage:predictions: Manage of channel’s Channel Points Predictions
+            channel:manage:raids: Manage a channel raiding another channel.
+            channel:manage:schedule: Manage a channel’s stream schedule.
+            channel:read:stream_key: View an authorized user’s stream key.
+            user:read:follows: View the list of channels a user follows.
+            user:read:broadcast: View a user’s broadcasting configuration, including
+              Extension configurations.
+            channel:read:subscriptions: View a list of all subscribers to a channel and
+              check if a user is subscribed to a channel.
+            user:read:subscriptions: View if an authorized user is subscribed to specific channels.
+            user:read:email: View a user’s email address.
+            user:edit: Manage a user object.
+            user:read:blocked_users: View the block list of a user.
+            user:manage:blocked_users: Manage the block list of a user.
+            channel:manage:extensions: Manage a channel’s Extension configuration, including
+              activating Extensions.
+            channel:manage:videos: Manage a channel’s videos, including deleting videos.
+            user:manage:whispers: Read whispers that you send and receive, and send whispers
+              on your behalf.
+        authorizationCode:
+          authorizationUrl: https://id.twitch.tv/oauth2/authorize
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes:
+            channel:edit:commercial: Run commercials on a channel.
+            analytics:read:extensions: View analytics data for the Twitch Extensions owned
+              by the authenticated account.
+            analytics:read:games: View analytics data for the games owned by the
+              authenticated account.
+            bits:read: View Bits information for a channel.
+            channel:manage:broadcast: Manage a channel’s broadcast configuration, including
+              updating channel configuration and managing stream markers and
+              stream tags.
+            channel:read:editors: View a list of users with the editor role for a channel.
+            channel:manage:redemptions: Manage Channel Points custom rewards and their
+              redemptions on a channel.
+            channel:read:redemptions: View Channel Points custom rewards and their
+              redemptions on a channel.
+            channel:read:charity: Read charity campaign details and user donations on your channel.
+            moderator:read:chatters: View the chatters in a broadcaster’s chat room.
+            moderator:read:chat_settings: View a broadcaster’s chat room settings.
+            moderator:manage:chat_settings: Manage a broadcaster’s chat room settings.
+            moderator:manage:announcements: Send announcements in channels where you have the moderator role.
+            user:manage:chat_color: Update the color used for the user’s name in chat.
+            clips:edit: Manage Clips for a channel.
+            channel:read:goals: View Creator Goals for a channel.
+            channel:read:hype_train: View Hype Train information for a channel.
+            moderation:read: View a channel’s moderation data including Moderators, Bans,
+              Timeouts, and Automod settings.
+            moderator:manage:automod: Manage messages held for review by AutoMod in channels
+              where you are a moderator.
+            moderator:read:automod_settings: View a broadcaster’s AutoMod settings.
+            moderator:manage:automod_settings: Manage a broadcaster’s AutoMod settings.
+            moderator:manage:banned_users: Ban and unban users.
+            moderator:read:blocked_terms: View a broadcaster’s list of blocked terms.
+            moderator:manage:blocked_terms: Manage a broadcaster’s list of blocked terms.
+            moderator:manage:chat_messages: Delete chat messages in channels where you have the moderator role
+            channel:manage:moderators: Add or remove the moderator role from users in your channel.
+            channel:read:vips: Read the list of VIPs in your channel.
+            channel:manage:vips: Add or remove the VIP role from users in your channel.
+            channel:read:polls: View a channel’s polls.
+            channel:manage:polls: Manage a channel’s polls.
+            channel:read:predictions: View a channel’s Channel Points Predictions.
+            channel:manage:predictions: Manage of channel’s Channel Points Predictions
+            channel:manage:raids: Manage a channel raiding another channel.
+            channel:manage:schedule: Manage a channel’s stream schedule.
+            channel:read:stream_key: View an authorized user’s stream key.
+            user:read:follows: View the list of channels a user follows.
+            user:read:broadcast: View a user’s broadcasting configuration, including
+              Extension configurations.
+            channel:read:subscriptions: View a list of all subscribers to a channel and
+              check if a user is subscribed to a channel.
+            user:read:subscriptions: View if an authorized user is subscribed to specific channels.
+            user:read:email: View a user’s email address.
+            user:edit: Manage a user object.
+            user:read:blocked_users: View the block list of a user.
+            user:manage:blocked_users: Manage the block list of a user.
+            channel:manage:extensions: Manage a channel’s Extension configuration, including
+              activating Extensions.
+            channel:manage:videos: Manage a channel’s videos, including deleting videos.
+            user:manage:whispers: Read whispers that you send and receive, and send whispers
+              on your behalf.
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
