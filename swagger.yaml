@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2022‑11‑04
+  version: 2022‑11‑22
 paths:
   /channels/commercial:
     parameters:
@@ -1338,6 +1338,83 @@ paths:
           in: query
           schema:
             type: string
+  /charity/donations:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get Charity Campaign Donations
+      description: BETA Gets the list of donations that users have made to the
+        broadcaster’s active charity campaign.
+      tags:
+        - Charity
+      security:
+        - oauth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        campaign_id:
+                          type: string
+                          example: 123-abc-456-def
+                        user_id:
+                          type: string
+                          example: "5678"
+                        user_login:
+                          type: string
+                          example: cool_user
+                        user_name:
+                          type: string
+                          example: Cool_User
+                        amount:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                              example: 500
+                            decimal_places:
+                              type: number
+                              example: 2
+                            currency:
+                              type: string
+                              example: USD
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        example: eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6NX19
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
   /chat/chatters:
     parameters:
       - in: header
@@ -1347,8 +1424,8 @@ paths:
           type: string
     get:
       summary: Get Chatters
-      description: BETA Gets the list of users that are connected to the specified
-        broadcaster’s chat session.
+      description: BETA Gets the list of users that are connected to the broadcaster’s
+        chat session.
       tags:
         - Chat
       security:
@@ -1367,7 +1444,13 @@ paths:
                     items:
                       type: object
                       properties:
+                        user_id:
+                          type: string
+                          example: "128393656"
                         user_login:
+                          type: string
+                          example: smittysmithers
+                        user_name:
                           type: string
                           example: smittysmithers
                   pagination:
@@ -3355,10 +3438,13 @@ paths:
                           example: "493057"
                         name:
                           type: string
-                          example: PLAYERUNKNOWN'S BATTLEGROUNDS
+                          example: "PUBG: BATTLEGROUNDS"
                         box_art_url:
                           type: string
-                          example: https://static-cdn.jtvnw.net/ttv-boxart/PLAYERUNKNOWN%27S%20BATTLEGROUNDS-{width}x{height}.jpg
+                          example: https://static-cdn.jtvnw.net/ttv-boxart/493057-{width}x{height}.jpg
+                        igdb_id:
+                          type: string
+                          example: "27789"
                   pagination:
                     type: object
                     properties:
@@ -3420,6 +3506,9 @@ paths:
                         box_art_url:
                           type: string
                           example: https://static-cdn.jtvnw.net/ttv-boxart/33214-{width}x{height}.jpg
+                        igdb_id:
+                          type: string
+                          example: "1905"
                   pagination:
                     type: object
                     properties:
@@ -3438,6 +3527,10 @@ paths:
           schema:
             type: string
         - name: name
+          in: query
+          schema:
+            type: string
+        - name: igdb_id
           in: query
           schema:
             type: string
