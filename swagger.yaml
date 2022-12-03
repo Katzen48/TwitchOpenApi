@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2022‑11‑22
+  version: 2022‑12‑02
 paths:
   /channels/commercial:
     parameters:
@@ -1424,8 +1424,8 @@ paths:
           type: string
     get:
       summary: Get Chatters
-      description: BETA Gets the list of users that are connected to the broadcaster’s
-        chat session.
+      description: Gets the list of users that are connected to the broadcaster’s chat
+        session.
       tags:
         - Chat
       security:
@@ -4534,6 +4534,112 @@ paths:
           schema:
             type: string
         - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+  /moderation/shield_mode:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    put:
+      summary: Update Shield Mode Status
+      description: BETA Activates or deactivates the broadcaster’s Shield Mode.
+      tags:
+        - Moderation
+      security:
+        - oauth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        is_active:
+                          type: boolean
+                        moderator_id:
+                          type: string
+                          example: "98765"
+                        moderator_name:
+                          type: string
+                          example: SimplySimple
+                        moderator_login:
+                          type: string
+                          example: simplysimple
+                        last_activated_at:
+                          type: string
+                          example: 2022-07-26T17:16:03.123Z
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
+    get:
+      summary: Get Shield Mode Status
+      description: BETA Gets the broadcaster’s Shield Mode activation status.
+      tags:
+        - Moderation
+      security:
+        - oauth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        is_active:
+                          type: boolean
+                          example: true
+                        moderator_id:
+                          type: string
+                          example: "98765"
+                        moderator_name:
+                          type: string
+                          example: SimplySimple
+                        moderator_login:
+                          type: string
+                          example: simplysimple
+                        last_activated_at:
+                          type: string
+                          example: 2022-07-26T17:16:03.123Z
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
           in: query
           schema:
             type: string
