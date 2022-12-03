@@ -4550,7 +4550,8 @@ paths:
       tags:
         - Moderation
       security:
-        - oauth: []
+        - oauth:
+            - moderator:manage:shield_mode
       responses:
         "200":
           description: OK
@@ -4599,7 +4600,8 @@ paths:
       tags:
         - Moderation
       security:
-        - oauth: []
+        - oauth:
+            - moderator:read:shield_mode
       responses:
         "200":
           description: OK
@@ -7787,6 +7789,8 @@ components:
             channel:manage:moderators: Add or remove the moderator role from users in your channel.
             channel:read:vips: Read the list of VIPs in your channel.
             channel:manage:vips: Add or remove the VIP role from users in your channel.
+            moderator:manage:shield_mode: Manage a broadcaster’s Shield Mode status.
+            moderator:read:shield_mode: View a broadcaster’s Shield Mode status.
             channel:read:polls: View a channel’s polls.
             channel:manage:polls: Manage a channel’s polls.
             channel:read:predictions: View a channel’s Channel Points Predictions.
@@ -7849,6 +7853,8 @@ components:
             channel:manage:moderators: Add or remove the moderator role from users in your channel.
             channel:read:vips: Read the list of VIPs in your channel.
             channel:manage:vips: Add or remove the VIP role from users in your channel.
+            moderator:manage:shield_mode: Manage a broadcaster’s Shield Mode status.
+            moderator:read:shield_mode: View a broadcaster’s Shield Mode status.
             channel:read:polls: View a channel’s polls.
             channel:manage:polls: Manage a channel’s polls.
             channel:read:predictions: View a channel’s Channel Points Predictions.
