@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2022‑12‑02
+  version: 2022‑12‑05
 paths:
   /channels/commercial:
     parameters:
@@ -459,7 +459,7 @@ paths:
           type: string
     get:
       summary: Get Extension Transactions
-      description: Gets a list of transactions for an extension.
+      description: Gets an extension’s list of transactions.
       tags:
         - Bits
       security:
@@ -652,7 +652,7 @@ paths:
           type: string
     get:
       summary: Get Channel Editors
-      description: Gets a list of users that are editors for the specified broadcaster.
+      description: Gets the broadcaster’s list editors.
       tags:
         - Channels
       security:
@@ -1494,7 +1494,7 @@ paths:
           type: string
     get:
       summary: Get Channel Emotes
-      description: Gets all emotes that the specified Twitch channel created.
+      description: Gets the broadcaster’s list of custom emotes.
       tags:
         - Chat
       security:
@@ -1729,7 +1729,7 @@ paths:
           type: string
     get:
       summary: Get Channel Chat Badges
-      description: Gets all badges that the specified broadcaster created.
+      description: Gets the broadcaster’s list of custom chat badges.
       tags:
         - Chat
       security:
@@ -1787,7 +1787,7 @@ paths:
           type: string
     get:
       summary: Get Global Chat Badges
-      description: Gets the list of chat badges that Twitch created.
+      description: Gets Twitch’s list of chat badges.
       tags:
         - Chat
       security:
@@ -6048,7 +6048,7 @@ paths:
           type: string
     get:
       summary: Get Streams
-      description: Gets a list of all broadcasters that are streaming.
+      description: Gets a list of all streams.
       tags:
         - Streams
       security:
@@ -6163,8 +6163,8 @@ paths:
           type: string
     get:
       summary: Get Followed Streams
-      description: Gets a list of live streams of broadcasters that the specified user
-        follows.
+      description: Gets the list of broadcasters that the user follows and that are
+        streaming live.
       tags:
         - Streams
       security:
