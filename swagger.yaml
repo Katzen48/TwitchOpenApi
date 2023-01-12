@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2022‑12‑09
+  version: 2023‑01‑10
 paths:
   /channels/commercial:
     parameters:
@@ -610,6 +610,11 @@ paths:
                           example: TwitchDev Monthly Update // May 6, 2021
                         delay:
                           type: number
+                        tags:
+                          type: array
+                          items:
+                            type: string
+                            example: DevsInTheKnow
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1366,6 +1371,9 @@ paths:
                     items:
                       type: object
                       properties:
+                        id:
+                          type: string
+                          example: a1b2c3-aabb-4455-d1e2f3
                         campaign_id:
                           type: string
                           example: 123-abc-456-def
@@ -4546,7 +4554,7 @@ paths:
           type: string
     put:
       summary: Update Shield Mode Status
-      description: BETA Activates or deactivates the broadcaster’s Shield Mode.
+      description: Activates or deactivates the broadcaster’s Shield Mode.
       tags:
         - Moderation
       security:
@@ -4596,7 +4604,7 @@ paths:
             type: string
     get:
       summary: Get Shield Mode Status
-      description: BETA Gets the broadcaster’s Shield Mode activation status.
+      description: Gets the broadcaster’s Shield Mode activation status.
       tags:
         - Moderation
       security:
@@ -5706,6 +5714,10 @@ paths:
                           type: array
                           items:
                             type: string
+                        tags:
+                          type: array
+                          items:
+                            type: string
                         thumbnail_url:
                           type: string
                           example: https://static-cdn.jtvnw.net/jtv_user_pictures/fd17325a-7dc2-46c6-8617-e90ec259501c-profile_image-300x300.png
@@ -6068,16 +6080,16 @@ paths:
                       properties:
                         id:
                           type: string
-                          example: "41375541868"
+                          example: "123456789"
                         user_id:
                           type: string
-                          example: "459331509"
+                          example: "98765"
                         user_login:
                           type: string
-                          example: auronplay
+                          example: sandysanderman
                         user_name:
                           type: string
-                          example: auronplay
+                          example: SandySanderman
                         game_id:
                           type: string
                           example: "494131"
@@ -6090,6 +6102,11 @@ paths:
                         title:
                           type: string
                           example: hablamos y le damos a Little Nightmares 1
+                        tags:
+                          type: array
+                          items:
+                            type: string
+                            example: Español
                         viewer_count:
                           type: number
                           example: 78365
@@ -6224,6 +6241,11 @@ paths:
                           items:
                             type: string
                             example: 6ea6bca4-4712-4ab9-a906-e3336a9d8039
+                        tags:
+                          type: array
+                          items:
+                            type: string
+                            example: English
                   pagination:
                     type: object
                     properties:
