@@ -2368,7 +2368,7 @@ paths:
                         fulfillment_status:
                           type: string
                           example: CLAIMED
-                        updated_at:
+                        last_updated:
                           type: string
                           example: 2019-01-28T04:17:53.325Z
                   pagination:
@@ -5710,7 +5710,7 @@ paths:
                           example: "41245072"
                         is_live:
                           type: boolean
-                        tags_ids:
+                        tag_ids:
                           type: array
                           items:
                             type: string
