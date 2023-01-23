@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2023‑01‑10
+  version: 2023‑01‑19
 paths:
   /channels/commercial:
     parameters:
@@ -1265,7 +1265,7 @@ paths:
           type: string
     get:
       summary: Get Charity Campaign
-      description: BETA Gets information about the broadcaster’s active charity campaign.
+      description: Gets information about the broadcaster’s active charity campaign.
       tags:
         - Charity
       security:
@@ -1352,7 +1352,7 @@ paths:
           type: string
     get:
       summary: Get Charity Campaign Donations
-      description: BETA Gets the list of donations that users have made to the
+      description: Gets the list of donations that users have made to the
         broadcaster’s active charity campaign.
       tags:
         - Charity
@@ -1994,6 +1994,43 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
       parameters:
         - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
+  /chat/shoutouts:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Send a Shoutout
+      description: BETA Sends a Shoutout to the specified broadcaster.
+      tags:
+        - Chat
+      security:
+        - oauth:
+            - moderator:manage:shoutouts
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: from_broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: to_broadcaster_id
           in: query
           schema:
             type: string
@@ -7794,6 +7831,7 @@ components:
             moderator:read:chat_settings: View a broadcaster’s chat room settings.
             moderator:manage:chat_settings: Manage a broadcaster’s chat room settings.
             moderator:manage:announcements: Send announcements in channels where you have the moderator role.
+            moderator:manage:shoutouts: Manage a broadcaster’s shoutouts.
             user:manage:chat_color: Update the color used for the user’s name in chat.
             clips:edit: Manage Clips for a channel.
             channel:read:goals: View Creator Goals for a channel.
@@ -7858,6 +7896,7 @@ components:
             moderator:read:chat_settings: View a broadcaster’s chat room settings.
             moderator:manage:chat_settings: Manage a broadcaster’s chat room settings.
             moderator:manage:announcements: Send announcements in channels where you have the moderator role.
+            moderator:manage:shoutouts: Manage a broadcaster’s shoutouts.
             user:manage:chat_color: Update the color used for the user’s name in chat.
             clips:edit: Manage Clips for a channel.
             channel:read:goals: View Creator Goals for a channel.
