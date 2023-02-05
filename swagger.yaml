@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2023‑01‑19
+  version: 2023‑02‑03
 paths:
   /channels/commercial:
     parameters:
@@ -693,6 +693,92 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
       parameters:
         - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+  /channels/followed:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get Followed Channels
+      description: BETA Gets a list of broadcasters that the specified user follows.
+        You can also use this endpoint to see whether a user follows a specific
+        broadcaster.
+      tags:
+        - Channels
+      security:
+        - oauth:
+            - user:read:follows
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+  /channels/followers:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get Channel Followers
+      description: BETA a list of users that follow the specified broadcaster. You can
+        also use this endpoint to see whether a specific user follows the
+        broadcaster.
+      tags:
+        - Channels
+      security:
+        - oauth:
+            - moderator:read:followers
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+        - name: after
           in: query
           schema:
             type: string
@@ -7822,6 +7908,8 @@ components:
               updating channel configuration and managing stream markers and
               stream tags.
             channel:read:editors: View a list of users with the editor role for a channel.
+            user:read:follows: View the list of channels a user follows.
+            moderator:read:followers: Read the followers of a broadcaster.
             channel:manage:redemptions: Manage Channel Points custom rewards and their
               redemptions on a channel.
             channel:read:redemptions: View Channel Points custom rewards and their
@@ -7858,7 +7946,6 @@ components:
             channel:manage:raids: Manage a channel raiding another channel.
             channel:manage:schedule: Manage a channel’s stream schedule.
             channel:read:stream_key: View an authorized user’s stream key.
-            user:read:follows: View the list of channels a user follows.
             user:read:broadcast: View a user’s broadcasting configuration, including
               Extension configurations.
             channel:read:subscriptions: View a list of all subscribers to a channel and
@@ -7887,6 +7974,8 @@ components:
               updating channel configuration and managing stream markers and
               stream tags.
             channel:read:editors: View a list of users with the editor role for a channel.
+            user:read:follows: View the list of channels a user follows.
+            moderator:read:followers: Read the followers of a broadcaster.
             channel:manage:redemptions: Manage Channel Points custom rewards and their
               redemptions on a channel.
             channel:read:redemptions: View Channel Points custom rewards and their
@@ -7923,7 +8012,6 @@ components:
             channel:manage:raids: Manage a channel raiding another channel.
             channel:manage:schedule: Manage a channel’s stream schedule.
             channel:read:stream_key: View an authorized user’s stream key.
-            user:read:follows: View the list of channels a user follows.
             user:read:broadcast: View a user’s broadcasting configuration, including
               Extension configurations.
             channel:read:subscriptions: View a list of all subscribers to a channel and
