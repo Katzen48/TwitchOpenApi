@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2023‑02‑03
+  version: 2023‑02‑09
 paths:
   /channels/commercial:
     parameters:
@@ -2096,7 +2096,7 @@ paths:
           type: string
     post:
       summary: Send a Shoutout
-      description: BETA Sends a Shoutout to the specified broadcaster.
+      description: Sends a Shoutout to the specified broadcaster.
       tags:
         - Chat
       security:
