@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2023‑02‑09
+  version: 2023‑02‑22
 paths:
   /channels/commercial:
     parameters:
@@ -705,8 +705,8 @@ paths:
           type: string
     get:
       summary: Get Followed Channels
-      description: BETA Gets a list of broadcasters that the specified user follows.
-        You can also use this endpoint to see whether a user follows a specific
+      description: Gets a list of broadcasters that the specified user follows. You
+        can also use this endpoint to see whether a user follows a specific
         broadcaster.
       tags:
         - Channels
@@ -748,7 +748,7 @@ paths:
           type: string
     get:
       summary: Get Channel Followers
-      description: BETA a list of users that follow the specified broadcaster. You can
+      description: Gets a list of users that follow the specified broadcaster. You can
         also use this endpoint to see whether a specific user follows the
         broadcaster.
       tags:
