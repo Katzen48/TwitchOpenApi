@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2023‑02‑22
+  version: 2023‑02‑28
 paths:
   /channels/commercial:
     parameters:
@@ -2353,95 +2353,6 @@ paths:
           schema:
             type: string
         - name: after
-          in: query
-          schema:
-            type: string
-  /entitlements/codes:
-    parameters:
-      - in: header
-        name: client_id
-        required: true
-        schema:
-          type: string
-    get:
-      summary: Get Code Status
-      description: Gets the status of one or more redemption codes for a Bits reward.
-      tags:
-        - Entitlements
-      security:
-        - oauth: []
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        code:
-                          type: string
-                          example: KUHXV-4GXYP-AKAKK
-                        status:
-                          type: string
-                          example: UNUSED
-        "401":
-          description: "Unauthenticated: Missing/invalid Token"
-        "404":
-          description: Not Found
-        "500":
-          description: "Internal Server Error: Something bad happened on our side"
-      parameters:
-        - name: code
-          in: query
-          schema:
-            type: string
-        - name: user_id
-          in: query
-          schema:
-            type: string
-    post:
-      summary: Redeem Code
-      description: Redeems one or more redemption codes.
-      tags:
-        - Entitlements
-      security:
-        - oauth: []
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        code:
-                          type: string
-                          example: 8CD5P-V3J92-2S6JY
-                        status:
-                          type: string
-                          example: SUCCESSFULLY_REDEEMED
-        "401":
-          description: "Unauthenticated: Missing/invalid Token"
-        "404":
-          description: Not Found
-        "500":
-          description: "Internal Server Error: Something bad happened on our side"
-      parameters:
-        - name: code
-          in: query
-          schema:
-            type: string
-        - name: user_id
           in: query
           schema:
             type: string
@@ -6246,7 +6157,6 @@ paths:
                           type: array
                           items:
                             type: string
-                            example: d4bb9c58-2141-4881-bcdc-3fe0505457d1
                         is_mature:
                           type: boolean
                   pagination:
@@ -6363,7 +6273,6 @@ paths:
                           type: array
                           items:
                             type: string
-                            example: 6ea6bca4-4712-4ab9-a906-e3336a9d8039
                         tags:
                           type: array
                           items:
@@ -6875,29 +6784,6 @@ paths:
                             en-us:
                               type: string
                               example: For streams featuring the use of English
-        "401":
-          description: "Unauthenticated: Missing/invalid Token"
-        "404":
-          description: Not Found
-        "500":
-          description: "Internal Server Error: Something bad happened on our side"
-      parameters:
-        - name: broadcaster_id
-          in: query
-          schema:
-            type: string
-    put:
-      summary: Replace Stream Tags
-      description: Applies one or more tags to the specified channel, overwriting
-        existing tags.
-      tags:
-        - Tags
-      security:
-        - oauth:
-            - channel:manage:broadcast
-      responses:
-        "200":
-          description: OK
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
