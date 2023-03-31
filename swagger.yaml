@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2023‑03‑15
+  version: 2023‑03‑30
 paths:
   /channels/commercial:
     parameters:
@@ -1861,6 +1861,18 @@ paths:
                               image_url_4x:
                                 type: string
                                 example: https://static-cdn.jtvnw.net/badges/v1/743a0f3b-84b3-450b-96a0-503d7f4a9764/3
+                              title:
+                                type: string
+                                example: cheer 1
+                              description:
+                                type: string
+                                example: cheer 1
+                              click_action:
+                                type: string
+                                example: visit_url
+                              click_url:
+                                type: string
+                                example: https://bits.twitch.tv
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -1919,6 +1931,18 @@ paths:
                               image_url_4x:
                                 type: string
                                 example: https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/3
+                              title:
+                                type: string
+                                example: VIP
+                              description:
+                                type: string
+                                example: VIP
+                              click_action:
+                                type: string
+                                example: visit_url
+                              click_url:
+                                type: string
+                                example: https://help.twitch.tv/customer/en/portal/articles/659115-twitch-chat-badges-guide
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
