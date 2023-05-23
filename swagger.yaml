@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2023‑05‑11
+  version: 2023‑05‑22
 paths:
   /channels/commercial:
     parameters:
@@ -3718,6 +3718,10 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
       parameters:
         - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
           in: query
           schema:
             type: string
