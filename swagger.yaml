@@ -3682,6 +3682,7 @@ paths:
       security:
         - oauth:
             - channel:read:guest_star
+            - moderator:read:guest_star
       responses:
         "200":
           description: OK
@@ -8342,9 +8343,9 @@ components:
             clips:edit: Manage Clips for a channel.
             channel:read:goals: View Creator Goals for a channel.
             channel:read:guest_star: Read Guest Star details for your channel.
-            channel:manage:guest_star: Manage Guest Star for your channel.
             moderator:read:guest_star: Read Guest Star details for channels where you are a
               Guest Star moderator.
+            channel:manage:guest_star: Manage Guest Star for your channel.
             moderator:manage:guest_star: Manage Guest Star for channels where you are a
               Guest Star moderator.
             channel:read:hype_train: View Hype Train information for a channel.
@@ -8414,9 +8415,9 @@ components:
             clips:edit: Manage Clips for a channel.
             channel:read:goals: View Creator Goals for a channel.
             channel:read:guest_star: Read Guest Star details for your channel.
-            channel:manage:guest_star: Manage Guest Star for your channel.
             moderator:read:guest_star: Read Guest Star details for channels where you are a
               Guest Star moderator.
+            channel:manage:guest_star: Manage Guest Star for your channel.
             moderator:manage:guest_star: Manage Guest Star for channels where you are a
               Guest Star moderator.
             channel:read:hype_train: View Hype Train information for a channel.
