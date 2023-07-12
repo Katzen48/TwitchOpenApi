@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2023‑06‑29
+  version: 2023‑07‑10
 paths:
   /channels/commercial:
     parameters:
@@ -615,6 +615,13 @@ paths:
                           items:
                             type: string
                             example: DevsInTheKnow
+                        content_classification_labels:
+                          type: array
+                          items:
+                            type: string
+                            example: Gambling
+                        is_branded_content:
+                          type: boolean
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -623,6 +630,10 @@ paths:
           description: "Internal Server Error: Something bad happened on our side"
       parameters:
         - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: ccl_locale
           in: query
           schema:
             type: string
@@ -2377,6 +2388,55 @@ paths:
           schema:
             type: string
         - name: after
+          in: query
+          schema:
+            type: string
+  /content_classification_labels:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get Content Classification Labels
+      description: Gets information about Twitch content classification labels.
+      tags:
+        - CCLs
+      security:
+        - oauth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: DrugsIntoxication
+                        description:
+                          type: string
+                          example: Excessive tobacco glorification or promotion, any marijuana
+                            consumption/use, legal drug and alcohol induced
+                            intoxication, discussions of illegal drugs.
+                        name:
+                          type: string
+                          example: Drugs, Intoxication, or Excessive Tobacco Use
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: locale
           in: query
           schema:
             type: string
