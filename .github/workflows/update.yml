@@ -15,7 +15,7 @@ jobs:
     environment: prod
     name: Check for Docs Updates
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Check for Updates and pull docs
         id: hello
         uses: katzen48/TwitchOpenApiGenerator@v0.10
