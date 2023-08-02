@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check for Updates and pull docs
         id: hello
-        uses: katzen48/TwitchOpenApiGenerator@v0.9
+        uses: katzen48/TwitchOpenApiGenerator@v0.10
       # Use the output from the `hello` step
       - name: Swagger-cli
         uses: mpetrunic/swagger-cli-action@v1.0.0
@@ -26,7 +26,7 @@ jobs:
           command: "validate ./swagger.yaml"
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           commit-message: update docs
           title: Update Docs
@@ -35,7 +35,7 @@ jobs:
           delete-branch: true
       - name: Enable Pull Request Automerge
         if: steps.cpr.outputs.pull-request-operation == 'created'
-        uses: peter-evans/enable-pull-request-automerge@v2
+        uses: peter-evans/enable-pull-request-automerge@v3
         with:
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
           token: ${{ secrets.PAT }}
