@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2023‑08‑24
+  version: 2023‑11‑15
 paths:
   /channels/commercial:
     parameters:
@@ -59,6 +59,65 @@ paths:
           description: Not Found
         "500":
           description: "Internal Server Error: Something bad happened on our side"
+  /channels/ads:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get Ad Schedule
+      description: BETA Returns ad schedule related information.
+      tags:
+        - Ads
+      security:
+        - oauth:
+            - channel:read:ads
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+  /channels/ads/schedule/snooze:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Snooze Next Ad
+      description: BETA Pushes back the timestamp of the upcoming automatic mid-roll
+        ad by 5 minutes.
+      tags:
+        - Ads
+      security:
+        - oauth:
+            - channel:manage:ads
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
   /analytics/extensions:
     parameters:
       - in: header
@@ -2348,6 +2407,8 @@ paths:
                         vod_offset:
                           type: number
                           example: 480
+                        is_featured:
+                          type: boolean
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -2384,6 +2445,10 @@ paths:
           schema:
             type: string
         - name: after
+          in: query
+          schema:
+            type: string
+        - name: is_featured
           in: query
           schema:
             type: string
@@ -7428,83 +7493,6 @@ paths:
           in: query
           schema:
             type: string
-  /users/follows:
-    parameters:
-      - in: header
-        name: client_id
-        required: true
-        schema:
-          type: string
-    get:
-      summary: Get Users Follows
-      description: Gets information about users that are following other users.
-      tags:
-        - Users
-      security:
-        - oauth: []
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  total:
-                    type: number
-                    example: 12345
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        from_id:
-                          type: string
-                          example: "171003792"
-                        from_login:
-                          type: string
-                          example: iiisutha067iii
-                        from_name:
-                          type: string
-                          example: IIIsutha067III
-                        to_id:
-                          type: string
-                          example: "23161357"
-                        to_name:
-                          type: string
-                          example: LIRIK
-                        followed_at:
-                          type: string
-                          example: 2017-08-22T22:55:24Z
-                  pagination:
-                    type: object
-                    properties:
-                      cursor:
-                        type: string
-                        example: eyJiIjpudWxsLCJhIjoiMTUwMzQ0MTc3NjQyNDQyMjAwMCJ9
-        "401":
-          description: "Unauthenticated: Missing/invalid Token"
-        "404":
-          description: Not Found
-        "500":
-          description: "Internal Server Error: Something bad happened on our side"
-      parameters:
-        - name: from_id
-          in: query
-          schema:
-            type: string
-        - name: to_id
-          in: query
-          schema:
-            type: string
-        - name: first
-          in: query
-          schema:
-            type: string
-        - name: after
-          in: query
-          schema:
-            type: string
   /users/blocks:
     parameters:
       - in: header
@@ -8120,6 +8108,8 @@ components:
           authorizationUrl: https://id.twitch.tv/oauth2/authorize
           scopes:
             channel:edit:commercial: Run commercials on a channel.
+            channel:read:ads: Read the ads schedule and details on your channel.
+            channel:manage:ads: Manage ads schedule on a channel.
             analytics:read:extensions: View analytics data for the Twitch Extensions owned
               by the authenticated account.
             analytics:read:games: View analytics data for the games owned by the
@@ -8192,6 +8182,8 @@ components:
           tokenUrl: https://id.twitch.tv/oauth2/token
           scopes:
             channel:edit:commercial: Run commercials on a channel.
+            channel:read:ads: Read the ads schedule and details on your channel.
+            channel:manage:ads: Manage ads schedule on a channel.
             analytics:read:extensions: View analytics data for the Twitch Extensions owned
               by the authenticated account.
             analytics:read:games: View analytics data for the games owned by the
