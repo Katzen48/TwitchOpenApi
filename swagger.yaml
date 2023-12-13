@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2023‑12‑05
+  version: 2023‑12‑11
 paths:
   /channels/commercial:
     parameters:
@@ -68,7 +68,7 @@ paths:
           type: string
     get:
       summary: Get Ad Schedule
-      description: BETA Returns ad schedule related information.
+      description: Returns ad schedule related information.
       tags:
         - Ads
       security:
@@ -97,8 +97,8 @@ paths:
           type: string
     post:
       summary: Snooze Next Ad
-      description: BETA Pushes back the timestamp of the upcoming automatic mid-roll
-        ad by 5 minutes.
+      description: Pushes back the timestamp of the upcoming automatic mid-roll ad by
+        5 minutes.
       tags:
         - Ads
       security:
