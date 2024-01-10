@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2023‑12‑11
+  version: 2024‑01‑08
 paths:
   /channels/commercial:
     parameters:
@@ -4996,6 +4996,69 @@ paths:
           in: query
           schema:
             type: string
+  /moderation/channels:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get Moderated Channels
+      description: BETA Gets a list of channels that the specified user has moderator
+        privileges in.
+      tags:
+        - Moderation
+      security:
+        - oauth:
+            - user:read:moderated_channels
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                          example: "12345"
+                        broadcaster_login:
+                          type: string
+                          example: grateful_broadcaster
+                        broadcaster_name:
+                          type: string
+                          example: Grateful_Broadcaster
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        example: eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6IjEwMDQ3MzA2NDo4NjQwNjU3MToxSVZCVDFKMnY5M1BTOXh3d1E0dUdXMkJOMFcifX0
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
   /moderation/moderators:
     parameters:
       - in: header
@@ -8151,6 +8214,7 @@ components:
             moderator:read:blocked_terms: View a broadcaster’s list of blocked terms.
             moderator:manage:blocked_terms: Manage a broadcaster’s list of blocked terms.
             moderator:manage:chat_messages: Delete chat messages in channels where you have the moderator role
+            user:read:moderated_channels: Read the list of channels you have moderator privileges in.
             channel:manage:moderators: Add or remove the moderator role from users in your channel.
             channel:read:vips: Read the list of VIPs in your channel.
             channel:manage:vips: Add or remove the VIP role from users in your channel.
@@ -8225,6 +8289,7 @@ components:
             moderator:read:blocked_terms: View a broadcaster’s list of blocked terms.
             moderator:manage:blocked_terms: Manage a broadcaster’s list of blocked terms.
             moderator:manage:chat_messages: Delete chat messages in channels where you have the moderator role
+            user:read:moderated_channels: Read the list of channels you have moderator privileges in.
             channel:manage:moderators: Add or remove the moderator role from users in your channel.
             channel:read:vips: Read the list of VIPs in your channel.
             channel:manage:vips: Add or remove the VIP role from users in your channel.
