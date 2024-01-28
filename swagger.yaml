@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2024‑01‑08
+  version: 2024‑01‑25
 paths:
   /channels/commercial:
     parameters:
@@ -2214,6 +2214,45 @@ paths:
           in: query
           schema:
             type: string
+  /chat/messages:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Send Chat Message
+      description: NEW Sends a message to the broadcaster’s chat room.
+      tags:
+        - Chat
+      security:
+        - oauth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message_id:
+                          type: string
+                          example: abc-123-def
+                        is_sent:
+                          type: boolean
+                          example: true
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
   /chat/color:
     parameters:
       - in: header
@@ -2452,6 +2491,205 @@ paths:
           in: query
           schema:
             type: string
+  /eventsub/conduits:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get Conduits
+      description: NEW Gets the conduits for a client ID.
+      tags:
+        - Conduits
+      security:
+        - oauth: []
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+    post:
+      summary: Create Conduits
+      description: NEW Creates a new conduit.
+      tags:
+        - Conduits
+      security:
+        - oauth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: bfcfc993-26b1-b876-44d9-afe75a379dac
+                        shard_count:
+                          type: number
+                          example: 5
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+    patch:
+      summary: Update Conduits
+      description: NEW Updates a conduit’s shard count.
+      tags:
+        - Conduits
+      security:
+        - oauth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: bfcfc993-26b1-b876-44d9-afe75a379dac
+                        shard_count:
+                          type: number
+                          example: 5
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+    delete:
+      summary: Delete Conduit
+      description: NEW Deletes a specified conduit.
+      tags:
+        - Conduits
+      security:
+        - oauth: []
+      responses:
+        "204":
+          description: Deleted
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+  /eventsub/conduits/shards:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get Conduit Shards
+      description: NEW Gets a lists of all shards for a conduit.
+      tags:
+        - Conduits
+      security:
+        - oauth: []
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: conduit_id
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+    patch:
+      summary: Update Conduit Shards
+      description: NEW Updates shard(s) for a conduit.
+      tags:
+        - Conduits
+      security:
+        - oauth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "0"
+                        status:
+                          type: string
+                          example: enabled
+                        transport:
+                          type: object
+                          properties:
+                            method:
+                              type: string
+                              example: webhook
+                            callback:
+                              type: string
+                              example: https://this-is-a-callback.com
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "3"
+                        message:
+                          type: string
+                          example: The shard id is outside the conduit's range
+                        code:
+                          type: string
+                          example: invalid_parameter
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
   /content_classification_labels:
     parameters:
       - in: header
