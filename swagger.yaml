@@ -2508,6 +2508,22 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 26b1c993-bfcf-44d9-b876-379dacafe75a
+                        shard_count:
+                          type: number
+                          example: 15
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
