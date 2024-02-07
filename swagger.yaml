@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2024‑01‑25
+  version: 2024‑02‑01
 paths:
   /channels/commercial:
     parameters:
@@ -5259,7 +5259,7 @@ paths:
           type: string
     get:
       summary: Get Moderated Channels
-      description: BETA Gets a list of channels that the specified user has moderator
+      description: Gets a list of channels that the specified user has moderator
         privileges in.
       tags:
         - Moderation
