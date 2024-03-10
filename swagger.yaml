@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2024‑02‑01
+  version: 2024‑03‑07
 paths:
   /channels/commercial:
     parameters:
@@ -2141,6 +2141,91 @@ paths:
           schema:
             type: string
         - name: moderator_id
+          in: query
+          schema:
+            type: string
+  /chat/emotes/user:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get User Emotes
+      description: BETA Retrieves emotes available to the user across all channels.
+      tags:
+        - Chat
+      security:
+        - oauth:
+            - user:read:emotes
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        emote_set_id:
+                          type: string
+                        emote_type:
+                          type: string
+                          example: hypetrain
+                        format:
+                          type: array
+                          items:
+                            type: string
+                            example: static
+                        id:
+                          type: string
+                          example: "304420818"
+                        name:
+                          type: string
+                          example: HypeLol
+                        owner_id:
+                          type: string
+                          example: "477339272"
+                        scale:
+                          type: array
+                          items:
+                            type: string
+                            example: "1.0"
+                        theme_mode:
+                          type: array
+                          items:
+                            type: string
+                            example: light
+                  template:
+                    type: string
+                    example: https://static-cdn.jtvnw.net/emoticons/v2/{{id}}/{{format}}/{{theme_mode}}/{{scale}}
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        example: eyJiIjpudWxsLJxhIjoiIn0gf5
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: after
           in: query
           schema:
             type: string
@@ -5046,6 +5131,206 @@ paths:
           schema:
             type: string
         - name: user_id
+          in: query
+          schema:
+            type: string
+  /moderation/unban_requests:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get Unban Requests
+      description: BETA Gets a list of unban requests for a broadcaster’s channel.
+      tags:
+        - Moderation
+      security:
+        - oauth:
+            - moderator:read:unban_requests
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 92af127c-7326-4483-a52b-b0da0be61c01
+                        broadcaster_name:
+                          type: string
+                          example: torpedo09
+                        broadcaster_login:
+                          type: string
+                          example: torpedo09
+                        broadcaster_id:
+                          type: string
+                          example: "274637212"
+                        moderator_id:
+                          type: string
+                          example: "141981764"
+                        moderator_login:
+                          type: string
+                          example: twitchdev
+                        moderator_name:
+                          type: string
+                          example: TwitchDev
+                        user_id:
+                          type: string
+                          example: "424596340"
+                        user_login:
+                          type: string
+                          example: quotrok
+                        user_name:
+                          type: string
+                          example: quotrok
+                        text:
+                          type: string
+                          example: Please unban me from the channel?
+                        status:
+                          type: string
+                          example: pending
+                        created_at:
+                          type: string
+                          example: 2022-08-07T02:07:55Z
+                        resolved_at:
+                          type: string
+                        resolution_text:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        example: eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6IjEwMDQ3MzA2NDo4NjQwNjU3MToxSVZCVDFKMnY5M1BTOXh3d1E0dUdXMkJOMFcifX0
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: string
+    patch:
+      summary: Resolve Unban Requests
+      description: BETA Resolves an unban request by approving or denying it.
+      tags:
+        - Moderation
+      security:
+        - oauth:
+            - moderator:manage:unban_requests
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 92af127c-7326-4483-a52b-b0da0be61c01
+                        broadcaster_name:
+                          type: string
+                          example: torpedo09
+                        broadcaster_login:
+                          type: string
+                          example: torpedo09
+                        broadcaster_id:
+                          type: string
+                          example: "274637212"
+                        moderator_id:
+                          type: string
+                          example: "141981764"
+                        moderator_login:
+                          type: string
+                          example: twitchdev
+                        moderator_name:
+                          type: string
+                          example: TwitchDev
+                        user_id:
+                          type: string
+                          example: "424596340"
+                        user_login:
+                          type: string
+                          example: quotrok
+                        user_name:
+                          type: string
+                          example: quotrok
+                        text:
+                          type: string
+                          example: Please unban me from the channel?
+                        status:
+                          type: string
+                          example: approved
+                        created_at:
+                          type: string
+                          example: 2022-08-07T02:07:55Z
+                        resolved_at:
+                          type: string
+                          example: 2022-08-09T02:07:55Z
+                        resolution_text:
+                          type: string
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
+        - name: unban_request_id
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: resolution_text
           in: query
           schema:
             type: string
@@ -8445,6 +8730,7 @@ components:
             channel:read:charity: Read charity campaign details and user donations on your channel.
             moderator:read:chatters: View the chatters in a broadcaster’s chat room.
             moderator:read:chat_settings: View a broadcaster’s chat room settings.
+            user:read:emotes: View emotes available to a user
             moderator:manage:chat_settings: Manage a broadcaster’s chat room settings.
             moderator:manage:announcements: Send announcements in channels where you have the moderator role.
             moderator:manage:shoutouts: Manage a broadcaster’s shoutouts.
@@ -8465,6 +8751,8 @@ components:
             moderator:read:automod_settings: View a broadcaster’s AutoMod settings.
             moderator:manage:automod_settings: Manage a broadcaster’s AutoMod settings.
             moderator:manage:banned_users: Ban and unban users.
+            moderator:read:unban_requests: View a broadcaster’s unban requests.
+            moderator:manage:unban_requests: Manage a broadcaster’s unban requests.
             moderator:read:blocked_terms: View a broadcaster’s list of blocked terms.
             moderator:manage:blocked_terms: Manage a broadcaster’s list of blocked terms.
             moderator:manage:chat_messages: Delete chat messages in channels where you have the moderator role
@@ -8520,6 +8808,7 @@ components:
             channel:read:charity: Read charity campaign details and user donations on your channel.
             moderator:read:chatters: View the chatters in a broadcaster’s chat room.
             moderator:read:chat_settings: View a broadcaster’s chat room settings.
+            user:read:emotes: View emotes available to a user
             moderator:manage:chat_settings: Manage a broadcaster’s chat room settings.
             moderator:manage:announcements: Send announcements in channels where you have the moderator role.
             moderator:manage:shoutouts: Manage a broadcaster’s shoutouts.
@@ -8540,6 +8829,8 @@ components:
             moderator:read:automod_settings: View a broadcaster’s AutoMod settings.
             moderator:manage:automod_settings: Manage a broadcaster’s AutoMod settings.
             moderator:manage:banned_users: Ban and unban users.
+            moderator:read:unban_requests: View a broadcaster’s unban requests.
+            moderator:manage:unban_requests: Manage a broadcaster’s unban requests.
             moderator:read:blocked_terms: View a broadcaster’s list of blocked terms.
             moderator:manage:blocked_terms: Manage a broadcaster’s list of blocked terms.
             moderator:manage:chat_messages: Delete chat messages in channels where you have the moderator role
