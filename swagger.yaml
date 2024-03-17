@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2024‑03‑07
+  version: 2024‑03‑15
 paths:
   /channels/commercial:
     parameters:
@@ -2153,7 +2153,7 @@ paths:
           type: string
     get:
       summary: Get User Emotes
-      description: BETA Retrieves emotes available to the user across all channels.
+      description: NEW Retrieves emotes available to the user across all channels.
       tags:
         - Chat
       security:
@@ -4146,31 +4146,6 @@ paths:
       responses:
         "200":
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        is_moderator_send_live_enabled:
-                          type: boolean
-                          example: true
-                        slot_count:
-                          type: number
-                          example: 4
-                        is_browser_source_audio_enabled:
-                          type: boolean
-                          example: true
-                        layout:
-                          type: string
-                          example: TILED_LAYOUT
-                        browser_source_token:
-                          type: string
-                          example: eihq8rew7q3hgierufhi3q
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -5143,7 +5118,7 @@ paths:
           type: string
     get:
       summary: Get Unban Requests
-      description: BETA Gets a list of unban requests for a broadcaster’s channel.
+      description: NEW Gets a list of unban requests for a broadcaster’s channel.
       tags:
         - Moderation
       security:
@@ -5244,7 +5219,7 @@ paths:
             type: string
     patch:
       summary: Resolve Unban Requests
-      description: BETA Resolves an unban request by approving or denying it.
+      description: NEW Resolves an unban request by approving or denying it.
       tags:
         - Moderation
       security:
