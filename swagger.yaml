@@ -15,7 +15,7 @@ info:
     name: TwitchDev
     url: https://dev.twitch.tv/support/
     email: developers@twitch.tv
-  version: 2024‑03‑07
+  version: 2025‑01‑13
 paths:
   /channels/commercial:
     parameters:
@@ -995,6 +995,7 @@ paths:
       security:
         - oauth:
             - channel:read:redemptions
+            - channel:manage:redemptions
       responses:
         "200":
           description: OK
@@ -1228,6 +1229,7 @@ paths:
       security:
         - oauth:
             - channel:read:redemptions
+            - channel:manage:redemptions
       responses:
         "200":
           description: OK
@@ -1509,7 +1511,8 @@ paths:
       tags:
         - Charity
       security:
-        - oauth: []
+        - oauth:
+            - channel:read:charity
       responses:
         "200":
           description: OK
@@ -2144,6 +2147,34 @@ paths:
           in: query
           schema:
             type: string
+  /shared_chat/session:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get Shared Chat Session
+      description: NEW Retrieves the active shared chat session for a channel.
+      tags:
+        - Chat
+      security:
+        - oauth: []
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
   /chat/emotes/user:
     parameters:
       - in: header
@@ -2153,7 +2184,7 @@ paths:
           type: string
     get:
       summary: Get User Emotes
-      description: BETA Retrieves emotes available to the user across all channels.
+      description: NEW Retrieves emotes available to the user across all channels.
       tags:
         - Chat
       security:
@@ -2221,11 +2252,11 @@ paths:
           in: query
           schema:
             type: string
-        - name: broadcaster_id
+        - name: after
           in: query
           schema:
             type: string
-        - name: after
+        - name: broadcaster_id
           in: query
           schema:
             type: string
@@ -2312,7 +2343,10 @@ paths:
       tags:
         - Chat
       security:
-        - oauth: []
+        - oauth:
+            - channel:bot
+            - user:bot
+            - user:write:chat
       responses:
         "200":
           description: OK
@@ -2820,15 +2854,15 @@ paths:
                       properties:
                         id:
                           type: string
-                          example: DrugsIntoxication
+                          example: DebatedSocialIssuesAndPolitics
                         description:
                           type: string
-                          example: Excessive tobacco glorification or promotion, any marijuana
-                            consumption/use, legal drug and alcohol induced
-                            intoxication, discussions of illegal drugs.
+                          example: Discussions or debates about politics or sensitive social issues such
+                            as elections, civic integrity, military conflict,
+                            and civil rights in a polarizing manner.
                         name:
                           type: string
-                          example: Drugs, Intoxication, or Excessive Tobacco Use
+                          example: Politics and Sensitive Social Issues
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4035,12 +4069,6 @@ paths:
                         igdb_id:
                           type: string
                           example: "1905"
-                  pagination:
-                    type: object
-                    properties:
-                      cursor:
-                        type: string
-                        example: eyJiIjpudWxsLCJhIjp7IkN
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4146,31 +4174,6 @@ paths:
       responses:
         "200":
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        is_moderator_send_live_enabled:
-                          type: boolean
-                          example: true
-                        slot_count:
-                          type: number
-                          example: 4
-                        is_browser_source_audio_enabled:
-                          type: boolean
-                          example: true
-                        layout:
-                          type: string
-                          example: TILED_LAYOUT
-                        browser_source_token:
-                          type: string
-                          example: eihq8rew7q3hgierufhi3q
         "401":
           description: "Unauthenticated: Missing/invalid Token"
         "404":
@@ -4973,6 +4976,7 @@ paths:
       security:
         - oauth:
             - moderation:read
+            - moderator:manage:banned_users
       responses:
         "200":
           description: OK
@@ -5143,7 +5147,7 @@ paths:
           type: string
     get:
       summary: Get Unban Requests
-      description: BETA Gets a list of unban requests for a broadcaster’s channel.
+      description: NEW Gets a list of unban requests for a broadcaster’s channel.
       tags:
         - Moderation
       security:
@@ -5244,7 +5248,7 @@ paths:
             type: string
     patch:
       summary: Resolve Unban Requests
-      description: BETA Resolves an unban request by approving or denying it.
+      description: NEW Resolves an unban request by approving or denying it.
       tags:
         - Moderation
       security:
@@ -5349,6 +5353,7 @@ paths:
       security:
         - oauth:
             - moderator:read:blocked_terms
+            - moderator:manage:blocked_terms
       responses:
         "200":
           description: OK
@@ -5612,6 +5617,7 @@ paths:
         - Moderation
       security:
         - oauth:
+            - channel:manage:moderators
             - moderation:read
       responses:
         "200":
@@ -5943,6 +5949,62 @@ paths:
           in: query
           schema:
             type: string
+  /moderation/warnings:
+    parameters:
+      - in: header
+        name: client_id
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Warn Chat User
+      description: NEW Warns a user in the specified broadcaster’s chat room,
+        preventing them from chat interaction until the warning is acknowledged.
+      tags:
+        - Moderation
+      security:
+        - oauth:
+            - moderator:manage:warnings
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                          example: "404040"
+                        user_id:
+                          type: string
+                          example: "9876"
+                        moderator_id:
+                          type: string
+                          example: "404041"
+                        reason:
+                          type: string
+                          example: stop doing that!
+        "401":
+          description: "Unauthenticated: Missing/invalid Token"
+        "404":
+          description: Not Found
+        "500":
+          description: "Internal Server Error: Something bad happened on our side"
+      parameters:
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
   /polls:
     parameters:
       - in: header
@@ -5958,6 +6020,7 @@ paths:
       security:
         - oauth:
             - channel:read:polls
+            - channel:manage:polls
       responses:
         "200":
           description: OK
@@ -6220,6 +6283,7 @@ paths:
       security:
         - oauth:
             - channel:read:predictions
+            - channel:manage:predictions
       responses:
         "200":
           description: OK
@@ -6985,19 +7049,19 @@ paths:
                           example: en
                         broadcaster_login:
                           type: string
-                          example: loserfruit
+                          example: twitchdev
                         display_name:
                           type: string
-                          example: Loserfruit
+                          example: TwitchDev
                         game_id:
                           type: string
-                          example: "498000"
+                          example: "1469308723"
                         game_name:
                           type: string
-                          example: House Flipper
+                          example: Software and Game Development
                         id:
                           type: string
-                          example: "41245072"
+                          example: "141981764"
                         is_live:
                           type: boolean
                         tag_ids:
@@ -7008,12 +7072,13 @@ paths:
                           type: array
                           items:
                             type: string
+                            example: WebDevelopment
                         thumbnail_url:
                           type: string
-                          example: https://static-cdn.jtvnw.net/jtv_user_pictures/fd17325a-7dc2-46c6-8617-e90ec259501c-profile_image-300x300.png
+                          example: https://static-cdn.jtvnw.net/jtv_user_pictures/8a6381c7-d0c0-4576-b179-38bd5ce1d6af-profile_image-300x300.png
                         title:
                           type: string
-                          example: loserfruit
+                          example: Standard Output
                         started_at:
                           type: string
                   pagination:
@@ -8038,6 +8103,7 @@ paths:
       security:
         - oauth:
             - user:edit
+            - user:read:email
       responses:
         "200":
           description: OK
@@ -8219,6 +8285,7 @@ paths:
         - Users
       security:
         - oauth:
+            - user:edit:broadcast
             - user:read:broadcast
       responses:
         "200":
@@ -8272,6 +8339,7 @@ paths:
       security:
         - oauth:
             - channel:manage:extensions
+            - user:edit:broadcast
             - user:read:broadcast
       responses:
         "200":
@@ -8396,6 +8464,7 @@ paths:
       security:
         - oauth:
             - channel:manage:extensions
+            - user:edit:broadcast
       responses:
         "200":
           description: OK
@@ -8734,6 +8803,11 @@ components:
             moderator:manage:chat_settings: Manage a broadcaster’s chat room settings.
             moderator:manage:announcements: Send announcements in channels where you have the moderator role.
             moderator:manage:shoutouts: Manage a broadcaster’s shoutouts.
+            channel:bot: Joins your channel’s chatroom as a bot user, and perform
+              chat-related actions as that user.
+            user:bot: Join a specified chat channel as your user and appear as a bot, and
+              perform chat-related actions as your user.
+            user:write:chat: Send chat messages to a chatroom.
             user:manage:chat_color: Update the color used for the user’s name in chat.
             clips:edit: Manage Clips for a channel.
             channel:read:goals: View Creator Goals for a channel.
@@ -8762,6 +8836,7 @@ components:
             channel:manage:vips: Add or remove the VIP role from users in your channel.
             moderator:manage:shield_mode: Manage a broadcaster’s Shield Mode status.
             moderator:read:shield_mode: View a broadcaster’s Shield Mode status.
+            moderator:manage:warnings: Warn users in channels where you have the moderator role.
             channel:read:polls: View a channel’s polls.
             channel:manage:polls: Manage a channel’s polls.
             channel:read:predictions: View a channel’s Channel Points Predictions.
@@ -8778,11 +8853,13 @@ components:
             user:edit: Manage a user object.
             user:read:blocked_users: View the block list of a user.
             user:manage:blocked_users: Manage the block list of a user.
+            user:edit:broadcast: View and edit a user’s broadcasting configuration,
+              including Extension configurations.
             channel:manage:extensions: Manage a channel’s Extension configuration, including
               activating Extensions.
             channel:manage:videos: Manage a channel’s videos, including deleting videos.
-            user:manage:whispers: Read whispers that you send and receive, and send whispers
-              on your behalf.
+            user:manage:whispers: Receive whispers sent to your user, and send whispers on
+              your user’s behalf.
         authorizationCode:
           authorizationUrl: https://id.twitch.tv/oauth2/authorize
           tokenUrl: https://id.twitch.tv/oauth2/token
@@ -8812,6 +8889,11 @@ components:
             moderator:manage:chat_settings: Manage a broadcaster’s chat room settings.
             moderator:manage:announcements: Send announcements in channels where you have the moderator role.
             moderator:manage:shoutouts: Manage a broadcaster’s shoutouts.
+            channel:bot: Joins your channel’s chatroom as a bot user, and perform
+              chat-related actions as that user.
+            user:bot: Join a specified chat channel as your user and appear as a bot, and
+              perform chat-related actions as your user.
+            user:write:chat: Send chat messages to a chatroom.
             user:manage:chat_color: Update the color used for the user’s name in chat.
             clips:edit: Manage Clips for a channel.
             channel:read:goals: View Creator Goals for a channel.
@@ -8840,6 +8922,7 @@ components:
             channel:manage:vips: Add or remove the VIP role from users in your channel.
             moderator:manage:shield_mode: Manage a broadcaster’s Shield Mode status.
             moderator:read:shield_mode: View a broadcaster’s Shield Mode status.
+            moderator:manage:warnings: Warn users in channels where you have the moderator role.
             channel:read:polls: View a channel’s polls.
             channel:manage:polls: Manage a channel’s polls.
             channel:read:predictions: View a channel’s Channel Points Predictions.
@@ -8856,11 +8939,13 @@ components:
             user:edit: Manage a user object.
             user:read:blocked_users: View the block list of a user.
             user:manage:blocked_users: Manage the block list of a user.
+            user:edit:broadcast: View and edit a user’s broadcasting configuration,
+              including Extension configurations.
             channel:manage:extensions: Manage a channel’s Extension configuration, including
               activating Extensions.
             channel:manage:videos: Manage a channel’s videos, including deleting videos.
-            user:manage:whispers: Read whispers that you send and receive, and send whispers
-              on your behalf.
+            user:manage:whispers: Receive whispers sent to your user, and send whispers on
+              your user’s behalf.
         clientCredentials:
           tokenUrl: https://id.twitch.tv/oauth2/token
           scopes: {}
